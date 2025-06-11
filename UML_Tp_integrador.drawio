@@ -17,26 +17,14 @@
         <mxCell id="4gVouVSnkJ0AU-x3zaor-5" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Muestra&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- especie : DescripcionOpinion (preguntar dif entre especie y resultadoActual)&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- foto (?)&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- fechaDeEnvio : &amp;lt;LocalDate&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+&lt;u&gt;new(Ubicacion, DescripcionOpinion, Usuario, foto(?))&lt;/u&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getOpinionesUsuariosBasicos() : List&amp;lt;Opinion&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getOpinionesUsuariosExpertos() : List &amp;lt;Opinion&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getOpiniones() :&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;List &amp;lt;Opinion&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ getEspecie() : DescripcionOpinion&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getResultadoActual() :&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;DescripcionOpinion&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ getEstadoMuestra() : EstadoMuestra&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ verificarMuestra(): void&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+agregarOpinion(Opinion)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="-20" y="90" width="380" height="260" as="geometry" />
         </mxCell>
-        <mxCell id="4gVouVSnkJ0AU-x3zaor-7" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;UsuarioBasico&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ field: Type&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ darOpinion(Muestra )&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="790" y="320" width="210" height="90" as="geometry" />
+        <mxCell id="4gVouVSnkJ0AU-x3zaor-7" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;UsuarioBasico&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ darOpinion(Muestra )&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ enviarMuestra(Muestra)&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ setEstadoUsuario(): void&lt;br&gt;&amp;nbsp;(se ejecuta dsps de darOpinion o enviarMuestra, verificando si luego de esto tiene condiciones para ser experto)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="870" y="238" width="210" height="152" as="geometry" />
         </mxCell>
-        <mxCell id="4gVouVSnkJ0AU-x3zaor-8" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;UsuarioExperto&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ field: Type&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ darOpinion(Muestra ) (hace que los basicos no opinen mas, chequea si otro experto oppino lo mismo y puede llegar a verificar)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="1100" y="310" width="165" height="170" as="geometry" />
+        <mxCell id="4gVouVSnkJ0AU-x3zaor-8" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;UsuarioExperto&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ darOpinion(Muestra ) (cambia el estado de la muestra, chequea si otro experto opino lo mismo y puede llegar a verificar)&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ enviarMuestra(Muestra)&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+setEstadoUsuario()&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;(se ejecuta antes de darOpinion o enviarMuestra, verificando si sigue teniendo condiciones para ser experto)&lt;/span&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="1110" y="240" width="210" height="170" as="geometry" />
         </mxCell>
         <mxCell id="4gVouVSnkJ0AU-x3zaor-9" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Opinion&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&amp;nbsp;+ fechaOpinion : LocalDate&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getFecha() : LocalDate&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="345" y="-112" width="160" height="120" as="geometry" />
-        </mxCell>
-        <mxCell id="4gVouVSnkJ0AU-x3zaor-10" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;entryX=0.114;entryY=0.987;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.569;exitY=-0.017;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="4gVouVSnkJ0AU-x3zaor-7" target="4gVouVSnkJ0AU-x3zaor-50" edge="1">
-          <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="920" y="320" as="sourcePoint" />
-            <mxPoint x="1018.35" y="210" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="4gVouVSnkJ0AU-x3zaor-11" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" target="4gVouVSnkJ0AU-x3zaor-50" edge="1">
-          <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="1180" y="310" as="sourcePoint" />
-            <mxPoint x="890.0000000000001" y="190" as="targetPoint" />
-          </mxGeometry>
         </mxCell>
         <mxCell id="4gVouVSnkJ0AU-x3zaor-12" value="" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;rounded=0;entryX=-0.008;entryY=0.867;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="4gVouVSnkJ0AU-x3zaor-44" edge="1">
           <mxGeometry x="-1" relative="1" as="geometry">
@@ -98,14 +86,8 @@
         <mxCell id="4gVouVSnkJ0AU-x3zaor-28" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="365" y="128" width="30" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="4gVouVSnkJ0AU-x3zaor-29" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;b&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;UsuarioExternoEspecialista&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ darOpinion(Muestra )&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="1360" y="230" width="210" height="160" as="geometry" />
-        </mxCell>
-        <mxCell id="4gVouVSnkJ0AU-x3zaor-30" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;exitX=0;exitY=0;exitDx=0;exitDy=0;" parent="1" source="4gVouVSnkJ0AU-x3zaor-29" target="4gVouVSnkJ0AU-x3zaor-50" edge="1">
-          <mxGeometry width="160" relative="1" as="geometry">
-            <mxPoint x="1110" y="340" as="sourcePoint" />
-            <mxPoint x="930" y="260" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="4gVouVSnkJ0AU-x3zaor-29" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;b&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;UsuarioExternoEspecialista&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ darOpinion(Muestra )&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ enviarMuestra(Muestra)&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+setEstadoUsuario()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="1320" y="63" width="210" height="160" as="geometry" />
         </mxCell>
         <mxCell id="4gVouVSnkJ0AU-x3zaor-35" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Organizacion&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- tipoDeOrganizacion : enum&amp;lt;String&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- cantDePersonasTrabajando : int&amp;nbsp;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+registrarseAZona(ZonaDeCobertura) : void&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+eliminarZona(ZonsDeCobertura) : void&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+funcionalidadExternaPorNuevaMuestra(): void&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+funcionalidadExternaPorVerificacion(): void&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="-630" y="360" width="250" height="210" as="geometry" />
@@ -127,7 +109,7 @@
         <mxCell id="4gVouVSnkJ0AU-x3zaor-42" value="ubicacionDeMuestra" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="-120" y="370" width="130" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="4gVouVSnkJ0AU-x3zaor-44" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Usuario&lt;/b&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;(Context)&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+darOpinion(Muestra m)&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+getEstadoUsuario(): NivelConocimiento&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+enviarMuestra(Muestra m)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+        <mxCell id="4gVouVSnkJ0AU-x3zaor-44" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Usuario&lt;/b&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;(Context)&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- nombreUsuario : String&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ &lt;u&gt;Usuario(String, esEspecialista)&lt;/u&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+darOpinion(Muestra m)&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+getEstadoUsuario(): NivelConocimiento&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+enviarMuestra(Muestra m)&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="620" y="40" width="240" height="170" as="geometry" />
         </mxCell>
         <mxCell id="4gVouVSnkJ0AU-x3zaor-45" value="" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;rounded=0;entryX=0;entryY=0.235;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1.013;exitY=0.337;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" target="4gVouVSnkJ0AU-x3zaor-50" edge="1" source="4gVouVSnkJ0AU-x3zaor-44">
@@ -139,8 +121,8 @@
         <mxCell id="4gVouVSnkJ0AU-x3zaor-48" value="estadoUsuario" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="860" y="50" width="100" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="4gVouVSnkJ0AU-x3zaor-50" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;NivelConocimiento&lt;/b&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;(abstract)&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;&lt;i&gt;+darOpinion(Muestra m)&lt;/i&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;&lt;i&gt;+enviarMuestra(Muestra m)&lt;/i&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="1000" y="40" width="210" height="170" as="geometry" />
+        <mxCell id="4gVouVSnkJ0AU-x3zaor-50" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;&amp;lt;&amp;lt;Interfaz&amp;gt;&amp;gt;&lt;/b&gt;&lt;b&gt;&lt;/b&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;NivelConocimiento&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+darOpinion(Muestra m)&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+enviarMuestra(Muestra m)&lt;br&gt;+setEstadoUsuario()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="1000" width="210" height="170" as="geometry" />
         </mxCell>
         <mxCell id="4gVouVSnkJ0AU-x3zaor-51" value="" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;rounded=0;" parent="1" target="4gVouVSnkJ0AU-x3zaor-39" edge="1">
           <mxGeometry x="-1" relative="1" as="geometry">
@@ -264,7 +246,7 @@
           <mxGeometry y="60" width="220" height="26" as="geometry" />
         </mxCell>
         <mxCell id="4gVouVSnkJ0AU-x3zaor-97" value="CriteriosCombinados" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="655" y="780" width="210" height="80" as="geometry" />
+          <mxGeometry x="680" y="780" width="210" height="80" as="geometry" />
         </mxCell>
         <mxCell id="4gVouVSnkJ0AU-x3zaor-99" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="4gVouVSnkJ0AU-x3zaor-97" vertex="1">
           <mxGeometry y="26" width="210" height="8" as="geometry" />
@@ -283,7 +265,9 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="4gVouVSnkJ0AU-x3zaor-105" value="child" style="edgeLabel;resizable=0;html=1;align=right;verticalAlign=bottom;" parent="4gVouVSnkJ0AU-x3zaor-103" connectable="0" vertex="1">
-          <mxGeometry x="1" relative="1" as="geometry" />
+          <mxGeometry x="1" relative="1" as="geometry">
+            <mxPoint x="40" y="1" as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="4gVouVSnkJ0AU-x3zaor-106" value="criterios" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="910" y="638" width="70" height="30" as="geometry" />
@@ -428,6 +412,27 @@
         </mxCell>
         <mxCell id="M6yZWWiPBZhKFrmVR2Pp-8" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b style=&quot;text-align: left;&quot;&gt;MuestraVerificada&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+agregarOpinion(Opinion)&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+setEstadoMuestra() : void&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+getResultadoActual() :DescripcionOpinion&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="240" y="-390" width="200" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="M6yZWWiPBZhKFrmVR2Pp-9" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="4gVouVSnkJ0AU-x3zaor-7" target="4gVouVSnkJ0AU-x3zaor-50">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="940" y="230" as="sourcePoint" />
+            <mxPoint x="1100" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="M6yZWWiPBZhKFrmVR2Pp-10" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0.566;exitY=0.005;exitDx=0;exitDy=0;entryX=0.697;entryY=1.022;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="4gVouVSnkJ0AU-x3zaor-8" target="4gVouVSnkJ0AU-x3zaor-50">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1090" y="400" as="sourcePoint" />
+            <mxPoint x="1195" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="M6yZWWiPBZhKFrmVR2Pp-11" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1.011;entryY=0.69;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="4gVouVSnkJ0AU-x3zaor-29" target="4gVouVSnkJ0AU-x3zaor-50">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="1270" y="360" as="sourcePoint" />
+            <mxPoint x="1375" y="210" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1240" y="110" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
