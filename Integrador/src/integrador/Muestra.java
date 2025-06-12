@@ -3,24 +3,27 @@ package integrador;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Muestra {
-	//no esta hecho el estado de la muestra ni sus accessors
-	
+import integrador.Muestra.DescripcionOpinion;
+
+public class Muestra { 
+
 	// Variables
-	private Usuario usuario;
-	private DescripcionOpinion descripcion;		//establecida por el usuario que sube la muestra
-	private Foto foto;
+	private Usuario identificacion;
+	private DescripcionOpinion especie;		//cambia segun la opinion
+	private Foto foto; //consultar
 	private LocalDate fechaDeEnvio;
 	private ArrayList<Opinion> opinionesUsuarios = new ArrayList<Opinion>();
 	private Ubicacion ubicacion;
+	private EstadoMuestra estadoMuestra;
 	
 	// Constructor
-	public Muestra (Ubicacion ubicacion, DescripcionOpinion descripcion, Usuario user, Foto foto) {
-		this.usuario = user;
+	public Muestra (Ubicacion ubicacion, DescripcionOpinion especie, Usuario user, Foto foto) {
+		this.identificacion = user;
 		this.ubicacion = ubicacion;
-		this.descripcion = descripcion;
+		this.especie = especie;
 		this.foto = foto;
-		this.fechaDeEnvio = LocalDate.now();	//obtiene la fecha actual
+		this.fechaDeEnvio = LocalDate.now();	
+		this.estadoMuestra = new MuestraAbierta();
 	}
 	
 	// Metodos
@@ -32,9 +35,51 @@ public class Muestra {
 		this.opinionesUsuarios.add(opinion);
 	}
 	
-	public DescripcionOpinion getEspecie() {	//retorna la especie inicial con la que se genero la muestra
-		return this.descripcion;
+	public DescripcionOpinion getResultadoActual() {	
+		return this.especie;
 	}
+
+	public Usuario getIdentificacion() {
+		return identificacion;
+	}
+
+	public void setIdentificacion(Usuario identificacion) {
+		this.identificacion = identificacion;
+	}
+
+	public Ubicacion getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(Ubicacion ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
+	public EstadoMuestra getEstadoMuestra() {
+		return estadoMuestra;
+	}
+
+	public void setEstadoMuestra(EstadoMuestra estadoMuestra) {
+		this.estadoMuestra = estadoMuestra;
+	}
+
+	public void setEspecie(DescripcionOpinion especie) {
+		this.especie = especie;
+	}
+
+	public LocalDate getFechaDeEnvio() {
+		return fechaDeEnvio;
+	}
+	
+	public void verificarMuestra() {
+		setEstadoMuestra(new MuestraVerificada());
+		ArrayList<ZonaDeCobertura> zonasDeCoberturaDeMuestra = getUbicacion().getZonasDeCobertura();
+		zonasDeCoberturaDeMuestra.stream().forEach(zona -> zona.avisarAOrganizacionesPorVerificacion(this));
+		//observer, revisar estructura
+	}
+
+	
+	
 
 	
 }
