@@ -3,21 +3,19 @@ package integrador;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import integrador.Muestra.DescripcionOpinion;
-
 public class Muestra { 
 
 	// Variables
 	private Usuario identificacion;
 	private DescripcionOpinion especie;		//cambia segun la opinion
-	private Foto foto; //consultar
+	private String foto;
 	private LocalDate fechaDeEnvio;
 	private ArrayList<Opinion> opinionesUsuarios = new ArrayList<Opinion>();
 	private Ubicacion ubicacion;
 	private EstadoMuestra estadoMuestra;
 	
 	// Constructor
-	public Muestra (Ubicacion ubicacion, DescripcionOpinion especie, Usuario user, Foto foto) {
+	public Muestra (Ubicacion ubicacion, DescripcionOpinion especie, Usuario user, String foto) {
 		this.identificacion = user;
 		this.ubicacion = ubicacion;
 		this.especie = especie;
@@ -29,6 +27,10 @@ public class Muestra {
 	// Metodos
 	public ArrayList<Opinion> getOpiniones(){
 		return this.opinionesUsuarios;
+	}
+	
+	public String getFoto() {
+		return this.foto;
 	}
 	
 	public void addOpinion(Opinion opinion) {

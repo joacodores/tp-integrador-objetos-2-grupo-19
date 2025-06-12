@@ -51,7 +51,7 @@ public class Usuario {
 	}
 
 	public void setEstadoUsuario(NivelConocimiento estadoUsuario) {
-		this.estadoUsuario = estadoUsuario;
+		this.estadoUsuario = new UsuarioBasico();
 	}
 
 	public Boolean getEsEspecialista() {

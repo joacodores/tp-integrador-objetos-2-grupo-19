@@ -3,7 +3,7 @@ package integrador;
 public class UsuarioEspecialista implements NivelConocimiento {
 
 	@Override
-	public void darOpinion(Muestra m) {
+	public void darOpinion(Muestra m, Opinion o) {
 		// TODO Auto-generated method stub
 
 	}

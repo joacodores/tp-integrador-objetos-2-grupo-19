@@ -1,9 +1,9 @@
 package integrador;
 
 public class UsuarioBasico implements NivelConocimiento {
-
+	
 	@Override
-	public void darOpinion(Muestra m) {
+	public void darOpinion(Muestra m, Opinion o) {
 		// TODO Auto-generated method stub
 
 	}
@@ -16,8 +16,7 @@ public class UsuarioBasico implements NivelConocimiento {
 
 	@Override
 	public void setEstadoUsuario(NivelConocimiento estadoUsuario) {
-		// TODO Auto-generated method stub
-
+				
 	}
 
 }
