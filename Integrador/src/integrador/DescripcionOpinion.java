@@ -7,5 +7,6 @@ public enum DescripcionOpinion {
     PHTIA_CHINCHE,
     CHINCHE_FOLIADA,
     IMAGEN_POCO_CLARA,
-    NONE
+    NONE,
+    NO_DEFINIDO //caso empate
 }

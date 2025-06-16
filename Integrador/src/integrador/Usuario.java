@@ -49,13 +49,23 @@ public class Usuario {
 	public NivelConocimiento getEstadoUsuario() {
 		return estadoUsuario;
 	}
-
+	
 	public void setEstadoUsuario(NivelConocimiento estadoUsuario) {
-		this.estadoUsuario = new UsuarioBasico();
+		this.estadoUsuario = estadoUsuario;
 	}
 
 	public Boolean getEsEspecialista() {
 		return esEspecialista;
+	}
+	
+	public void addOpinion(Opinion o) {
+		this.opinionesEnviadas.add(o);
+	}
+	
+	public void darOpinion(Opinion o) {
+		addOpinion(o);
+		getEstadoUsuario().darOpinion(o);
+		
 	}
 	
 	public void enviarMuestra(Muestra m) {

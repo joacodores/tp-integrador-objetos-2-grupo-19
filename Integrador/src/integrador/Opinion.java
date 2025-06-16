@@ -7,13 +7,23 @@ public class Opinion {
 	
 	private LocalDate fechaOpinion;
 	private DescripcionOpinion descripcionOpinion;
+	private Muestra muestraEvaluada;
 	
-	public Opinion(LocalDate fechaOpinion, DescripcionOpinion descripcionOpinion) {
+	public Opinion(LocalDate fechaOpinion, DescripcionOpinion descripcionOpinion, Muestra muestra) {
 		super();
 		this.fechaOpinion = fechaOpinion;
 		this.descripcionOpinion = descripcionOpinion;
+		this.muestraEvaluada = muestra;
 	}
 	
+	public Muestra getMuestraEvaluada() {
+		return muestraEvaluada;
+	}
+
+	public void setMuestraEvaluada(Muestra muestraEvaluada) {
+		this.muestraEvaluada = muestraEvaluada;
+	}
+
 	public LocalDate getFechaOpinion() {
 		return fechaOpinion;
 	}

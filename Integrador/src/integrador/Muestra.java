@@ -2,6 +2,8 @@ package integrador;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Muestra { 
 
@@ -14,7 +16,7 @@ public class Muestra {
 	private Ubicacion ubicacion;
 	private EstadoMuestra estadoMuestra;
 	
-	// Constructor
+
 	public Muestra (Ubicacion ubicacion, DescripcionOpinion especie, Usuario user, String foto) {
 		this.identificacion = user;
 		this.ubicacion = ubicacion;
@@ -24,7 +26,7 @@ public class Muestra {
 		this.estadoMuestra = new MuestraAbierta();
 	}
 	
-	// Metodos
+	
 	public ArrayList<Opinion> getOpiniones(){
 		return this.opinionesUsuarios;
 	}
@@ -35,10 +37,6 @@ public class Muestra {
 	
 	public void addOpinion(Opinion opinion) {
 		this.opinionesUsuarios.add(opinion);
-	}
-	
-	public DescripcionOpinion getResultadoActual() {	
-		return this.especie;
 	}
 
 	public Usuario getIdentificacion() {
@@ -65,12 +63,71 @@ public class Muestra {
 		this.estadoMuestra = estadoMuestra;
 	}
 
-	public void setEspecie(DescripcionOpinion especie) {
-		this.especie = especie;
-	}
 
 	public LocalDate getFechaDeEnvio() {
 		return fechaDeEnvio;
+	}
+	
+	public void setEspecie(DescripcionOpinion especie) {
+		this.especie = especie;
+	}
+	
+	public DescripcionOpinion getEspecie() { //revisar
+		//implementar en estadomuestra, solo devuelve cuando esta verificada(¿)
+	}
+	
+	public DescripcionOpinion getResultadoActual() {	
+		return getEstadoMuestra().getResultadoActual(this);
+	}
+	
+	public DescripcionOpinion getOpinionMasVotada() {
+		
+		Map<DescripcionOpinion, Long>  conteoOpiniones = getOpiniones().stream() // Map de opiniones con cantidad de votos
+				.collect(Collectors.groupingBy(
+						opinion -> opinion.getDescripcionOpinion(),
+						Collectors.counting()
+				));
+		
+		DescripcionOpinion opinionMasVotada = null;
+		long max = 0;
+		
+		for(Map.Entry<DescripcionOpinion, Long> entry : conteoOpiniones.entrySet()) {
+			if(entry.getValue() > max) { //recorro el Map evaluando el valor(cantidad de votos)
+				max = entry.getValue();
+				opinionMasVotada = entry.getKey();
+			}
+		}
+		return opinionMasVotada;			
+	}
+	
+	public boolean hayEmpate() {
+		Map<DescripcionOpinion, Long>  conteoOpiniones = getOpiniones().stream() // Map de opiniones con cantidad de votos
+				.collect(Collectors.groupingBy(
+						opinion -> opinion.getDescripcionOpinion(),
+						Collectors.counting()
+				));
+		long max = 0;
+		for (Long votosDeOpinion : conteoOpiniones.values()) {
+			if(votosDeOpinion > max) max = votosDeOpinion;
+		}//max ahora almacena la cantidad de votos maxima
+		
+		int cantidadMax = 0; // cuenta cuantas opiniones tienen **max** votos, si es mayor a 1, hay empate
+		for (Long votosDeOpinion : conteoOpiniones.values()) {
+			if (votosDeOpinion == max) cantidadMax++;
+		}
+		return cantidadMax > 1;
+	}
+	
+	public void recibirOpinionUsuarioBasico(Opinion o) throws Exception {
+		getEstadoMuestra().recibirOpinionUsuarioBasico(o);
+	}
+	
+	public void recibirOpinionUsuarioExperto(Opinion o) throws Exception {
+		getEstadoMuestra().recibirOpinionUsuarioExperto(o);
+	}
+	
+	public void borrarOpiniones() { // se llama cuando cambia a estado experto, para borrar las opiniones de los u.basicos
+		this.opinionesUsuarios.removeAll(opinionesUsuarios);
 	}
 	
 	public void verificarMuestra() {

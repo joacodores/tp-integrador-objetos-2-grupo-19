@@ -1,8 +1,9 @@
 package integrador;
 
 public interface EstadoMuestra {
-	public void agregarOpinion(Opinion o);
-	public void setEstadoMuestra(EstadoMuestra e);
-	public void getResultadoActual();
+
+	public DescripcionOpinion getResultadoActual(Muestra m);
+	public void recibirOpinionUsuarioBasico(Opinion o) throws Exception;
+	public void recibirOpinionUsuarioExperto(Opinion o) throws Exception;
 	
 }

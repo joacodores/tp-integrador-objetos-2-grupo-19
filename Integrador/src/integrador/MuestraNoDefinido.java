@@ -1,23 +1,16 @@
 package integrador;
 
-public class MuestraNoDefinido implements EstadoMuestra {
+public abstract class MuestraNoDefinido implements EstadoMuestra {
 
 	@Override
-	public void agregarOpinion(Opinion o) {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void recibirOpinionUsuarioBasico(Opinion o) throws Exception;
 
 	@Override
-	public void setEstadoMuestra(EstadoMuestra e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public abstract void recibirOpinionUsuarioExperto(Opinion o);
+	
 	@Override
-	public void getResultadoActual() {
-		// TODO Auto-generated method stub
-		
+	public DescripcionOpinion getResultadoActual(Muestra m) {
+		return DescripcionOpinion.NO_DEFINIDO;
 	}
 
 }

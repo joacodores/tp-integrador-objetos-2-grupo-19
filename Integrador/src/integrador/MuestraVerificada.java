@@ -3,20 +3,18 @@ package integrador;
 public class MuestraVerificada implements EstadoMuestra {
 
 	@Override
-	public void agregarOpinion(Opinion o) {
-		// TODO Auto-generated method stub
-
+	public void recibirOpinionUsuarioBasico(Opinion o) throws Exception {
+		throw new IllegalStateException("No se puede opinar más sobre esta muestra, esta verificada");
 	}
 
 	@Override
-	public void setEstadoMuestra(EstadoMuestra e) {
-		// TODO Auto-generated method stub
-
+	public void recibirOpinionUsuarioExperto(Opinion o) throws Exception {
+		throw new IllegalStateException("No se puede opinar más sobre esta muestra, esta verificada");
 	}
 
 	@Override
-	public void getResultadoActual() {
-		// TODO Auto-generated method stub
+	public DescripcionOpinion getResultadoActual(Muestra m) {
+		return m.getEspecie();
 
 	}
 

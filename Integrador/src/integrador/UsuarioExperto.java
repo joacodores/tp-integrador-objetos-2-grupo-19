@@ -1,10 +1,11 @@
 package integrador;
 
-public class UsuarioBasico implements NivelConocimiento {
+public class UsuarioExperto implements NivelConocimiento {
 	
 	@Override
-	public void darOpinion( Opinion o) {
-		o.getMuestraEvaluada().recibirOpinionUsuarioBasico(o);;
+	public void darOpinion(Opinion o) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
