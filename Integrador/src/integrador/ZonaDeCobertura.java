@@ -49,7 +49,9 @@ public class ZonaDeCobertura {
 	
 	public void addMuestraEnZona(Muestra m) {
 		this.muestrasEnZona.add(m) ;
+		avisarAOrganizacionesPorNuevaMuestra(m);
 	}
+	
 	public ArrayList<Organizacion> getOrganizacionesInteresadas() {
 		return organizacionesInteresadas;
 	}

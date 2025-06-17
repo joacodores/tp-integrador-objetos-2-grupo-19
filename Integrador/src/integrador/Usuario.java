@@ -10,14 +10,12 @@ public class Usuario {
 	private ArrayList<Muestra> muestrasReportadas;
 	private ArrayList<Opinion> opinionesEnviadas;
 	private NivelConocimiento estadoUsuario;
-	private Boolean esEspecialista;
 	
 	public Usuario(String nombreUsuario,  Boolean esEspecialista) {
 		super();
 		this.nombreUsuario = nombreUsuario;
 		this.muestrasReportadas = new ArrayList<Muestra>();
 		this.opinionesEnviadas = new ArrayList<Opinion>();
-		this.esEspecialista = esEspecialista;
 		if(esEspecialista) {
 			this.estadoUsuario = new UsuarioEspecialista();
 		}else {
@@ -40,6 +38,9 @@ public class Usuario {
 	public void setMuestrasReportadas(ArrayList<Muestra> muestrasReportadas) {
 		this.muestrasReportadas = muestrasReportadas;
 	}
+	public void addMuestraReportada(Muestra m) {
+		this.muestrasReportadas.add(m);
+	}
 
 	public ArrayList<Opinion> getOpinionesEnviadas() {
 		return opinionesEnviadas;
@@ -50,7 +51,7 @@ public class Usuario {
 	}
 
 	public NivelConocimiento getEstadoUsuario() {
-		this.verificarCambioDeEstado();
+		verificarCambioDeEstado();
 		return estadoUsuario;
 	}
 	
@@ -62,22 +63,19 @@ public class Usuario {
 		this.estadoUsuario = estadoUsuario;
 	}
 
-	public Boolean getEsEspecialista() {
-		return esEspecialista;
-	}
 	
 	public void addOpinion(Opinion o) {
 		this.opinionesEnviadas.add(o);
 	}
 	
 	public void darOpinion(Opinion o) throws Exception{
-		this.estadoUsuario.darOpinion(this, o);
-		addOpinion(o); //invierto porque talvez el estado de la muestra no le permite hacer la opinion al user
+		getEstadoUsuario().darOpinion(this, o);
+		addOpinion(o); //tal vez el estado de la muestra no le permite hacer la opinion al user
 	}
 	
-	public void enviarMuestra(Muestra m) {
-		this.getEstadoUsuario().enviarMuestra(this, m);
-		this.muestrasReportadas.add(m);
+	public void enviarMuestra(Usuario u, Ubicacion ubi, DescripcionOpinion especie, String foto) throws Exception {
+		getEstadoUsuario().enviarMuestra(this,  ubi,  especie,  foto);
+		
 	}
 	
 	public ArrayList<Opinion> opinionesDeLosUltimos30Dias(){

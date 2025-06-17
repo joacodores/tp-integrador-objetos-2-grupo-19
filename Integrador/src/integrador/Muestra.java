@@ -12,7 +12,7 @@ public class Muestra {
 	private DescripcionOpinion especie;		//cambia segun la opinion
 	private String foto;
 	private LocalDate fechaDeEnvio;
-	private ArrayList<Opinion> opinionesUsuarios = new ArrayList<Opinion>();
+	private ArrayList<Opinion> opinionesUsuarios;
 	private Ubicacion ubicacion;
 	private EstadoMuestra estadoMuestra;
 	
@@ -24,6 +24,7 @@ public class Muestra {
 		this.foto = foto;
 		this.fechaDeEnvio = LocalDate.now();	
 		this.estadoMuestra = new MuestraAbierta();
+		this.opinionesUsuarios = new ArrayList<Opinion>();
 	}
 	
 	

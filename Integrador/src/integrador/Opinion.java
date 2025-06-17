@@ -9,9 +9,9 @@ public class Opinion {
 	private DescripcionOpinion descripcionOpinion;
 	private Muestra muestraEvaluada;
 	
-	public Opinion(LocalDate fechaOpinion, DescripcionOpinion descripcionOpinion, Muestra muestra) {
+	public Opinion( DescripcionOpinion descripcionOpinion, Muestra muestra) {
 		super();
-		this.fechaOpinion = fechaOpinion;
+		this.fechaOpinion = LocalDate.now();
 		this.descripcionOpinion = descripcionOpinion;
 		this.muestraEvaluada = muestra;
 	}
