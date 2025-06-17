@@ -1,6 +1,9 @@
 package integrador;
 
+import java.time.LocalDate;	//(yyyy,mm,dd)  | "yyyy-mm-dd"
+import java.time.Period;	//para marcar el periodo entre fecha A y B
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Usuario {
 	private String nombreUsuario;
@@ -47,7 +50,12 @@ public class Usuario {
 	}
 
 	public NivelConocimiento getEstadoUsuario() {
+		this.verificarCambioDeEstado();
 		return estadoUsuario;
+	}
+	
+	public void verificarCambioDeEstado() {
+		this.estadoUsuario.verificarCambioDeEstado(this);
 	}
 	
 	public void setEstadoUsuario(NivelConocimiento estadoUsuario) {
@@ -62,19 +70,34 @@ public class Usuario {
 		this.opinionesEnviadas.add(o);
 	}
 	
-	public void darOpinion(Opinion o) {
-		addOpinion(o);
-		getEstadoUsuario().darOpinion(o);
-		
+	public void darOpinion(Opinion o) throws Exception{
+		this.estadoUsuario.darOpinion(this, o);
+		addOpinion(o); //invierto porque talvez el estado de la muestra no le permite hacer la opinion al user
 	}
 	
 	public void enviarMuestra(Muestra m) {
-		
+		this.getEstadoUsuario().enviarMuestra(this, m);
+		this.muestrasReportadas.add(m);
 	}
 	
+	public ArrayList<Opinion> opinionesDeLosUltimos30Dias(){
+		LocalDate fechaActual = LocalDate.now();
+		
+		ArrayList<Opinion> opiniones30Dias = opinionesEnviadas.stream()
+				.filter(o -> Period.between(fechaActual, o.getFechaOpinion()).getDays() <= 30)
+				.collect(Collectors.toCollection(ArrayList::new));
+		
+		return opiniones30Dias;
+	}
 	
-	
-	
-	
+	public ArrayList<Muestra> muestrasDeLosUltimos30Dias(){
+		LocalDate fechaActual = LocalDate.now();
+		
+		ArrayList<Muestra> muestras30Dias = muestrasReportadas.stream()
+				.filter(m -> Period.between(fechaActual, m.getFechaDeEnvio()).getDays() <= 30)
+				.collect(Collectors.toCollection(ArrayList::new));
+		
+		return muestras30Dias;
+	}
 	
 }

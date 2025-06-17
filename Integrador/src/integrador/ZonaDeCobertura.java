@@ -3,12 +3,16 @@ package integrador;
 import java.util.ArrayList;
 
 public class ZonaDeCobertura {
+	
+	// Variables
 	private double radioEnKm;
 	private String nombre;
 	private Ubicacion epicentro;
 	private ArrayList<ZonaDeCobertura> zonasSolapadas;
 	private ArrayList<Muestra> muestrasEnZona; // de aca sacamos las ubicaciones de la zona
 	private ArrayList<Organizacion> organizacionesInteresadas;
+	
+	// Constructor
 	public ZonaDeCobertura(double radioEnKm, String nombre, Ubicacion epicentro) {
 		super();
 		this.radioEnKm = radioEnKm;
@@ -18,6 +22,8 @@ public class ZonaDeCobertura {
 		this.muestrasEnZona = new ArrayList<Muestra>();
 		this.organizacionesInteresadas = new ArrayList<Organizacion>();
 	}
+	
+	// Metodos
 	public String getNombre() {
 		return nombre;
 	}

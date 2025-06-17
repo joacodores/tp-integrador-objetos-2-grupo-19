@@ -3,21 +3,18 @@ package integrador;
 public class UsuarioEspecialista implements NivelConocimiento {
 
 	@Override
-	public void darOpinion(Muestra m, Opinion o) {
-		// TODO Auto-generated method stub
-
+	public void darOpinion(Usuario u, Opinion o) throws Exception{	//agrego el throws Exception y muestra
+		o.getMuestraEvaluada().recibirOpinionUsuarioExperto(o);
 	}
-
+	
 	@Override
-	public void enviarMuestra(Muestra m) {
-		// TODO Auto-generated method stub
-
+	public void enviarMuestra(Usuario u, Muestra m) {
+		// enviarMuestra
 	}
-
+	
 	@Override
-	public void setEstadoUsuario(NivelConocimiento estadoUsuario) {
-		// TODO Auto-generated method stub
-
+	public void verificarCambioDeEstado(Usuario u) {
+		//nunca deberia cambiar de estado.
 	}
 
 }
