@@ -1,6 +1,7 @@
 package integrador;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 public class ZonaDeCobertura {
 	
@@ -9,8 +10,7 @@ public class ZonaDeCobertura {
 	private String nombre;
 	private Ubicacion epicentro;
 	private ArrayList<ZonaDeCobertura> zonasSolapadas;
-	private ArrayList<Muestra> muestrasEnZona; // de aca sacamos las ubicaciones de la zona
-	private ArrayList<Organizacion> organizacionesInteresadas;
+	private ArrayList<Muestra> muestrasEnZona; 
 	
 	// Constructor
 	public ZonaDeCobertura(double radioEnKm, String nombre, Ubicacion epicentro) {
@@ -20,7 +20,6 @@ public class ZonaDeCobertura {
 		this.epicentro = epicentro;
 		this.zonasSolapadas = new ArrayList<ZonaDeCobertura>();
 		this.muestrasEnZona = new ArrayList<Muestra>();
-		this.organizacionesInteresadas = new ArrayList<Organizacion>();
 	}
 	
 	
@@ -51,19 +50,8 @@ public class ZonaDeCobertura {
 	
 	public void addMuestraEnZona(Muestra m) {
 		this.muestrasEnZona.add(m) ;
-		avisarAOrganizacionesPorNuevaMuestra(m);
 	}
 	
-	public ArrayList<Organizacion> getOrganizacionesInteresadas() {
-		return organizacionesInteresadas;
-	}
-	public void setOrganizacionesInteresadas(ArrayList<Organizacion> organizacionesInteresadas) {
-		this.organizacionesInteresadas = organizacionesInteresadas;
-	}
-	
-	public void addOrganizacion(Organizacion o) {
-		this.organizacionesInteresadas.add(o) ;
-	}
 	public double getRadioEnKm() {
 		return radioEnKm;
 	}
@@ -71,16 +59,17 @@ public class ZonaDeCobertura {
 		return epicentro;
 	}
 	
-	public ArrayList<ZonaDeCobertura> getZonasSolapadas(ArrayList<ZonaDeCobertura>){
+	public ArrayList<ZonaDeCobertura> getZonasSolapadas(ArrayList<ZonaDeCobertura> z){
 		//hacer
 	}
 	
-	
-	public void avisarAOrganizacionesPorNuevaMuestra(Muestra muestra) {
-		organizacionesInteresadas.stream().forEach(o -> o.useFENuevaMuestra( this, muestra));
-	}
+
 	public void avisarAOrganizacionesPorVerificacion(Muestra muestra) {
 		organizacionesInteresadas.stream().forEach(o -> o.useFEMuestraVerificada(this, muestra));
+	}
+
+	public boolean perteneceUbicacion(Ubicacion u) {
+		return u.distanciaHastaEnKm(this.getEpicentro()) <= this.getRadioEnKm();
 	}
 	
 	

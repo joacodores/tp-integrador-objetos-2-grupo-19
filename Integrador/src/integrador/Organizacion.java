@@ -84,6 +84,10 @@ public class Organizacion {
 	public void useFEMuestraVerificada(ZonaDeCobertura zonaDeCobertura, Muestra muestra) {
 		getFuncionalidadExternaPorMuestraVerificada().nuevoEvento(this, zonaDeCobertura, muestra);
 	}
+
+	public boolean estaInteresadaEnZona(ZonaDeCobertura z) {
+		return getZonasRegistradas().contains(z);
+	}
 	
 	
 	

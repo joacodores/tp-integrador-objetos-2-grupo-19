@@ -11,16 +11,12 @@ public class UsuarioBasico implements NivelConocimiento {
 	}
 	
 	@Override
-	public void enviarMuestra(Usuario user, Ubicacion ubi, DescripcionOpinion especie, String foto) throws Exception {
-		Muestra m = new Muestra(ubi, especie, user, foto);
+	public void enviarMuestra(AppWeb app, Usuario user, Ubicacion ubi, DescripcionOpinion especie, String foto) throws Exception {
+		Muestra m = new Muestra(ubi, especie, user, foto, new ObserverPorMuestraVerificada(app));
 		Opinion o = new Opinion(especie, m);
 		m.recibirOpinionUsuarioBasico(o);
 		user.addMuestraReportada(m);
-		ArrayList<ZonaDeCobertura> zonasDeCoberturaDeMuestra = m.getUbicacion().getZonasDeCobertura();
-		zonasDeCoberturaDeMuestra.stream()
-			.forEach(zona -> zona.addMuestraEnZona(m));
-		//agregar a buscador de muestras(¿)
-
+		app.recibirMuestra(m);
 	}
 
 	@Override

@@ -15,9 +15,10 @@ public class Muestra {
 	private ArrayList<Opinion> opinionesUsuarios;
 	private Ubicacion ubicacion;
 	private EstadoMuestra estadoMuestra;
+	private ObserverMuestra observerMuestra;
 	
 
-	public Muestra (Ubicacion ubicacion, DescripcionOpinion especie, Usuario user, String foto) {
+	public Muestra (Ubicacion ubicacion, DescripcionOpinion especie, Usuario user, String foto, ObserverMuestra observerMuestra) {
 		this.identificacion = user;
 		this.ubicacion = ubicacion;
 		this.especie = especie;
@@ -25,6 +26,7 @@ public class Muestra {
 		this.fechaDeEnvio = LocalDate.now();	
 		this.estadoMuestra = new MuestraAbierta();
 		this.opinionesUsuarios = new ArrayList<Opinion>();
+		this.observerMuestra = observerMuestra;
 	}
 	
 	
@@ -75,6 +77,29 @@ public class Muestra {
 	
 	public DescripcionOpinion getEspecie() { //revisar
 		//implementar en estadomuestra, solo devuelve cuando esta verificada(¿)
+	}
+	public ArrayList<Opinion> getOpinionesUsuarios() {
+		return opinionesUsuarios;
+	}
+
+
+	public void setOpinionesUsuarios(ArrayList<Opinion> opinionesUsuarios) {
+		this.opinionesUsuarios = opinionesUsuarios;
+	}
+
+
+	public ObserverMuestra getObserverMuestra() {
+		return observerMuestra;
+	}
+
+
+	public void setObserverMuestra(ObserverMuestra observerMuestra) {
+		this.observerMuestra = observerMuestra;
+	}
+
+
+	public void setFechaDeEnvio(LocalDate fechaDeEnvio) {
+		this.fechaDeEnvio = fechaDeEnvio;
 	}
 	
 	public DescripcionOpinion getResultadoActual() {	
@@ -131,10 +156,11 @@ public class Muestra {
 	
 	public void verificarMuestra() {
 		setEstadoMuestra(new MuestraVerificada());
-		ArrayList<ZonaDeCobertura> zonasDeCoberturaDeMuestra = getUbicacion().getZonasDeCobertura();
-		zonasDeCoberturaDeMuestra.stream().forEach(zona -> zona.avisarAOrganizacionesPorVerificacion(this));
-		//observer, revisar estructura
+		getObserverMuestra().muestraVerficada(this);;
 	}
+
+
+
 
 	
 	

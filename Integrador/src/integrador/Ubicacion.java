@@ -6,13 +6,11 @@ import java.util.List;
 public class Ubicacion {
 	private double latitud;
 	private double longitud;
-	private ArrayList<ZonaDeCobertura> zonasDeCobertura; // puede tener mas de una
 	
 	public Ubicacion(double latitud, double longitud, ArrayList<ZonaDeCobertura> zonaDeCobertura) {
 		super();
 		this.latitud = latitud;
 		this.longitud = longitud;
-		this.zonasDeCobertura = zonaDeCobertura;
 	}
 	public double getLatitud() {
 		return latitud;
@@ -25,12 +23,6 @@ public class Ubicacion {
 	}
 	public void setLongitud(double longitud) {
 		this.longitud = longitud;
-	}
-	public ArrayList<ZonaDeCobertura> getZonasDeCobertura() {
-		return zonasDeCobertura;
-	}
-	public void setZonaDeCobertura(ArrayList<ZonaDeCobertura> zonaDeCobertura) {
-		this.zonasDeCobertura = zonaDeCobertura;
 	}
 	
 	public double distanciaHastaEnKm(Ubicacion u) {
@@ -55,10 +47,6 @@ public class Ubicacion {
 	public List<Ubicacion> ubicacionesAMenosDe(ArrayList<Ubicacion> ubis, double distanciaEnKm ){
 		return ubis.stream()
 				.filter(u -> this.distanciaHastaEnKm(u) < distanciaEnKm).toList();
-	}
-	
-	public boolean estaDentroDeZonaDeCobertura(ZonaDeCobertura zona) {
-		return this.distanciaHastaEnKm(zona.getEpicentro()) <= zona.getRadioEnKm();
 	}
 	
 	
