@@ -136,8 +136,4 @@ public class Muestra {
 		//observer, revisar estructura
 	}
 
-	
-	
-
-	
 }

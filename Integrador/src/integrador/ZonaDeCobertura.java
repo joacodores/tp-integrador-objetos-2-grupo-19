@@ -27,6 +27,7 @@ public class ZonaDeCobertura {
 	public String getNombre() {
 		return nombre;
 	}
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -34,9 +35,11 @@ public class ZonaDeCobertura {
 	public ArrayList<ZonaDeCobertura> getZonasSolapadass() { //este no
 		return zonasSolapadas;
 	}
+	
 	public void setZonasSolapadas(ArrayList<ZonaDeCobertura> zonasSolapadas) {
 		this.zonasSolapadas = zonasSolapadas;
 	}
+	
 	public void addZonaSolapada(ZonaDeCobertura z) {
 		this.zonasSolapadas.add(z) ;
 	}
@@ -57,6 +60,7 @@ public class ZonaDeCobertura {
 	public ArrayList<Organizacion> getOrganizacionesInteresadas() {
 		return organizacionesInteresadas;
 	}
+	
 	public void setOrganizacionesInteresadas(ArrayList<Organizacion> organizacionesInteresadas) {
 		this.organizacionesInteresadas = organizacionesInteresadas;
 	}
@@ -64,14 +68,16 @@ public class ZonaDeCobertura {
 	public void addOrganizacion(Organizacion o) {
 		this.organizacionesInteresadas.add(o) ;
 	}
+	
 	public double getRadioEnKm() {
 		return radioEnKm;
 	}
+	
 	public Ubicacion getEpicentro() {
 		return epicentro;
 	}
 	
-	public ArrayList<ZonaDeCobertura> getZonasSolapadas(ArrayList<ZonaDeCobertura>){
+	public ArrayList<ZonaDeCobertura> getZonasSolapadas(ArrayList<ZonaDeCobertura> zSolapadas){
 		//hacer
 	}
 	
@@ -79,9 +85,8 @@ public class ZonaDeCobertura {
 	public void avisarAOrganizacionesPorNuevaMuestra(Muestra muestra) {
 		organizacionesInteresadas.stream().forEach(o -> o.useFENuevaMuestra( this, muestra));
 	}
+	
 	public void avisarAOrganizacionesPorVerificacion(Muestra muestra) {
 		organizacionesInteresadas.stream().forEach(o -> o.useFEMuestraVerificada(this, muestra));
 	}
-	
-	
 }
