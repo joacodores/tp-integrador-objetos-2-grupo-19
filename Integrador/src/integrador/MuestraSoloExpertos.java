@@ -2,9 +2,8 @@ package integrador;
 
 public class MuestraSoloExpertos implements EstadoMuestra {
 
-
 	@Override
-	public void recibirOpinionUsuarioBasico(Opinion o) throws Exception {
+	public void recibirOpinionUsuarioBasico(Opinion o){  //tenia throws
 		throw new IllegalStateException("Los usuarios basicos no pueden opinar más sobre esta muestra");
 	}
 

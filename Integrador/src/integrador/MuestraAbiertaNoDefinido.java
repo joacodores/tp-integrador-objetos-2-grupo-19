@@ -10,7 +10,7 @@ public class MuestraAbiertaNoDefinido extends MuestraNoDefinido{
 			m.setEstadoMuestra(new MuestraAbierta());
 		}
 	}
-
+	
 	@Override
 	public void recibirOpinionUsuarioExperto(Opinion o) {
 		Muestra m = o.getMuestraEvaluada();

@@ -16,7 +16,7 @@ public class Muestra {
 	private Ubicacion ubicacion;
 	private EstadoMuestra estadoMuestra;
 	private ObserverMuestra observerMuestra;
-	
+
 
 	public Muestra (Ubicacion ubicacion, DescripcionOpinion especie, Usuario user, String foto, ObserverMuestra observerMuestra) {
 		this.identificacion = user;
@@ -142,11 +142,11 @@ public class Muestra {
 		return cantidadMax > 1;
 	}
 	
-	public void recibirOpinionUsuarioBasico(Opinion o) throws Exception {
+	public void recibirOpinionUsuarioBasico(Opinion o) {
 		getEstadoMuestra().recibirOpinionUsuarioBasico(o);
 	}
 	
-	public void recibirOpinionUsuarioExperto(Opinion o) throws Exception {
+	public void recibirOpinionUsuarioExperto(Opinion o) { //tenia throws
 		getEstadoMuestra().recibirOpinionUsuarioExperto(o);
 	}
 	
@@ -158,4 +158,5 @@ public class Muestra {
 		setEstadoMuestra(new MuestraVerificada());
 		getObserverMuestra().muestraVerficada(this);;
 	}
+
 }

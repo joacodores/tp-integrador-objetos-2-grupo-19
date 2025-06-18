@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class UsuarioExperto implements NivelConocimiento {
 	
 	@Override
-	public void darOpinion(Usuario u, Opinion o) throws Exception { //agrego el throws Exception y muestra
+	public void darOpinion(Usuario u, Opinion o){ //tenia throws
 		o.getMuestraEvaluada().recibirOpinionUsuarioExperto(o);
 	}
 	
 	@Override
-	public void enviarMuestra(AppWeb app, Usuario user, Ubicacion ubi, DescripcionOpinion especie, String foto) throws Exception {
+	public void enviarMuestra(AppWeb app, Usuario user, Ubicacion ubi, DescripcionOpinion especie, String foto){ //tenia throws
 		Muestra m = new Muestra(ubi, especie, user, foto, new ObserverPorMuestraVerificada(app));
 		Opinion o = new Opinion(especie, m);
 		m.recibirOpinionUsuarioExperto(o);

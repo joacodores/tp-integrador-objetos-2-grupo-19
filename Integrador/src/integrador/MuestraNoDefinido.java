@@ -3,7 +3,7 @@ package integrador;
 public abstract class MuestraNoDefinido implements EstadoMuestra {
 
 	@Override
-	public abstract void recibirOpinionUsuarioBasico(Opinion o) throws Exception;
+	public abstract void recibirOpinionUsuarioBasico(Opinion o); //tenia throws
 
 	@Override
 	public abstract void recibirOpinionUsuarioExperto(Opinion o);

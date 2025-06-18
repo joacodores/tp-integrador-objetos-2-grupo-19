@@ -7,7 +7,7 @@ public class MuestraExpertoNoDefinido extends MuestraNoDefinido{
 	
 	
 	@Override
-	public void recibirOpinionUsuarioBasico(Opinion o) throws Exception {
+	public void recibirOpinionUsuarioBasico(Opinion o) { //tenia throws
 		throw new IllegalStateException("Los usuarios basicos no pueden opinar mas sobre esta muestra");
 	}
 

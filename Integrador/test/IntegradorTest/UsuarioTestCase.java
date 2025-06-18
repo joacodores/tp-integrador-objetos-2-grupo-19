@@ -59,26 +59,37 @@ class UsuarioTestCase {
 	};
 	
 	@Test
-	void testCuandoUnUsuarioAgregaUnaOpinionQuedaRegistradaEnUnHistorial() {
-		 this.usuarioNormal.darOpinion(op1);
+	void testUnUsuarioAgregaUnaOpinionQuedaRegistradaEnUnHistorial() {
+		assertTrue(this.usuarioNormal.getOpinionesEnviadas().size() == 0);
+		
+		this.usuarioNormal.darOpinion(op1);
 		 assertTrue(this.usuarioNormal.getOpinionesEnviadas().size() == 1);
 		 assertTrue(this.usuarioNormal.getOpinionesEnviadas().remove(0) == op1);
 	};
-	/*
+	
 	@Test
 	void testCuandoUnUsuarioAgregaUnaMuestraQuedaRegistradaEnUnHistorial() {
-		 this.usuarioNormal.enviarMuestra(muestra1);
+		 assertTrue(this.usuarioNormal.getMuestrasReportadas().size() == 0);
+		 this.usuarioNormal.enviarMuestra(app, usuarioNormal, ubicacion, descripcion, "");
+		 
 		 assertTrue(this.usuarioNormal.getMuestrasReportadas().size() == 1);
-		 assertTrue(this.usuarioNormal.getMuestrasReportadas().remove(0) == muestra1);
 	};
-	*/
 	
 	@Test
-	void testUnUsuarioNoPuedeOpinarEnSuPropiaMuestra() {
-		this.usuarioNormal.enviarMuestra(app, usuarioNormal, ubicacion, descripcion, "");
-		// asertar que huba una exception
+	void testUnUsuarioNoPuedeOpinarDosVecesEnLaMismaMuestra() {
+		usuarioNormal.darOpinion(op1); 	//muestraEvaluda == muestra1
+		
+		assertThrows(IllegalStateException.class, () -> {
+			usuarioNormal.darOpinion(op1);	//intenta dar una opinion devuelta para muestra1
+		});
 	}
 	
+	@Test
+	void testUnUsuarioEnviaUnaMuestraGenerandoAsiUnaOpinionDeEsaMuestra() {
+		usuarioNormal.enviarMuestra(app, usuarioNormal, ubicacion, descripcion, "");
+		
+		assertEquals(1, this.usuarioNormal.getOpinionesEnviadas().size());
+	}
 	
 	@Test
 	void testUnUsuarioBasicoPuedeConvertirseEnExperto() {

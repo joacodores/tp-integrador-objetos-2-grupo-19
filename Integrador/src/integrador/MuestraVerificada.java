@@ -3,12 +3,12 @@ package integrador;
 public class MuestraVerificada implements EstadoMuestra {
 
 	@Override
-	public void recibirOpinionUsuarioBasico(Opinion o) throws Exception {
+	public void recibirOpinionUsuarioBasico(Opinion o){  //tenia throws
 		throw new IllegalStateException("No se puede opinar más sobre esta muestra, esta verificada");
 	}
 
 	@Override
-	public void recibirOpinionUsuarioExperto(Opinion o) throws Exception {
+	public void recibirOpinionUsuarioExperto(Opinion o){ //tenia throws
 		throw new IllegalStateException("No se puede opinar más sobre esta muestra, esta verificada");
 	}
 

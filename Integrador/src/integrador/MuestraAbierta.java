@@ -1,7 +1,5 @@
 package integrador;
 
-
-
 public class MuestraAbierta implements EstadoMuestra {
 	
 	public void recibirOpinionUsuarioBasico(Opinion o) {
