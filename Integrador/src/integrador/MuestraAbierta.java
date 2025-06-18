@@ -4,7 +4,6 @@ package integrador;
 
 public class MuestraAbierta implements EstadoMuestra {
 	
-	
 	public void recibirOpinionUsuarioBasico(Opinion o) {
 		Muestra m = o.getMuestraEvaluada(); 
 		m.addOpinion(o);

@@ -6,24 +6,38 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+
 import integrador.Usuario;
 import integrador.UsuarioBasico;
 import integrador.UsuarioEspecialista;
+import integrador.UsuarioExperto;
+import integrador.AppWeb;
+import integrador.DescripcionOpinion;
 import integrador.Muestra;
 import integrador.Opinion;
+import integrador.Ubicacion;
 
 class UsuarioTestCase {
 
+	private AppWeb app;
+	private Ubicacion ubicacion;
 	private Usuario usuarioNormal;
 	private Usuario usuarioEspecialista;
 	private Muestra muestra1;
 	private Opinion op1;
+	private DescripcionOpinion descripcion = DescripcionOpinion.VINCHUCA_SORDIDA;
+	
 	
 	@BeforeEach
 	void setUp() {
 		this.usuarioNormal = new Usuario("Pepe Argento", false);
 		this.usuarioEspecialista = new Usuario("Maria Elena", true);
 		
+		this.app = mock(AppWeb.class);
+		this.ubicacion = mock(Ubicacion.class);
 		this.muestra1 = mock(Muestra.class);
 		this.op1 = mock(Opinion.class);
 		
@@ -34,7 +48,7 @@ class UsuarioTestCase {
 	@Test
 	void testExisteUnUsuarioBasico() {
 		assertEquals("Pepe Argento", this.usuarioNormal.getNombreUsuario());
-		assertFalse(this.usuarioNormal.getEstadoUsuario() instanceof UsuarioBasico);
+		assertTrue(this.usuarioNormal.getEstadoUsuario() instanceof UsuarioBasico);
 		assertTrue(this.usuarioNormal.getMuestrasReportadas().isEmpty());
 	};
 	
@@ -57,24 +71,50 @@ class UsuarioTestCase {
 		 assertTrue(this.usuarioNormal.getMuestrasReportadas().size() == 1);
 		 assertTrue(this.usuarioNormal.getMuestrasReportadas().remove(0) == muestra1);
 	};
-	
-	@Test-
-	void testUnUsuarioNoPuedeOpinarEnSuPropiaMuestra() {
-		this.usuarioNormal.enviarMuestra(muestra1);
-		// asertar que huba una exception
-	}
 	*/
 	
 	@Test
-	void testUnUsuarioBasicoPuedeConvertirseEnExperto() {
-		
-	};
-	
+	void testUnUsuarioNoPuedeOpinarEnSuPropiaMuestra() {
+		this.usuarioNormal.enviarMuestra(app, usuarioNormal, ubicacion, descripcion, "");
+		// asertar que huba una exception
+	}
 	
 	
 	@Test
+	void testUnUsuarioBasicoPuedeConvertirseEnExperto() {
+		assertTrue(this.usuarioNormal.getEstadoUsuario() instanceof UsuarioBasico);
+		
+		when(this.op1.getFechaOpinion()).thenReturn(LocalDate.now());
+		when(this.muestra1.getFechaDeEnvio()).thenReturn(LocalDate.now());
+		ArrayList<Opinion> opiniones = new ArrayList<>(Collections.nCopies(21, this.op1));
+		ArrayList<Muestra> muestras = new ArrayList<>(Collections.nCopies(11, this.muestra1));
+
+		this.usuarioNormal.setOpinionesEnviadas(opiniones);	//21 opiniones de hoy
+		this.usuarioNormal.setMuestrasReportadas(muestras); //11 muestras de hoy
+		
+		assertTrue(this.usuarioNormal.getEstadoUsuario() instanceof UsuarioExperto);
+	};
+	
+	@Test
+	void testUnUsuarioExpertoPuedeConvertirseEnBasico() {
+		//establezco que cumplio con los requisitos para experto pero hace 30 dias
+		LocalDate fechaDeEnvios = LocalDate.now().minusDays(31);	
+		when(this.op1.getFechaOpinion()).thenReturn(fechaDeEnvios);
+		when(this.muestra1.getFechaDeEnvio()).thenReturn(fechaDeEnvios);
+		ArrayList<Opinion> opiniones = new ArrayList<>(Collections.nCopies(21, this.op1));
+		ArrayList<Muestra> muestras = new ArrayList<>(Collections.nCopies(11, this.muestra1));
+		
+		this.usuarioNormal.setOpinionesEnviadas(opiniones);	//21 opiniones de hace 30 dias
+		this.usuarioNormal.setMuestrasReportadas(muestras); //11 muestras de hace 30 dias
+		
+		assertTrue(this.usuarioNormal.getEstadoUsuario() instanceof UsuarioBasico);
+	};
+	
+	@Test
 	void testUnUsuarioEspecialistaNoPuedeSerBasico() {
+		//usuarioEspecialista no cumple la verificacion de mas de  opiniones y mas de 10 muestras
 		assertTrue(this.usuarioEspecialista.getEstadoUsuario() instanceof UsuarioEspecialista);
+		assertFalse(this.usuarioEspecialista.getEstadoUsuario() instanceof UsuarioBasico);
 	};
 	
 	

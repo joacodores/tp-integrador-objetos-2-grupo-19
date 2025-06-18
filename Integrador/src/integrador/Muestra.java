@@ -158,5 +158,4 @@ public class Muestra {
 		setEstadoMuestra(new MuestraVerificada());
 		getObserverMuestra().muestraVerficada(this);;
 	}
-
 }

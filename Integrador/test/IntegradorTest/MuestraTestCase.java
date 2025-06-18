@@ -6,9 +6,11 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import integrador.AppWeb;
 import integrador.DescripcionOpinion;
 import integrador.Muestra;
 import integrador.MuestraSoloExpertos;
+import integrador.ObserverPorMuestraVerificada;
 import integrador.Opinion;
 import integrador.Ubicacion;
 import integrador.Usuario;
@@ -20,10 +22,13 @@ class MuestraTestCase {
 	
 	@BeforeEach
 	void setUp() {
+		
+		AppWeb app = mock(AppWeb.class);
 		Usuario user = mock(Usuario.class);
 		Ubicacion ubi = mock(Ubicacion.class);
+		
 		DescripcionOpinion descripcion = DescripcionOpinion.VINCHUCA_SORDIDA;
-		muestra = new Muestra(ubi, descripcion, user, "foto");
+		muestra = new Muestra(ubi, descripcion, user, "foto", new ObserverPorMuestraVerificada(app));
 		
 	}
 

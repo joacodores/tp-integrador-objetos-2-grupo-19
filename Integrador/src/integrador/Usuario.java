@@ -1,7 +1,7 @@
 package integrador;
 
 import java.time.LocalDate;	//(yyyy,mm,dd)  | "yyyy-mm-dd"
-import java.time.Period;	//para marcar el periodo entre fecha A y B
+import java.time.temporal.ChronoUnit; //para marcar el periodo entre fecha A y B
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -26,7 +26,7 @@ public class Usuario {
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
-
+	
 	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
 	}
@@ -69,12 +69,13 @@ public class Usuario {
 	}
 	
 	public void darOpinion(Opinion o) throws Exception{
+		exceptionOpinarSobreMuestraPropia(o.getMuestraEvaluada());
 		getEstadoUsuario().darOpinion(this, o);
 		addOpinion(o); //tal vez el estado de la muestra no le permite hacer la opinion al user
 	}
 	
-	public void enviarMuestra(Usuario u, Ubicacion ubi, DescripcionOpinion especie, String foto) throws Exception {
-		getEstadoUsuario().enviarMuestra(this,  ubi,  especie,  foto);
+	public void enviarMuestra(AppWeb app, Usuario u, Ubicacion ubi, DescripcionOpinion especie, String foto) {
+		getEstadoUsuario().enviarMuestra(app, u,  ubi,  especie,  foto);
 		
 	}
 	
@@ -82,7 +83,7 @@ public class Usuario {
 		LocalDate fechaActual = LocalDate.now();
 		
 		ArrayList<Opinion> opiniones30Dias = opinionesEnviadas.stream()
-				.filter(o -> Period.between(fechaActual, o.getFechaOpinion()).getDays() <= 30)
+				.filter(o -> ChronoUnit.DAYS.between(o.getFechaOpinion(), fechaActual) <= 30)
 				.collect(Collectors.toCollection(ArrayList::new));
 		
 		return opiniones30Dias;
@@ -92,10 +93,18 @@ public class Usuario {
 		LocalDate fechaActual = LocalDate.now();
 		
 		ArrayList<Muestra> muestras30Dias = muestrasReportadas.stream()
-				.filter(m -> Period.between(fechaActual, m.getFechaDeEnvio()).getDays() <= 30)
+				.filter(m -> ChronoUnit.DAYS.between(m.getFechaDeEnvio(), fechaActual) <= 30)
 				.collect(Collectors.toCollection(ArrayList::new));
 		
 		return muestras30Dias;
 	}
-	
+	 private void exceptionOpinarSobreMuestraPropia(Muestra m) {
+		  try {
+			  if (m.getIdentificacion().equals(this)) {
+		            throw new Exception("No podés opinar sobre tu propia muestra");
+		        }
+		    } catch (Exception e) {
+		        System.out.println("No podés opinar sobre tu propia muestra");
+		    }
+	 }
 }

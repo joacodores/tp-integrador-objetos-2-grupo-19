@@ -7,7 +7,6 @@ public class UsuarioBasico implements NivelConocimiento {
 	@Override
 	public void darOpinion(Usuario u, Opinion o) throws Exception{	//agrego el throws Exception y muestra
 		o.getMuestraEvaluada().recibirOpinionUsuarioBasico(o);
-		
 	}
 	
 	@Override
