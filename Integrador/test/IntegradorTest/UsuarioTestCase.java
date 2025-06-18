@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
 import integrador.Usuario;
+import integrador.UsuarioBasico;
 import integrador.UsuarioEspecialista;
 import integrador.Muestra;
 import integrador.Opinion;
@@ -33,7 +34,7 @@ class UsuarioTestCase {
 	@Test
 	void testExisteUnUsuarioBasico() {
 		assertEquals("Pepe Argento", this.usuarioNormal.getNombreUsuario());
-		assertFalse(this.usuarioNormal.getEsEspecialista());
+		assertFalse(this.usuarioNormal.getEstadoUsuario() instanceof UsuarioBasico);
 		assertTrue(this.usuarioNormal.getMuestrasReportadas().isEmpty());
 	};
 	
@@ -73,7 +74,6 @@ class UsuarioTestCase {
 	
 	@Test
 	void testUnUsuarioEspecialistaNoPuedeSerBasico() {
-		assertTrue(this.usuarioEspecialista.getEsEspecialista());
 		assertTrue(this.usuarioEspecialista.getEstadoUsuario() instanceof UsuarioEspecialista);
 	};
 	

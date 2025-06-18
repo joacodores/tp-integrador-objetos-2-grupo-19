@@ -159,11 +159,4 @@ public class Muestra {
 		getObserverMuestra().muestraVerficada(this);;
 	}
 
-
-
-
-	
-	
-
-	
 }
