@@ -81,17 +81,19 @@ public class Muestra {
 		return getEstadoMuestra().getResultadoActual(this);
 	}
 	
+	public Map<DescripcionOpinion, Long> getOpinionesYVotos(){
+		return 
+			(getOpiniones().stream() // Map de opiniones con cantidad de votos
+					.collect(Collectors.groupingBy(
+							opinion -> opinion.getDescripcionOpinion(),
+							Collectors.counting())));
+	}
+	
 	public DescripcionOpinion getOpinionMasVotada() {
 		
-		Map<DescripcionOpinion, Long>  conteoOpiniones = getOpiniones().stream() // Map de opiniones con cantidad de votos
-				.collect(Collectors.groupingBy(
-						opinion -> opinion.getDescripcionOpinion(),
-						Collectors.counting()
-				));
-		
+		Map<DescripcionOpinion, Long>  conteoOpiniones = getOpinionesYVotos();
 		DescripcionOpinion opinionMasVotada = null;
 		long max = 0;
-		
 		for(Map.Entry<DescripcionOpinion, Long> entry : conteoOpiniones.entrySet()) {
 			if(entry.getValue() > max) { //recorro el Map evaluando el valor(cantidad de votos)
 				max = entry.getValue();
@@ -102,12 +104,8 @@ public class Muestra {
 	}
 	
 	public boolean hayEmpate() {
-		Map<DescripcionOpinion, Long>  conteoOpiniones = getOpiniones().stream() // Map de opiniones con cantidad de votos
-				.collect(Collectors.groupingBy(
-						opinion -> opinion.getDescripcionOpinion(),
-						Collectors.counting()
-				));
-		long max = 0;
+		Map<DescripcionOpinion, Long>  conteoOpiniones = getOpinionesYVotos();
+		long max = 0;		
 		for (Long votosDeOpinion : conteoOpiniones.values()) {
 			if(votosDeOpinion > max) max = votosDeOpinion;
 		}//max ahora almacena la cantidad de votos maxima

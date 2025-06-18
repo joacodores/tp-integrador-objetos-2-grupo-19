@@ -9,7 +9,7 @@ public class MuestraAbierta implements EstadoMuestra {
 		Muestra m = o.getMuestraEvaluada(); 
 		m.addOpinion(o);
 		if (m.hayEmpate()) { // si agregando esta opinion hay empate, pasa a ser no definido
-			m.setEstadoMuestra(new MuestraNoDefinido());
+			m.setEstadoMuestra(new MuestraAbiertaNoDefinido());
 		}
 	}
 	

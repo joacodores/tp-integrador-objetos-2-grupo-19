@@ -23,14 +23,15 @@ public class ZonaDeCobertura {
 		this.organizacionesInteresadas = new ArrayList<Organizacion>();
 	}
 	
-	// Metodos
+	
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public ArrayList<ZonaDeCobertura> getZonasSolapadas() {
+	
+	public ArrayList<ZonaDeCobertura> getZonasSolapadass() { //este no
 		return zonasSolapadas;
 	}
 	public void setZonasSolapadas(ArrayList<ZonaDeCobertura> zonasSolapadas) {
@@ -39,6 +40,7 @@ public class ZonaDeCobertura {
 	public void addZonaSolapada(ZonaDeCobertura z) {
 		this.zonasSolapadas.add(z) ;
 	}
+	
 	public ArrayList<Muestra> getMuestrasEnZona() {
 		return muestrasEnZona;
 	}
@@ -58,6 +60,7 @@ public class ZonaDeCobertura {
 	public void setOrganizacionesInteresadas(ArrayList<Organizacion> organizacionesInteresadas) {
 		this.organizacionesInteresadas = organizacionesInteresadas;
 	}
+	
 	public void addOrganizacion(Organizacion o) {
 		this.organizacionesInteresadas.add(o) ;
 	}
@@ -66,6 +69,10 @@ public class ZonaDeCobertura {
 	}
 	public Ubicacion getEpicentro() {
 		return epicentro;
+	}
+	
+	public ArrayList<ZonaDeCobertura> getZonasSolapadas(ArrayList<ZonaDeCobertura>){
+		//hacer
 	}
 	
 	
