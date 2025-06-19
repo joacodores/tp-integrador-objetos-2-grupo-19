@@ -16,6 +16,7 @@ public class UsuarioEspecialista implements NivelConocimiento {
 		m.recibirOpinionUsuarioExperto(o);
 		user.addMuestraReportada(m);
 		app.recibirMuestra(m);
+		user.addOpinion(o);		//la muestra cuenta como opinion inicial
 	}
 	
 	@Override

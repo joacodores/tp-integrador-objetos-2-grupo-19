@@ -16,6 +16,7 @@ public class UsuarioBasico implements NivelConocimiento {
 		m.recibirOpinionUsuarioBasico(o);
 		user.addMuestraReportada(m);
 		app.recibirMuestra(m);
+		user.addOpinion(o);		//la muestra cuenta como opinion inicial
 	}
 
 	@Override

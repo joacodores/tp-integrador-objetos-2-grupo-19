@@ -85,13 +85,15 @@ class UsuarioTestCase {
 	}
 	
 	@Test
-	void testUnUsuarioEnviaUnaMuestraGenerandoAsiUnaOpinionEnEsaMuestraPeroNoEnSuHistorialDeOpiniones() {
+	void testAlEnviarUnaMuestraElUsuarioTambienGeneraUnaOpinionDeDichaMuestra() {
 		usuarioNormal.enviarMuestra(app, usuarioNormal, ubicacion, descripcion, "");
 		
 		Muestra muestraGenerada = usuarioNormal.getMuestrasReportadas().getFirst();
 		
-		assertEquals(0, this.usuarioNormal.getOpinionesEnviadas().size());
+		assertEquals(1, this.usuarioNormal.getOpinionesEnviadas().size());
 		assertEquals(1, muestraGenerada.getOpiniones().size());
+		//evaluan si son las mismas muestras
+		assertEquals(muestraGenerada, usuarioNormal.getOpinionesEnviadas().getFirst().getMuestraEvaluada());
 	}
 	
 	@Test
