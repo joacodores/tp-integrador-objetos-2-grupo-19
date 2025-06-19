@@ -69,7 +69,9 @@ public class Usuario {
 	}
 	
 	public void darOpinion(Opinion o){ //tenia throws
-		if(!opineSobreEstaMuesta(o.getMuestraEvaluada())) {
+		Muestra muestra = o.getMuestraEvaluada();
+		
+		if(!opineSobreEstaMuesta(muestra) && !genereEstaMuestra(muestra)) {
 			getEstadoUsuario().darOpinion(this, o);
 			addOpinion(o); //tal vez el estado de la muestra no le permite hacer la opinion al user
 		} else {
@@ -77,10 +79,14 @@ public class Usuario {
 		}
 	}
 	
-	public boolean opineSobreEstaMuesta(Muestra m) {
+	private boolean opineSobreEstaMuesta(Muestra m) {
 		return getOpinionesEnviadas().stream().anyMatch(o -> o.getMuestraEvaluada() == m);
 	}
 	
+	private boolean genereEstaMuestra(Muestra m) {
+		return m.getIdentificacion() == this;
+	}
+
 	public void enviarMuestra(AppWeb app, Usuario u, Ubicacion ubi, DescripcionOpinion especie, String foto) {
 		getEstadoUsuario().enviarMuestra(app, u, ubi, especie, foto);
 	}

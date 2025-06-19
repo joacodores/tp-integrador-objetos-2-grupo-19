@@ -8,7 +8,7 @@ public class UsuarioExperto implements NivelConocimiento {
 	public void darOpinion(Usuario u, Opinion o){ //tenia throws
 		o.getMuestraEvaluada().recibirOpinionUsuarioExperto(o);
 	}
-	
+
 	@Override
 	public void enviarMuestra(AppWeb app, Usuario user, Ubicacion ubi, DescripcionOpinion especie, String foto){ //tenia throws
 		Muestra m = new Muestra(ubi, especie, user, foto, new ObserverPorMuestraVerificada(app));

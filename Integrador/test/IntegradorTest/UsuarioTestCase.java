@@ -85,10 +85,13 @@ class UsuarioTestCase {
 	}
 	
 	@Test
-	void testUnUsuarioEnviaUnaMuestraGenerandoAsiUnaOpinionDeEsaMuestra() {
+	void testUnUsuarioEnviaUnaMuestraGenerandoAsiUnaOpinionEnEsaMuestraPeroNoEnSuHistorialDeOpiniones() {
 		usuarioNormal.enviarMuestra(app, usuarioNormal, ubicacion, descripcion, "");
 		
-		assertEquals(1, this.usuarioNormal.getOpinionesEnviadas().size());
+		Muestra muestraGenerada = usuarioNormal.getMuestrasReportadas().getFirst();
+		
+		assertEquals(0, this.usuarioNormal.getOpinionesEnviadas().size());
+		assertEquals(1, muestraGenerada.getOpiniones().size());
 	}
 	
 	@Test
@@ -105,7 +108,7 @@ class UsuarioTestCase {
 		
 		assertTrue(this.usuarioNormal.getEstadoUsuario() instanceof UsuarioExperto);
 	};
-	
+
 	@Test
 	void testUnUsuarioExpertoPuedeConvertirseEnBasico() {
 		//establezco que cumplio con los requisitos para experto pero hace 30 dias
