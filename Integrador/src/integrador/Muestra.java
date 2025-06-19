@@ -127,7 +127,7 @@ public class Muestra {
 		}
 		return opinionMasVotada;			
 	}
-	
+
 	public boolean hayEmpate() {
 		Map<DescripcionOpinion, Long>  conteoOpiniones = getOpinionesYVotos();
 		long max = 0;		
