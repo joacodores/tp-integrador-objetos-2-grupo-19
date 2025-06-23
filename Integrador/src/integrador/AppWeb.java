@@ -44,22 +44,26 @@ public class AppWeb {
 	public Set<Muestra> getMuestrasRecibidas() {
 		return muestrasRecibidas;
 	}
+	
 	public void setMuestrasRecibidas(Set<Muestra> muestrasRecibidas) {
 		this.muestrasRecibidas = muestrasRecibidas;
 	}
+	
 	public Set<ZonaDeCobertura> getZonasDeCobertura() {
 		return zonasDeCobertura;
 	}
+	
 	public void setZonasDeCobertura(Set<ZonaDeCobertura> zonasDeCobertura) {
 		this.zonasDeCobertura = zonasDeCobertura;
 	}
+	
 	public BuscadorDeMuestra getFiltroDeMuestras() {
 		return filtroDeMuestras;
 	}
+	
 	public void setFiltroDeMuestras(BuscadorDeMuestra filtroDeMuestras) {
 		this.filtroDeMuestras = filtroDeMuestras;
 	}
-	
 	
 	public void addUsuario(Usuario u) {
 		this.usuarios.add(u);
