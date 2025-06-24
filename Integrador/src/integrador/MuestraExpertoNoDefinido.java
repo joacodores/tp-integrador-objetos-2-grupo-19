@@ -18,7 +18,7 @@ public class MuestraExpertoNoDefinido extends MuestraNoDefinido{
 		if (!m.hayEmpate()) { // puede llegar a seguir estando en empate
 			//si no hay mas empate, quiere decir que esta opinion hizo que haya 2 votos 
 			//expertos hacia la misma especie, o sea que es la mas votada, por ende se verifica la muestra.
-			m.verificarMuestra();
+			m.seVerificaLaMuestra();
 		}
 	}
 }

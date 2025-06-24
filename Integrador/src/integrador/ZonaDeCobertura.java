@@ -65,6 +65,11 @@ public class ZonaDeCobertura {
 	public boolean perteneceUbicacion(Ubicacion u) {
 		return u.distanciaHastaEnKm(this.getEpicentro()) <= this.getRadioEnKm();
 	}
+
+
+	public boolean contieneMuestra(Muestra muestra) {
+		return muestra.getUbicacion().distanciaHastaEnKm(this.epicentro) <= this.radioEnKm;
+	}
 	
 	
 

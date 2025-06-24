@@ -76,9 +76,10 @@ public class Muestra {
 		this.especie = especie;
 	}
 	
-	public DescripcionOpinion getEspecie() { //revisar
-		//implementar en estadomuestra, solo devuelve cuando esta verificada(¿)
+	public  DescripcionOpinion getEspecie() { //revisar
+		return this.especie;
 	}
+	
 	public ArrayList<Opinion> getOpinionesUsuarios() {
 		return opinionesUsuarios;
 	}
@@ -98,15 +99,7 @@ public class Muestra {
         this.observers.remove(observer);
     }
 
-    // Método para notificar a todos los observadores
-    private void notificarObservadores() {
-        for (ObserverMuestra observer : observers) {
-            observer.muestraVerificada(this); // Llama al método de notificación en cada observador
-        }
-    }
-
-
-	public void setFechaDeEnvio(LocalDate fechaDeEnvio) {
+    public void setFechaDeEnvio(LocalDate fechaDeEnvio) {
 		this.fechaDeEnvio = fechaDeEnvio;
 	}
 	
@@ -162,9 +155,8 @@ public class Muestra {
 		this.opinionesUsuarios.removeAll(opinionesUsuarios);
 	}
 	
-	public void verificarMuestra() {
+	public void seVerificaLaMuestra() {
 		setEstadoMuestra(new MuestraVerificada());
-		getObserverMuestra().muestraVerficada(this);;
 	}
 	
 	public boolean estaVerificada() {

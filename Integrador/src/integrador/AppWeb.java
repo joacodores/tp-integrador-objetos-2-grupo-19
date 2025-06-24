@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class AppWeb {
+public class AppWeb implements ObserverMuestra{
 	
 	private Set<Muestra> muestrasRecibidas;
 	private Set<ZonaDeCobertura> zonasDeCobertura;
@@ -72,6 +72,10 @@ public class AppWeb {
 		this.muestrasRecibidas.add(m);
 	}
 	
+	public void muestraVerificada(Muestra muestra) {
+        notificarMuestraValidada(muestra);
+    }
+	
 	public Set<ZonaDeCobertura> getZonasDeCoberturaDeUbicacion(Set<ZonaDeCobertura> zonas, Ubicacion u) {
 		return zonas.stream().filter(z -> z.perteneceUbicacion(u)).collect(Collectors.toSet());
 	}
@@ -93,14 +97,34 @@ public class AppWeb {
 		}
 	}
 	
-	public void nuevaMuestraVerificada(Muestra m) {
+/*	public void nuevaMuestraVerificada(Muestra m) {
 		Set<ZonaDeCobertura> zonasDeMuestra = getZonasDeCoberturaDeUbicacion(getZonasDeCobertura(), m.getUbicacion());
 		zonasDeMuestra.stream().forEach(z -> z.addMuestraEnZona(m));
 		for(ZonaDeCobertura z : zonasDeMuestra) {
 			avisarAOrganizacionesInteresadasPorMuestraVerificada(z, m);
 		}
 		
-	}
+	}*/
+	
+	 public void nuevaMuestraVerificada(Muestra muestra) {
+	        // Aquí AppWeb realiza las acciones que deben ocurrir cuando una muestra se verifica.
+	        // Por ejemplo, notificar a las organizaciones.
+	        notificarMuestraValidada(muestra);
+	    }
+
+	 private void notificarMuestraValidada(Muestra muestra) {
+	        // Lógica para notificar cuando una muestra es VALIDADA
+	        for (ZonaDeCobertura zona : zonasDeCobertura) {
+	            if (zona.contieneMuestra(muestra)) {
+	                for (Organizacion org : organizaciones) {
+	                    if (org.estaInteresadaEnZona(zona)) {
+	                        // Asumiendo que FuncionalidadExterna tiene un método adecuado, ej. nuevoEventoValidacionMuestra
+	                        org.getFuncionalidadExternaPorMuestraVerificada().nuevoEvento(org, zona, muestra);
+	                    }
+	                }
+	            }
+	        }
+	    }
 
 	public void avisarAOrganizacionesInteresadasPorMuestraVerificada(ZonaDeCobertura z, Muestra m) {
 		for (Organizacion o : getOrganizaciones()) {

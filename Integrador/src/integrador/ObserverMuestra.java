@@ -1,5 +1,5 @@
 package integrador;
 
 public interface ObserverMuestra {
-	public void muestraVerficada(Muestra m);
+	void muestraVerificada(Muestra m);
 }

@@ -1,15 +1,15 @@
 package integrador;
 
-public class ObserverPorMuestraVerificada implements ObserverMuestra {
+/*public class ObserverPorMuestraVerificada implements ObserverMuestra {
 	///Una muestra tiene un observer de estos y les manda el msj muestraVerificada cuando se verifica y asi sabe la app
-	private AppWeb app;
+//	private AppWeb app;
 	
-	public ObserverPorMuestraVerificada(AppWeb app) {
+//	public ObserverPorMuestraVerificada(AppWeb app) {
 	        this.app = app;
 	}
 	
 
-	public AppWeb getApp() {
+	//public AppWeb getApp() {
 		return app;
 	}
 
@@ -20,4 +20,4 @@ public class ObserverPorMuestraVerificada implements ObserverMuestra {
 		getApp().nuevaMuestraVerificada(m);
 	}
 
-}
+}*/

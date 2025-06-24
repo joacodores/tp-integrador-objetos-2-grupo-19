@@ -15,7 +15,7 @@ public class MuestraSoloExpertos implements EstadoMuestra {
 			m.setEstadoMuestra(new MuestraExpertoNoDefinido());
 		}
 		else{//si no hay empate indica que ya habia un voto igual, por ende ahora hay 2 y se verifica
-			m.verificarMuestra();
+			m.seVerificaLaMuestra();
 		}
 	}
 
