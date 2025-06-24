@@ -2,6 +2,7 @@ package integrador;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -15,10 +16,10 @@ public class Muestra {
 	private ArrayList<Opinion> opinionesUsuarios;
 	private Ubicacion ubicacion;
 	private EstadoMuestra estadoMuestra;
-	private ObserverMuestra observerMuestra;
+	private List<ObserverMuestra> observers;
 
 
-	public Muestra (Ubicacion ubicacion, DescripcionOpinion especie, Usuario user, String foto, ObserverMuestra observerMuestra) {
+	public Muestra (Ubicacion ubicacion, DescripcionOpinion especie, Usuario user, String foto) {
 		this.identificacion = user;
 		this.ubicacion = ubicacion;
 		this.especie = especie;
@@ -26,7 +27,7 @@ public class Muestra {
 		this.fechaDeEnvio = LocalDate.now();	
 		this.estadoMuestra = new MuestraAbierta();
 		this.opinionesUsuarios = new ArrayList<Opinion>();
-		this.observerMuestra = observerMuestra;
+		this.observers = new ArrayList<>();;
 	}
 	
 	
@@ -87,15 +88,22 @@ public class Muestra {
 		this.opinionesUsuarios = opinionesUsuarios;
 	}
 
+	public void agregarObservador(ObserverMuestra observer) {
+        if (!observers.contains(observer)) {
+            this.observers.add(observer);
+        }
+    }
 
-	public ObserverMuestra getObserverMuestra() {
-		return observerMuestra;
-	}
+    public void removerObservador(ObserverMuestra observer) {
+        this.observers.remove(observer);
+    }
 
-
-	public void setObserverMuestra(ObserverMuestra observerMuestra) {
-		this.observerMuestra = observerMuestra;
-	}
+    // Método para notificar a todos los observadores
+    private void notificarObservadores() {
+        for (ObserverMuestra observer : observers) {
+            observer.muestraVerificada(this); // Llama al método de notificación en cada observador
+        }
+    }
 
 
 	public void setFechaDeEnvio(LocalDate fechaDeEnvio) {
@@ -158,5 +166,9 @@ public class Muestra {
 		setEstadoMuestra(new MuestraVerificada());
 		getObserverMuestra().muestraVerficada(this);;
 	}
+	
+	public boolean estaVerificada() {
+        return (this.getEstadoMuestra() instanceof MuestraVerificada);
+    }
 
 }

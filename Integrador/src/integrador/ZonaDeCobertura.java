@@ -1,7 +1,6 @@
 package integrador;
 
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 public class ZonaDeCobertura {
 	

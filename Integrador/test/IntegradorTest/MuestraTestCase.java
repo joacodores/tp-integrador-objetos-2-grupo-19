@@ -26,7 +26,7 @@ class MuestraTestCase {
 	AppWeb app;	
 	Ubicacion ubi;
 	Usuario userBasico;
-	Usuario userBasico2;
+	Usuario userBasibco2;
 	Usuario userEspecializado;
 	Opinion op1;
 	Opinion op2;

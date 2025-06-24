@@ -68,25 +68,6 @@ public class Usuario {
 		this.opinionesEnviadas.add(o);
 	}
 	
-	public void darOpinion(Opinion o){ //tenia throws
-		Muestra muestra = o.getMuestraEvaluada();
-		
-		if(!opineSobreEstaMuesta(muestra)) {
-			getEstadoUsuario().darOpinion(this, o);
-			addOpinion(o); //tal vez el estado de la muestra no le permite hacer la opinion al user
-		} else {
-			throw new IllegalStateException("No podes opinar sobre esta muestra.");
-		}
-	}
-	
-	private boolean opineSobreEstaMuesta(Muestra m) {
-		return getOpinionesEnviadas().stream().anyMatch(o -> o.getMuestraEvaluada() == m);
-	}
-
-	public void enviarMuestra(AppWeb app, Usuario u, Ubicacion ubi, DescripcionOpinion especie, String foto) {
-		getEstadoUsuario().enviarMuestra(app, u, ubi, especie, foto);
-	}
-	
 	public ArrayList<Opinion> opinionesDeLosUltimos30Dias(){
 		LocalDate fechaActual = LocalDate.now();
 		

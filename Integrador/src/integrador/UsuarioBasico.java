@@ -1,23 +1,26 @@
 package integrador;
 
-import java.util.ArrayList;
-
 public class UsuarioBasico implements NivelConocimiento {
 	
 	@Override
-	public void darOpinion(Usuario u, Opinion o){	//agrego el throws Exception y muestra
-		o.getMuestraEvaluada().recibirOpinionUsuarioBasico(o);
-	}
-	
-	@Override
-	public void enviarMuestra(AppWeb app, Usuario user, Ubicacion ubi, DescripcionOpinion especie, String foto){  //tenia throws
-		Muestra m = new Muestra(ubi, especie, user, foto, new ObserverPorMuestraVerificada(app));
-		Opinion o = new Opinion(especie, m);
-		m.recibirOpinionUsuarioBasico(o);
-		user.addMuestraReportada(m);
-		app.recibirMuestra(m);
-		user.addOpinion(o);		//la muestra cuenta como opinion inicial
-	}
+    public boolean puedeDarOpinion(Usuario u, Muestra m) throws Exception {
+		if (m.getIdentificacion().equals(u) ||
+	            u.getOpinionesEnviadas().stream().anyMatch(o -> o.getMuestraEvaluada().equals(m)) ||
+	            m.estaVerificada()) {
+	            return false;
+	        }
+	        return true;
+    }
+
+    @Override
+    public boolean puedeEnviarMuestra(Usuario u) throws Exception {
+        return true;
+    }
+
+    @Override
+    public boolean esExperto() {
+        return false;
+    }
 
 	@Override
 	public void verificarCambioDeEstado(Usuario u) {

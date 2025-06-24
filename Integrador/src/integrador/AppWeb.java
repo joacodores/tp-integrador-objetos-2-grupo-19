@@ -1,7 +1,6 @@
 package integrador;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -120,8 +119,12 @@ public class AppWeb {
 		return organizacionesInteresadas;
 	}*/
 	
-
-
+	
+	public void actualizarEstadosUsuarios() {
+        for (Usuario u : usuarios) {
+            u.getEstadoUsuario().verificarCambioDeEstado(u);
+        }
+	}
 
 
 
