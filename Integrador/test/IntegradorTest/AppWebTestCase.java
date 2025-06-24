@@ -14,8 +14,12 @@ import org.junit.jupiter.api.Test;
 
 import integrador.AppWeb;
 import integrador.BuscadorDeMuestra;
+import integrador.FuncionalidadExterna;
 import integrador.Muestra;
+import integrador.MuestraVerificada;
+import integrador.NivelConocimiento;
 import integrador.Organizacion;
+import integrador.Ubicacion;
 import integrador.Usuario;
 import integrador.ZonaDeCobertura;
 
@@ -27,6 +31,7 @@ class AppWebTestCase {
 	BuscadorDeMuestra filtros;
 	Organizacion organizacion;
 	Usuario user;
+	Ubicacion ubiEnZona;
 	
 	Set<Muestra> muestrasRecibidas;
 	Set<ZonaDeCobertura> zonasDeCobertura;
@@ -43,6 +48,7 @@ class AppWebTestCase {
 		organizacion = mock(Organizacion.class);
 		user = mock(Usuario.class);
 		zona = mock(ZonaDeCobertura.class);
+		ubiEnZona = mock(Ubicacion.class);
 		
 		muestrasRecibidas = new HashSet<>();	//vacio
 		zonasDeCobertura = new HashSet<>();		//vacio
@@ -84,9 +90,29 @@ class AppWebTestCase {
 	}
 	
 	@Test
+	void testLaAppPuedeSettearALosUsuarios() {
+		assertFalse(app.getUsuarios().contains(user));
+		
+		Set<Usuario> nuevosUsuarios = Set.of(user);
+		app.setUsuarios(nuevosUsuarios);
+		
+		assertTrue(app.getUsuarios().contains(user));
+	}
+	
+	@Test
 	void testLaAppConoceALasMuestrasRecibidas() {
 		assertFalse(app.getMuestrasRecibidas().contains(muestra1));
 		app.addMuestra(muestra1);
+		assertTrue(app.getMuestrasRecibidas().contains(muestra1));
+	}
+	
+	@Test
+	void testLaAppPuedeSettearALasUMuestrasRecibidas() {
+		assertFalse(app.getMuestrasRecibidas().contains(muestra1));
+		
+		Set<Muestra> nuevasMuestras = Set.of(muestra1);
+		app.setMuestrasRecibidas(nuevasMuestras);
+		
 		assertTrue(app.getMuestrasRecibidas().contains(muestra1));
 	}
 	
@@ -109,4 +135,69 @@ class AppWebTestCase {
 		app.setFiltroDeMuestras(nuevoFiltro);
 		assertEquals(nuevoFiltro, app.getFiltroDeMuestras());
 	}
+	
+	@Test
+	void testLaAppPuedeActualizarElEstadoDeSusUsuarios() {
+		//mockeo un estado y se lo asigno a un usuario
+		NivelConocimiento estadoUser = mock(NivelConocimiento.class);
+		when(user.getEstadoUsuario()).thenReturn(estadoUser);
+		//agrego en la app al usuario
+		app.addUsuario(user);
+		
+		app.actualizarEstadosUsuarios();
+		verify(estadoUser, times(1)).verificarCambioDeEstado(user);;
+	}
+	
+	@Test
+	void testLaAppLeAvisaALasOrganizacionesCorrespondientesCuandoSeCargaUnaNuevaMuestra() {
+		//añado zona y organizacion a la app
+		Set<ZonaDeCobertura> zonasNuevas = new HashSet<>(List.of(zona));
+		app.setZonasDeCobertura(zonasNuevas);
+		app.registrarOrganizacion(organizacion);
+		
+		//digo que la ubicacion se encuentra dentro de la zona
+		when(zona.perteneceUbicacion(ubiEnZona)).thenReturn(true);
+		//digo que la organizacion esta interesada en la zona
+		when(organizacion.estaInteresadaEnZona(zona)).thenReturn(true);
+		//digo que la muestra tiene como ubicacion aquella en la que este interesada la zona.
+		when(muestra1.getUbicacion()).thenReturn(ubiEnZona);
+		
+		//llega la muestra a la app, entonces verifico que la organizacion ejecute FE
+		app.recibirMuestra(muestra1);	
+		verify(organizacion, times(1)).useFENuevaMuestra(zona, muestra1);
+		
+	}
+	
+	@Test
+	void testLaAppLeAvisaALasOrganizacionesCorrespondientesCuandoSeValidaUnaNuevaMuestra() {
+		//añado zona y organizacion a la app
+		Set<ZonaDeCobertura> zonasNuevas = new HashSet<>(List.of(zona));
+		app.setZonasDeCobertura(zonasNuevas);
+		app.registrarOrganizacion(organizacion);
+		
+		//creo el estado de muestra validada y una funcion externa cualquiera
+		MuestraVerificada estadoValidado = mock(MuestraVerificada.class);
+		FuncionalidadExterna unaFuncionalidad = mock(FuncionalidadExterna.class);
+		
+		//establezco el getter de funcionalidadExternaPorMuestraVerificada
+		when(organizacion.getFuncionalidadExternaPorMuestraVerificada()).thenReturn(unaFuncionalidad);
+		//digo que la muestra esta validada
+		when(muestra1.getEstadoMuestra()).thenReturn(estadoValidado);
+		
+		//digo que la ubicacion se encuentra dentro de la zona
+		when(zona.perteneceUbicacion(ubiEnZona)).thenReturn(true);
+		when(zona.contieneMuestra(muestra1)).thenReturn(true);
+		//digo que la organizacion esta interesada en la zona
+		when(organizacion.estaInteresadaEnZona(zona)).thenReturn(true);
+		//digo que la muestra tiene como ubicacion aquella en la que este interesada la zona.
+		when(muestra1.getUbicacion()).thenReturn(ubiEnZona);
+		
+		
+		//llega la muestra a la app, entonces verifico que la organizacion ejecute FE
+		app.nuevaMuestraVerificada(muestra1);	
+		verify(organizacion, times(1)).getFuncionalidadExternaPorMuestraVerificada();
+		
+	}
+	
+	
 }
