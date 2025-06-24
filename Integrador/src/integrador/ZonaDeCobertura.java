@@ -55,9 +55,6 @@ public class ZonaDeCobertura {
 		this.muestrasEnZona.add(m) ;
 	}
 
-
-
-
 	public double getRadioEnKm() {
 		return radioEnKm;
 	}
@@ -65,7 +62,6 @@ public class ZonaDeCobertura {
 	public Ubicacion getEpicentro() {
 		return epicentro;
 	}
-	
 	
 	public boolean perteneceUbicacion(Ubicacion u) {
 		return u.distanciaHastaEnKm(this.getEpicentro()) <= this.getRadioEnKm();
