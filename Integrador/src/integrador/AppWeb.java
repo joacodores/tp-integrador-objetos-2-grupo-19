@@ -31,6 +31,10 @@ public class AppWeb implements ObserverMuestra{
 	public void setOrganizaciones(ArrayList<Organizacion> organizaciones) {
 		this.organizaciones = organizaciones;
 	}
+	
+	public void registrarOrganizacion(Organizacion o) {
+		this.organizaciones.add(o);
+	}
 
 	public Set<Usuario> getUsuarios() {
 		return usuarios;
@@ -110,21 +114,21 @@ public class AppWeb implements ObserverMuestra{
 	        // Aquí AppWeb realiza las acciones que deben ocurrir cuando una muestra se verifica.
 	        // Por ejemplo, notificar a las organizaciones.
 	        notificarMuestraValidada(muestra);
-	    }
+	 }
 
 	 private void notificarMuestraValidada(Muestra muestra) {
-	        // Lógica para notificar cuando una muestra es VALIDADA
-	        for (ZonaDeCobertura zona : zonasDeCobertura) {
-	            if (zona.contieneMuestra(muestra)) {
-	                for (Organizacion org : organizaciones) {
-	                    if (org.estaInteresadaEnZona(zona)) {
-	                        // Asumiendo que FuncionalidadExterna tiene un método adecuado, ej. nuevoEventoValidacionMuestra
-	                        org.getFuncionalidadExternaPorMuestraVerificada().nuevoEvento(org, zona, muestra);
-	                    }
-	                }
-	            }
-	        }
+	   // Lógica para notificar cuando una muestra es VALIDADA
+	   for (ZonaDeCobertura zona : zonasDeCobertura) {
+		   if (zona.contieneMuestra(muestra)) {
+			   for (Organizacion org : organizaciones) {
+				   if (org.estaInteresadaEnZona(zona)) {
+					   // Asumiendo que FuncionalidadExterna tiene un método adecuado, ej. nuevoEventoValidacionMuestra
+	                   org.getFuncionalidadExternaPorMuestraVerificada().nuevoEvento(org, zona, muestra);
+	               }
+	           }
+	       }
 	    }
+	 }
 
 	public void avisarAOrganizacionesInteresadasPorMuestraVerificada(ZonaDeCobertura z, Muestra m) {
 		for (Organizacion o : getOrganizaciones()) {
@@ -132,8 +136,8 @@ public class AppWeb implements ObserverMuestra{
 				o.useFEMuestraVerificada(z, m);
 			}
 		}
-		
 	}
+	
 	//no la use pero la dejo por si la necesitamos luego
 	/*public List<Organizacion> getOrganizacionesInteresadasEnZonas(Set<ZonaDeCobertura> zonas){
 		List<Organizacion> organizacionesInteresadas = new ArrayList<Organizacion>();

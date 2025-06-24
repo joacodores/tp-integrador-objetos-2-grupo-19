@@ -26,7 +26,7 @@ class MuestraTestCase {
 	AppWeb app;	
 	Ubicacion ubi;
 	Usuario userBasico;
-	Usuario userBasibco2;
+	Usuario userBasico2;
 	Usuario userEspecializado;
 	Opinion op1;
 	Opinion op2;
@@ -46,7 +46,8 @@ class MuestraTestCase {
 		userBasico = new Usuario("Pepe", false);
 		userBasico2 = new Usuario("Pepe2", false);
 		userEspecializado = new Usuario("Dardo", true);
-		muestra = new Muestra(ubi, descripcion1, userBasico, "foto", new ObserverPorMuestraVerificada(app));
+		
+		muestra = new Muestra(ubi, descripcion1, userBasico, "foto");
 		op1 = new Opinion(descripcion1, muestra);
 		op2 = new Opinion(descripcion2, muestra);
 		op3 = new Opinion(descripcion3, muestra);
