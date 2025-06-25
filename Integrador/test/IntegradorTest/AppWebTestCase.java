@@ -163,7 +163,7 @@ class AppWebTestCase {
 		app.registrarOrganizacion(organizacion);
 		
 		//llega la muestra a la app, entonces verifico que la organizacion ejecute FE
-		app.recibirMuestra(muestra1);	
+		app.registrarMuestra(muestra1);	
 		verify(organizacion, times(1)).useFENuevaMuestra(zona, muestra1);
 		
 	}

@@ -8,30 +8,23 @@ import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 import integrador.Usuario;
 import integrador.UsuarioBasico;
 import integrador.UsuarioEspecialista;
 import integrador.UsuarioExperto;
-import integrador.AppWeb;
-import integrador.DescripcionOpinion;
 import integrador.Muestra;
 import integrador.Opinion;
-import integrador.Ubicacion;
 
 class UsuarioTestCase {
 
-	private AppWeb app;
-	private Ubicacion ubicacion;
 	private Usuario usuarioNormal;
 	private Usuario usuarioEspecialista;
 	private Muestra muestra1;
 	private Muestra muestra2;
 	private Opinion op1;
 	private Opinion op2;
-	private DescripcionOpinion descripcion = DescripcionOpinion.VINCHUCA_SORDIDA;
 	
 	
 	@BeforeEach
@@ -39,8 +32,6 @@ class UsuarioTestCase {
 		this.usuarioNormal = new Usuario("Pepe Argento", false);
 		this.usuarioEspecialista = new Usuario("Maria Elena", true);
 		
-		this.app = mock(AppWeb.class);
-		this.ubicacion = mock(Ubicacion.class);
 		this.muestra1 = mock(Muestra.class);
 		this.muestra2 = mock(Muestra.class);
 		this.op1 = mock(Opinion.class);
@@ -125,30 +116,6 @@ class UsuarioTestCase {
 		 assertFalse(this.usuarioNormal.opinionesDeLosUltimos30Dias().contains(op2));
 	};
 	
-	
-	/*
-	@Test	//hacerlo desde el lado de muestra
-	void testUnUsuarioNoPuedeOpinarDosVecesEnLaMismaMuestra() {
-		usuarioNormal.darOpinion(op1); 	//muestraEvaluda == muestra1
-		
-		assertThrows(IllegalStateException.class, () -> {
-			usuarioNormal.darOpinion(op1);	//intenta dar una opinion devuelta para muestra1
-		});
-	}
-	
-	
-	@Test	//puede quedarse cuando se corrija app
-	void testAlEnviarUnaMuestraElUsuarioTambienGeneraUnaOpinionDeDichaMuestra() {
-		usuarioNormal.enviarMuestra(app, usuarioNormal, ubicacion, descripcion, "");
-		
-		Muestra muestraGenerada = usuarioNormal.getMuestrasReportadas().getFirst();
-		
-		assertEquals(1, this.usuarioNormal.getOpinionesEnviadas().size());
-		assertEquals(1, muestraGenerada.getOpiniones().size());
-		//evaluan si son las mismas muestras
-		assertEquals(muestraGenerada, usuarioNormal.getOpinionesEnviadas().getFirst().getMuestraEvaluada());
-	}
-	
 	@Test
 	void testUnUsuarioBasicoPuedeConvertirseEnExperto() {
 		assertTrue(this.usuarioNormal.getEstadoUsuario() instanceof UsuarioBasico);
@@ -186,7 +153,16 @@ class UsuarioTestCase {
 		assertFalse(this.usuarioEspecialista.getEstadoUsuario() instanceof UsuarioBasico);
 	};
 	
-*/
+	/*
+	@Test	//hacerlo desde el lado de muestra
+	void testUnUsuarioNoPuedeOpinarDosVecesEnLaMismaMuestra() {
+		usuarioNormal.darOpinion(op1); 	//muestraEvaluda == muestra1
+		
+		assertThrows(IllegalStateException.class, () -> {
+			usuarioNormal.darOpinion(op1);	//intenta dar una opinion devuelta para muestra1
+		});
+	}
+	*/
 		
 	
 }
