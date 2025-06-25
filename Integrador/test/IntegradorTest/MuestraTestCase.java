@@ -13,7 +13,7 @@ import integrador.DescripcionOpinion;
 import integrador.Muestra;
 import integrador.MuestraAbierta;
 import integrador.MuestraSoloExpertos;
-import integrador.ObserverPorMuestraVerificada;
+import integrador.MuestraVerificada;
 import integrador.Opinion;
 import integrador.Ubicacion;
 import integrador.Usuario;
@@ -25,61 +25,99 @@ class MuestraTestCase {
 	Opinion op;
 	AppWeb app;	
 	Ubicacion ubi;
-	Usuario userBasico;
-	Usuario userBasico2;
-	Usuario userEspecializado;
+	//Usuario userBasico;
+	//Usuario userBasico2;
+	//Usuario userEspecializado;
+	//Opinion op1;
+	//Opinion op2;
+	//Opinion op3;
+	Usuario user;
 	Opinion op1;
 	Opinion op2;
-	Opinion op3;
 	DescripcionOpinion descripcion1;
 	DescripcionOpinion descripcion2;
-	DescripcionOpinion descripcion3;
 	
 	@BeforeEach
 	void setUp() {
 	
 		app = mock(AppWeb.class);
 		ubi = mock(Ubicacion.class);
+		user = mock(Usuario.class);
+		op1 = mock(Opinion.class);
+		op2 = mock(Opinion.class);
+		
+		when(this.op1.getDescripcionOpinion()).thenReturn(descripcion1);
+		when(this.op1.getMuestraEvaluada()).thenReturn(muestra);
+		when(this.op2.getDescripcionOpinion()).thenReturn(descripcion2);
+		when(this.op2.getMuestraEvaluada()).thenReturn(muestra);
+		
 		descripcion1 = DescripcionOpinion.VINCHUCA_SORDIDA;
 		descripcion2 = DescripcionOpinion.IMAGEN_POCO_CLARA;
-		descripcion3 = DescripcionOpinion.CHINCHE_FOLIADA;
-		userBasico = new Usuario("Pepe", false);
-		userBasico2 = new Usuario("Pepe2", false);
-		userEspecializado = new Usuario("Dardo", true);
+		//userBasico = new Usuario("Pepe", false);
+		//userBasico2 = new Usuario("Pepe2", false);
+		//userEspecializado = new Usuario("Dardo", true);
 		
-		muestra = new Muestra(ubi, descripcion1, userBasico, "foto");
-		op1 = new Opinion(descripcion1, muestra);
-		op2 = new Opinion(descripcion2, muestra);
-		op3 = new Opinion(descripcion3, muestra);
+		muestra = new Muestra(ubi, descripcion1, user, "foto");
+		//op1 = new Opinion(descripcion1, muestra);
+		//op2 = new Opinion(descripcion2, muestra);
+		//op3 = new Opinion(descripcion3, muestra);
 		
 	}
 	
 	@Test
 	void testMuestraConoceQueUsuarioLaGenero() {
-		assertEquals(userBasico, muestra.getIdentificacion());
+		assertEquals(user, muestra.getIdentificacion());
 	}
 	
 	@Test
 	void testMuestraConoceSuUbicacion() {
 		assertEquals(ubi, muestra.getUbicacion());
 	}
+	
+	@Test
+	void testMuestraConoceLaFotoConLaQueSeLaGenero() {
+		assertEquals("foto", muestra.getFoto());
+	}
+	
 	/*
+	@Test
+	void testAlGenerarseLaMuestraCuentaConUnaOpinion() {
+		assertEquals(1, muestra.getOpiniones());
+	}
+	
 	@Test
 	void testMuestraConoceSuEspecieInicial() {
 		assertEquals(descripcion, muestra.getEspecie());
 	}
 	*/
+	
 	@Test
 	void testLaFechaDeUnaMuestraCorrespondeConElDiaEnQueSeLaCreo() {
 		assertEquals(muestra.getFechaDeEnvio(), LocalDate.now());
 	}
 	
 	@Test
-	void testEstadoInicialDeLaMuestraEsAbierto() {
-		assertTrue(muestra.getEstadoMuestra() instanceof MuestraAbierta);
+	void testLaFechaDeEnvioPuedeSerModificada() {
+		LocalDate unaFecha = mock(LocalDate.class);
+		muestra.setFechaDeEnvio(unaFecha);
+		assertEquals(muestra.getFechaDeEnvio(), unaFecha);
 	}
 	
 	@Test
+	void testEstadoInicialDeLaMuestraEsAbierto() {
+		assertTrue(muestra.getEstadoMuestra() instanceof MuestraAbierta);
+	}
+
+	@Test
+	void testLaMuestraPuedeCambiarDeEstado() {
+		MuestraVerificada nuevoEstado = mock(MuestraVerificada.class);
+		muestra.setEstadoMuestra(nuevoEstado);
+		assertEquals(nuevoEstado, muestra.getEstadoMuestra());
+	}
+
+	
+	 
+	@Test	//modificar
 	void testSiUnUsuarioBasicoGeneraLaMuestraOtroBasicoPuedeOpinarSobreElla() {
 		userBasico.enviarMuestra(app, userBasico, ubi, descripcion1, "foto");
 		
@@ -88,7 +126,7 @@ class MuestraTestCase {
 	    });
 	}
 	
-	@Test
+	@Test	//modificar
 	void testSiUnUsuarioBasicoGeneraLaMuestraOtroExpertoPuedeOpinarSobreElla() {
 		userBasico.enviarMuestra(app, userBasico, ubi, descripcion1, "foto");
 		userBasico2.setEstadoUsuario(new UsuarioExperto());	//ahora es experto
@@ -96,6 +134,8 @@ class MuestraTestCase {
 	        userBasico2.darOpinion(op2);//ESTA MAL PERO DA BIEN, DAR OPINION LO TRANSFORMA EN BASICO
 	    });
 	}
+	
+	
 	/*
 	@Test
 	void testSiUnUsuarioBasicoGeneraLaMuestraOtroEspecialistaPuedeOpinarSobreElla() {
@@ -105,6 +145,8 @@ class MuestraTestCase {
 	    });
 	}
 	*/
+	
+	
 	@Test
 	void testSiUnUsuarioExpertoGeneraLaMuestraLosUsuariosBasicosNoPuedenOpinarSobreElla() {
 		userBasico2.setEstadoUsuario(new UsuarioExperto());	//ahora es experto
@@ -114,25 +156,14 @@ class MuestraTestCase {
 	    });
 	}
 	
-	@Test
+	@Test	//???
 	void testCuandoElUsuarioCreaUnaMuestraSeGeneraLaPrimeraOpinion() {
 		userBasico.enviarMuestra(app, userBasico, ubi, descripcion1, "foto");
 		Muestra muestraGenerada = userBasico.getMuestrasReportadas().getFirst();
 		
 		assertEquals(1, muestraGenerada.getOpiniones().size());
 	}
-	
-	@Test
-	void testSiUsuarioCreaUnaMuestraSeGeneraLaPrimeraOpinion() {
-		userBasico.enviarMuestra(app, userBasico, ubi, descripcion1, "foto");
-		Muestra muestraGenerada = userBasico.getMuestrasReportadas().getFirst();
-		
-		assertEquals(1, muestraGenerada.getOpiniones().size());
-	}
-	
-	
-	
-	
+
 	
 	@Test
 	void testNoSePuedeOpinarSobreMuestrasVerificadas() {
@@ -140,5 +171,5 @@ class MuestraTestCase {
 			this.muestra.addOpinion(this.op);
 			
 	}
-
+	
 }

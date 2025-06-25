@@ -58,7 +58,7 @@ class UsuarioTestCase {
 		assertTrue(this.usuarioNormal.getOpinionesEnviadas().isEmpty());
 	};
 	
-	@Test
+	@Test	//corregir el recibirOpinion de app
 	void testUnUsuarioAgregaUnaOpinionQuedaRegistradaEnUnHistorial() {
 		assertTrue(this.usuarioNormal.getOpinionesEnviadas().size() == 0);
 		
@@ -67,7 +67,7 @@ class UsuarioTestCase {
 		 assertTrue(this.usuarioNormal.getOpinionesEnviadas().remove(0) == op1);
 	};
 	
-	@Test
+	@Test	//corregir el recibirMuestra de app
 	void testCuandoUnUsuarioAgregaUnaMuestraQuedaRegistradaEnUnHistorial() {
 		 assertTrue(this.usuarioNormal.getMuestrasReportadas().size() == 0);
 		 this.usuarioNormal.enviarMuestra(app, usuarioNormal, ubicacion, descripcion, "");
@@ -75,7 +75,7 @@ class UsuarioTestCase {
 		 assertTrue(this.usuarioNormal.getMuestrasReportadas().size() == 1);
 	};
 	
-	@Test
+	@Test	//hacerlo desde el lado de muestra
 	void testUnUsuarioNoPuedeOpinarDosVecesEnLaMismaMuestra() {
 		usuarioNormal.darOpinion(op1); 	//muestraEvaluda == muestra1
 		
@@ -84,7 +84,7 @@ class UsuarioTestCase {
 		});
 	}
 	
-	@Test
+	@Test	//puede quedarse cuando se corrija app
 	void testAlEnviarUnaMuestraElUsuarioTambienGeneraUnaOpinionDeDichaMuestra() {
 		usuarioNormal.enviarMuestra(app, usuarioNormal, ubicacion, descripcion, "");
 		

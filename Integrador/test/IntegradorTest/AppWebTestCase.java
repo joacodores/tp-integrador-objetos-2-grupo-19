@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -57,6 +56,14 @@ class AppWebTestCase {
 		
 		
 		app = new AppWeb(muestrasRecibidas, zonasDeCobertura, filtros, usuarios, organizaciones);
+		
+		//COMPORTAMIENTOS
+		//la muestra tiene como ubicacion aquella en la que este interesada la zona.
+		when(muestra1.getUbicacion()).thenReturn(ubiEnZona);
+		//la organizacion esta interesada en la zona
+		when(organizacion.estaInteresadaEnZona(zona)).thenReturn(true);
+		//digo que la ubicacion se encuentra dentro de la zona
+		when(zona.perteneceUbicacion(ubiEnZona)).thenReturn(true);
 	}
 
 	@Test
@@ -155,13 +162,6 @@ class AppWebTestCase {
 		app.setZonasDeCobertura(zonasNuevas);
 		app.registrarOrganizacion(organizacion);
 		
-		//digo que la ubicacion se encuentra dentro de la zona
-		when(zona.perteneceUbicacion(ubiEnZona)).thenReturn(true);
-		//digo que la organizacion esta interesada en la zona
-		when(organizacion.estaInteresadaEnZona(zona)).thenReturn(true);
-		//digo que la muestra tiene como ubicacion aquella en la que este interesada la zona.
-		when(muestra1.getUbicacion()).thenReturn(ubiEnZona);
-		
 		//llega la muestra a la app, entonces verifico que la organizacion ejecute FE
 		app.recibirMuestra(muestra1);	
 		verify(organizacion, times(1)).useFENuevaMuestra(zona, muestra1);
@@ -181,17 +181,9 @@ class AppWebTestCase {
 		
 		//establezco el getter de funcionalidadExternaPorMuestraVerificada
 		when(organizacion.getFuncionalidadExternaPorMuestraVerificada()).thenReturn(unaFuncionalidad);
-		//digo que la muestra esta validada
+		//establezco que la muestra esta en la zona y esta validada
 		when(muestra1.getEstadoMuestra()).thenReturn(estadoValidado);
-		
-		//digo que la ubicacion se encuentra dentro de la zona
-		when(zona.perteneceUbicacion(ubiEnZona)).thenReturn(true);
 		when(zona.contieneMuestra(muestra1)).thenReturn(true);
-		//digo que la organizacion esta interesada en la zona
-		when(organizacion.estaInteresadaEnZona(zona)).thenReturn(true);
-		//digo que la muestra tiene como ubicacion aquella en la que este interesada la zona.
-		when(muestra1.getUbicacion()).thenReturn(ubiEnZona);
-		
 		
 		//llega la muestra a la app, entonces verifico que la organizacion ejecute FE
 		app.nuevaMuestraVerificada(muestra1);	
