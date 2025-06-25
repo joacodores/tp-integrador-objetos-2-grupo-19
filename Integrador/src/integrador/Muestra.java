@@ -25,7 +25,7 @@ public class Muestra {
 		this.fechaDeEnvio = LocalDate.now();	
 		this.estadoMuestra = new MuestraAbierta();
 		this.opinionesUsuarios = new ArrayList<Opinion>();
-		this.observers = new ArrayList<>();;
+		this.observers = new ArrayList<>();
 		Opinion o = new Opinion(especie, this); // cuando se inicializa la muestra, la especie indicada funje como primera opinion
 		addOpinion(o);
 	}
