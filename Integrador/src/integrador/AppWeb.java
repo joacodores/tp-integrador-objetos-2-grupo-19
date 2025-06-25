@@ -94,16 +94,42 @@ public class AppWeb implements ObserverMuestra{
 		return zonas.stream().filter(z -> z.perteneceUbicacion(u)).collect(Collectors.toSet());
 	}
 	
-	public void recibirMuestra(Muestra m) {
+	/*public void recibirMuestra(Muestra m) {
 		addMuestra(m);
 		Set<ZonaDeCobertura> zonasDeMuestra = getZonasDeCoberturaDeUbicacion(getZonasDeCobertura(), m.getUbicacion());
 		zonasDeMuestra.stream().forEach(z -> z.addMuestraEnZona(m));
 		for(ZonaDeCobertura z : zonasDeMuestra) {
 			avisarAOrganizacionesInteresadasPorNuevaMuestra(z, m);
 		}
+		
+		
+	}*/
+	
+	public void registrarMuestra(Muestra m){
+
+			Opinion opinionInicial = new Opinion(m.getResultadoActual(), m);
+
+			if (m.getIdentificacion().getEstadoUsuario().esExperto()) {
+					m.getEstadoMuestra().recibirOpinionUsuarioExperto(opinionInicial);;
+			} else {
+				m.getEstadoMuestra().recibirOpinionUsuarioBasico(opinionInicial);
+			}
+
+			m.getIdentificacion().addMuestraReportada(m);
+			m.getIdentificacion().addOpinion(opinionInicial);
+			
+			addMuestra(m);
+			
+			Set<ZonaDeCobertura> zonasDeMuestra = getZonasDeCoberturaDeUbicacion(getZonasDeCobertura(), m.getUbicacion());
+			zonasDeMuestra.stream().forEach(z -> z.addMuestraEnZona(m));
+			for(ZonaDeCobertura z : zonasDeMuestra) {
+				avisarAOrganizacionesInteresadasPorNuevaMuestra(z, m);
+			}
+			
+			m.getIdentificacion().getEstadoUsuario().verificarCambioDeEstado(m.getIdentificacion());
 	}
 	
-	public void avisarAOrganizacionesInteresadasPorNuevaMuestra(ZonaDeCobertura z, Muestra m) {
+	private void avisarAOrganizacionesInteresadasPorNuevaMuestra(ZonaDeCobertura z, Muestra m) {
 		for (Organizacion o : getOrganizaciones()) {
 			if (o.estaInteresadaEnZona(z)) {
 				o.useFENuevaMuestra(z, m);
@@ -111,7 +137,8 @@ public class AppWeb implements ObserverMuestra{
 		}
 	}
 	
-   public void nuevaMuestraVerificada(Muestra m) {
+	@Override
+	public void nuevaMuestraVerificada(Muestra m) {
 		Set<ZonaDeCobertura> zonasDeMuestra = getZonasDeCoberturaDeUbicacion(getZonasDeCobertura(), m.getUbicacion());
 		zonasDeMuestra.stream().forEach(z -> z.addMuestraEnZona(m));
 		for(ZonaDeCobertura z : zonasDeMuestra) {
@@ -119,7 +146,7 @@ public class AppWeb implements ObserverMuestra{
 		}
 		
 	}
-	public void avisarAOrganizacionesInteresadasPorMuestraVerificada(ZonaDeCobertura z, Muestra m) {
+	private void avisarAOrganizacionesInteresadasPorMuestraVerificada(ZonaDeCobertura z, Muestra m) {
 		for (Organizacion o : getOrganizaciones()) {
 			if (o.estaInteresadaEnZona(z)) {
 				o.useFEMuestraVerificada(z, m);

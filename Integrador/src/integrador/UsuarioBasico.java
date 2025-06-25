@@ -10,11 +10,6 @@ public class UsuarioBasico implements NivelConocimiento {
     }
 
     @Override
-    public boolean puedeEnviarMuestra(Usuario u){
-        return true;
-    }
-
-    @Override
     public boolean esExperto() {
         return false;
     }
