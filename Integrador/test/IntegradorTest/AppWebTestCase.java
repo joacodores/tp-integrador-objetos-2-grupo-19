@@ -11,16 +11,16 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import integrador.AppWeb;
-import integrador.BuscadorDeMuestra;
-import integrador.FuncionalidadExterna;
-import integrador.Muestra;
-import integrador.MuestraVerificada;
-import integrador.NivelConocimiento;
-import integrador.Organizacion;
 import integrador.Ubicacion;
-import integrador.Usuario;
 import integrador.ZonaDeCobertura;
+import integrador.app.AppWeb;
+import integrador.filtrosBusqueda.BuscadorDeMuestra;
+import integrador.muestra.Muestra;
+import integrador.muestra.MuestraVerificada;
+import integrador.organizacion.FuncionalidadExterna;
+import integrador.organizacion.Organizacion;
+import integrador.usuario.NivelConocimiento;
+import integrador.usuario.Usuario;
 
 class AppWebTestCase {
 	

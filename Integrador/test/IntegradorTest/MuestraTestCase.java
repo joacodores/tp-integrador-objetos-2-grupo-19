@@ -8,16 +8,16 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import integrador.AppWeb;
-import integrador.DescripcionOpinion;
-import integrador.Muestra;
-import integrador.MuestraAbierta;
-import integrador.MuestraSoloExpertos;
-import integrador.MuestraVerificada;
-import integrador.Opinion;
 import integrador.Ubicacion;
-import integrador.Usuario;
-import integrador.UsuarioExperto;
+import integrador.app.AppWeb;
+import integrador.muestra.Muestra;
+import integrador.muestra.MuestraAbierta;
+import integrador.muestra.MuestraSoloExpertos;
+import integrador.muestra.MuestraVerificada;
+import integrador.opinion.DescripcionOpinion;
+import integrador.opinion.Opinion;
+import integrador.usuario.Usuario;
+import integrador.usuario.UsuarioExperto;
 
 class MuestraTestCase {
 	

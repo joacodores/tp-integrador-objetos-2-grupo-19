@@ -9,11 +9,11 @@ import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import integrador.FuncionalidadExterna;
-import integrador.Organizacion;
-import integrador.Organizacion.TipoDeOrganizacion;
 import integrador.Ubicacion;
 import integrador.ZonaDeCobertura;
+import integrador.organizacion.FuncionalidadExterna;
+import integrador.organizacion.Organizacion;
+import integrador.organizacion.Organizacion.TipoDeOrganizacion;
 
 class OrganizacionTestCase {
 	
