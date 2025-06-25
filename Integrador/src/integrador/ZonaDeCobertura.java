@@ -1,6 +1,8 @@
 package integrador;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ZonaDeCobertura {
 	
@@ -8,7 +10,7 @@ public class ZonaDeCobertura {
 	private double radioEnKm;
 	private String nombre;
 	private Ubicacion epicentro;
-	private ArrayList<ZonaDeCobertura> zonasSolapadas;
+	private Set<ZonaDeCobertura> zonasSolapadas;
 	private ArrayList<Muestra> muestrasEnZona; 
 	
 	// Constructor
@@ -17,7 +19,7 @@ public class ZonaDeCobertura {
 		this.radioEnKm = radioEnKm;
 		this.nombre = nombre;
 		this.epicentro = epicentro;
-		this.zonasSolapadas = new ArrayList<ZonaDeCobertura>();
+		this.zonasSolapadas = new HashSet<ZonaDeCobertura>();
 		this.muestrasEnZona = new ArrayList<Muestra>();
 	}
 	
@@ -30,11 +32,11 @@ public class ZonaDeCobertura {
 		this.nombre = nombre;
 	}
 	
-	public ArrayList<ZonaDeCobertura> getZonasSolapadass() { //este no
+	public Set<ZonaDeCobertura> getZonasSolapadass() { //este no
 		return zonasSolapadas;
 	}
 	
-	public void setZonasSolapadas(ArrayList<ZonaDeCobertura> zonasSolapadas) {
+	public void setZonasSolapadas(Set<ZonaDeCobertura> zonasSolapadas) {
 		this.zonasSolapadas = zonasSolapadas;
 	}
 	
@@ -66,15 +68,16 @@ public class ZonaDeCobertura {
 		return u.distanciaHastaEnKm(this.getEpicentro()) <= this.getRadioEnKm();
 	}
 
-
 	public boolean contieneMuestra(Muestra muestra) {
 		return muestra.getUbicacion().distanciaHastaEnKm(this.epicentro) <= this.radioEnKm;
 	}
-	
+
+	public boolean comparteUbicacionCon(ZonaDeCobertura z) { // para ver si se solapa con otra zona, la llama la app cuando se registra en sistema
+		double distanciaEntreCentros = this.epicentro.distanciaHastaEnKm(z.getEpicentro());
+	    return distanciaEntreCentros <= (this.radioEnKm + z.getRadioEnKm());
+	}
 	
 
-	//getZonasSolapadas
-	
 
 
 }

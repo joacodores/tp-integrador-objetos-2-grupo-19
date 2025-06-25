@@ -3,7 +3,6 @@ package integrador;
 import java.time.LocalDate;
 
 public class Opinion {
-	//no esta hecho el estado de la muestra ni sus accessors
 	
 	private LocalDate fechaOpinion;
 	private DescripcionOpinion descripcionOpinion;

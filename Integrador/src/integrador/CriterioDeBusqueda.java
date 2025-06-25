@@ -1,5 +1,5 @@
 package integrador;
 
 public interface CriterioDeBusqueda {
-	public Boolean seCumpleQue(Muestra m);
+	public boolean seCumpleQue(Muestra m);
 }

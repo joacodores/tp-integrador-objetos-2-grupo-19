@@ -14,7 +14,7 @@ public class MuestraVerificada implements EstadoMuestra {
 
 	@Override
 	public DescripcionOpinion getResultadoActual(Muestra m) {
-		return m.getEspecie();
+		return m.getOpinionMasVotada();
 
 	}
 

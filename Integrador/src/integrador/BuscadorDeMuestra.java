@@ -1,8 +1,10 @@
 package integrador;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public class BuscadorDeMuestra {
+public class BuscadorDeMuestra { // se setea y se usa desde la appWeb
 	private ArrayList<Muestra> muestrasAFiltrar;
 	private CriterioDeBusqueda criterioDeBusqueda;
 	
@@ -35,6 +37,12 @@ public class BuscadorDeMuestra {
 	public void setCriterioDeBusqueda(CriterioDeBusqueda criterioDeBusqueda) {
 		this.criterioDeBusqueda = criterioDeBusqueda;
 	}
+	
+    public List<Muestra> filtrar() { 
+        return muestrasAFiltrar.stream()
+                .filter(m -> criterioDeBusqueda.seCumpleQue(m))
+                .collect(Collectors.toList());
+    }
 	
 	
 	

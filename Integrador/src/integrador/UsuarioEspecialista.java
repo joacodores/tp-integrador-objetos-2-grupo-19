@@ -1,19 +1,16 @@
-package integrador;
+	package integrador;
 
 public class UsuarioEspecialista implements NivelConocimiento {
 
 	@Override
-    public boolean puedeDarOpinion(Usuario u, Muestra m) throws Exception {
-		if (m.getIdentificacion().equals(u) ||
-	            u.getOpinionesEnviadas().stream().anyMatch(o -> o.getMuestraEvaluada().equals(m)) ||
-	            m.estaVerificada()) {
-	            return false;
-	        }
-	        return true;
+    public boolean puedeDarOpinion(Usuario u, Muestra m)  {
+		return !(m.getIdentificacion().equals(u)) && //revisar si hace falta, ya que si es su muestra tiene su propia opinion
+	            !(u.getOpinionesEnviadas().stream().anyMatch(o -> o.getMuestraEvaluada().equals(m))) &&
+	            !(m.estaVerificada());
     }
 
     @Override
-    public boolean puedeEnviarMuestra(Usuario u) throws Exception {
+    public boolean puedeEnviarMuestra(Usuario u)  {
         return true;
     }
 

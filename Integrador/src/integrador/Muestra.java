@@ -10,7 +10,6 @@ public class Muestra {
 
 	// Variables
 	private Usuario identificacion;
-	private DescripcionOpinion especie;		//cambia segun la opinion
 	private String foto;
 	private LocalDate fechaDeEnvio;
 	private ArrayList<Opinion> opinionesUsuarios;
@@ -22,12 +21,13 @@ public class Muestra {
 	public Muestra (Ubicacion ubicacion, DescripcionOpinion especie, Usuario user, String foto) {
 		this.identificacion = user;
 		this.ubicacion = ubicacion;
-		this.especie = especie;
 		this.foto = foto;
 		this.fechaDeEnvio = LocalDate.now();	
 		this.estadoMuestra = new MuestraAbierta();
 		this.opinionesUsuarios = new ArrayList<Opinion>();
 		this.observers = new ArrayList<>();;
+		Opinion o = new Opinion(especie, this); // cuando se inicializa la muestra, la especie indicada funje como primera opinion
+		addOpinion(o);
 	}
 	
 	
@@ -72,14 +72,12 @@ public class Muestra {
 		return fechaDeEnvio;
 	}
 	
-	public void setEspecie(DescripcionOpinion especie) {
-		this.especie = especie;
+	public LocalDate getFechaUltimaVotacion() {
+		return getOpinionesUsuarios().stream()
+				 .map(o -> o.getFechaOpinion())				 
+			     .max(LocalDate::compareTo)
+			     .orElse(null);
 	}
-	
-	public  DescripcionOpinion getEspecie() { //revisar
-		return this.especie;
-	}
-	
 	public ArrayList<Opinion> getOpinionesUsuarios() {
 		return opinionesUsuarios;
 	}
@@ -103,7 +101,7 @@ public class Muestra {
 		this.fechaDeEnvio = fechaDeEnvio;
 	}
 	
-	public DescripcionOpinion getResultadoActual() {	
+	public DescripcionOpinion getResultadoActual() {	//depende si el resultado esta definido o no
 		return getEstadoMuestra().getResultadoActual(this);
 	}
 	
@@ -115,7 +113,7 @@ public class Muestra {
 							Collectors.counting())));
 	}
 	
-	public DescripcionOpinion getOpinionMasVotada() {
+	public DescripcionOpinion getOpinionMasVotada() { //resultado actual
 		
 		Map<DescripcionOpinion, Long>  conteoOpiniones = getOpinionesYVotos();
 		DescripcionOpinion opinionMasVotada = null;
@@ -151,7 +149,7 @@ public class Muestra {
 		getEstadoMuestra().recibirOpinionUsuarioExperto(o);
 	}
 	
-	public void borrarOpiniones() { // se llama cuando cambia a estado experto, para borrar las opiniones de los u.basicos
+	public void borrarOpiniones() { // se llama cuando cambia a estado soloExpertos, para borrar las opiniones de los u.basicos
 		this.opinionesUsuarios.removeAll(opinionesUsuarios);
 	}
 	

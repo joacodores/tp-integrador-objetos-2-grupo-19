@@ -1,9 +1,9 @@
 package integrador;
 
 public interface NivelConocimiento {
-	boolean puedeDarOpinion(Usuario u, Muestra m) throws Exception;
+	boolean puedeDarOpinion(Usuario u, Muestra m) ;
 
-	boolean puedeEnviarMuestra(Usuario u) throws Exception;
+	boolean puedeEnviarMuestra(Usuario u) ;
 
     void verificarCambioDeEstado(Usuario u);
     
