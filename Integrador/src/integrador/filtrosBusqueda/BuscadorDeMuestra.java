@@ -1,8 +1,10 @@
-package integrador;
+package integrador.filtrosBusqueda;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import integrador.Muestra;
 
 public class BuscadorDeMuestra { // se setea y se usa desde la appWeb
 	private ArrayList<Muestra> muestrasAFiltrar;

@@ -1,4 +1,6 @@
-package integrador;
+package integrador.filtrosBusqueda;
+
+import integrador.OperadorLogico;
 
 public class Or implements OperadorLogico {
 	@Override

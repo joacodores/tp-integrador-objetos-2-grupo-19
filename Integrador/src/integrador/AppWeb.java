@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import integrador.filtrosBusqueda.BuscadorDeMuestra;
+import integrador.filtrosBusqueda.CriterioDeBusqueda;
+
 public class AppWeb implements ObserverMuestra{
 	
 	private Set<Muestra> muestrasRecibidas;

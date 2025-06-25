@@ -12,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import integrador.AppWeb;
-import integrador.BuscadorDeMuestra;
 import integrador.FuncionalidadExterna;
 import integrador.Muestra;
 import integrador.MuestraVerificada;
@@ -21,6 +20,7 @@ import integrador.Organizacion;
 import integrador.Ubicacion;
 import integrador.Usuario;
 import integrador.ZonaDeCobertura;
+import integrador.filtrosBusqueda.BuscadorDeMuestra;
 
 class AppWebTestCase {
 	
