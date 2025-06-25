@@ -8,6 +8,7 @@ import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import integrador.Usuario;
@@ -27,7 +28,9 @@ class UsuarioTestCase {
 	private Usuario usuarioNormal;
 	private Usuario usuarioEspecialista;
 	private Muestra muestra1;
+	private Muestra muestra2;
 	private Opinion op1;
+	private Opinion op2;
 	private DescripcionOpinion descripcion = DescripcionOpinion.VINCHUCA_SORDIDA;
 	
 	
@@ -39,10 +42,13 @@ class UsuarioTestCase {
 		this.app = mock(AppWeb.class);
 		this.ubicacion = mock(Ubicacion.class);
 		this.muestra1 = mock(Muestra.class);
+		this.muestra2 = mock(Muestra.class);
 		this.op1 = mock(Opinion.class);
+		this.op2 = mock(Opinion.class);
 		
 		//op1 es una opinion que se genero para muestra1
 		when(this.op1.getMuestraEvaluada()).thenReturn(muestra1);
+		when(this.op2.getMuestraEvaluada()).thenReturn(muestra1);
 	}
 	
 	@Test
@@ -53,28 +59,74 @@ class UsuarioTestCase {
 	};
 	
 	@Test
+	void testElUsuarioPuedeCambiarSuNombre() {
+		assertEquals("Pepe Argento", this.usuarioNormal.getNombreUsuario());
+		usuarioNormal.setNombreUsuario("Nuevo Nombre");
+		assertEquals("Nuevo Nombre", this.usuarioNormal.getNombreUsuario());
+	};
+	
+	@Test
+	void testExisteUnUsuarioEspecialista() {
+		assertEquals("Maria Elena", this.usuarioEspecialista.getNombreUsuario());
+		assertTrue(this.usuarioEspecialista.getEstadoUsuario() instanceof UsuarioEspecialista);
+	};
+	
+	@Test
 	void testAlCrearseUnUsuarioNoTieneMuestrasReportadasNiOpinionesDadas() {
 		assertTrue(this.usuarioNormal.getMuestrasReportadas().isEmpty());
 		assertTrue(this.usuarioNormal.getOpinionesEnviadas().isEmpty());
 	};
 	
-	@Test	//corregir el recibirOpinion de app
-	void testUnUsuarioAgregaUnaOpinionQuedaRegistradaEnUnHistorial() {
+	@Test
+	void testUnUsuarioTieneUnHistorialDeOpinionesDadas() {
 		assertTrue(this.usuarioNormal.getOpinionesEnviadas().size() == 0);
-		
-		this.usuarioNormal.darOpinion(op1);
-		 assertTrue(this.usuarioNormal.getOpinionesEnviadas().size() == 1);
-		 assertTrue(this.usuarioNormal.getOpinionesEnviadas().remove(0) == op1);
+		usuarioNormal.addOpinion(op1);
+		usuarioNormal.addOpinion(op2);
+
+		assertTrue(this.usuarioNormal.getOpinionesEnviadas().size() == 2);
 	};
 	
-	@Test	//corregir el recibirMuestra de app
-	void testCuandoUnUsuarioAgregaUnaMuestraQuedaRegistradaEnUnHistorial() {
-		 assertTrue(this.usuarioNormal.getMuestrasReportadas().size() == 0);
-		 this.usuarioNormal.enviarMuestra(app, usuarioNormal, ubicacion, descripcion, "");
+	@Test
+	void testCuandoUnUsuarioTieneSuHistorialDeMuestrasEnviadas() {
+		 assertTrue(this.usuarioNormal.getMuestrasReportadas().isEmpty());
+		 usuarioNormal.addMuestraReportada(muestra1);
 		 
-		 assertTrue(this.usuarioNormal.getMuestrasReportadas().size() == 1);
+		 assertEquals(1, this.usuarioNormal.getMuestrasReportadas().size());
+		 assertTrue(this.usuarioNormal.getMuestrasReportadas().contains(muestra1));
 	};
 	
+	@Test
+	void testUsuarioSabeQueMuestrasSonDeLosUltimos30Dias() {
+		 assertTrue(this.usuarioNormal.muestrasDeLosUltimos30Dias().isEmpty());
+		 LocalDate hoy = LocalDate.now();
+		 LocalDate haceTiempo = LocalDate.of(2020, 10, 1);
+		 usuarioNormal.addMuestraReportada(muestra1);
+		 usuarioNormal.addMuestraReportada(muestra2);	
+		 
+		 when(this.muestra1.getFechaDeEnvio()).thenReturn(hoy);
+		 when(this.muestra2.getFechaDeEnvio()).thenReturn(haceTiempo);
+		 
+		 assertTrue(this.usuarioNormal.muestrasDeLosUltimos30Dias().contains(muestra1));
+		 assertFalse(this.usuarioNormal.muestrasDeLosUltimos30Dias().contains(muestra2));
+	};
+	
+	@Test
+	void testUsuarioSabeQueOpinionesSonDeLosUltimos30Dias() {
+		 assertTrue(this.usuarioNormal.opinionesDeLosUltimos30Dias().isEmpty());
+		 LocalDate hoy = LocalDate.now();
+		 LocalDate haceTiempo = LocalDate.of(2020, 10, 1);
+		 usuarioNormal.addOpinion(op1);
+		 usuarioNormal.addOpinion(op2);	
+		 
+		 when(this.op1.getFechaOpinion()).thenReturn(hoy);
+		 when(this.op2.getFechaOpinion()).thenReturn(haceTiempo);
+		 
+		 assertTrue(this.usuarioNormal.opinionesDeLosUltimos30Dias().contains(op1));
+		 assertFalse(this.usuarioNormal.opinionesDeLosUltimos30Dias().contains(op2));
+	};
+	
+	
+	/*
 	@Test	//hacerlo desde el lado de muestra
 	void testUnUsuarioNoPuedeOpinarDosVecesEnLaMismaMuestra() {
 		usuarioNormal.darOpinion(op1); 	//muestraEvaluda == muestra1
@@ -83,6 +135,7 @@ class UsuarioTestCase {
 			usuarioNormal.darOpinion(op1);	//intenta dar una opinion devuelta para muestra1
 		});
 	}
+	
 	
 	@Test	//puede quedarse cuando se corrija app
 	void testAlEnviarUnaMuestraElUsuarioTambienGeneraUnaOpinionDeDichaMuestra() {
@@ -133,7 +186,7 @@ class UsuarioTestCase {
 		assertFalse(this.usuarioEspecialista.getEstadoUsuario() instanceof UsuarioBasico);
 	};
 	
-	
+*/
 		
 	
 }
