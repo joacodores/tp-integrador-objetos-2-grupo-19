@@ -1,12 +1,18 @@
-package integrador;
+package integrador.app;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import integrador.Ubicacion;
+import integrador.ZonaDeCobertura;
 import integrador.filtrosBusqueda.BuscadorDeMuestra;
 import integrador.filtrosBusqueda.CriterioDeBusqueda;
+import integrador.muestra.Muestra;
+import integrador.opinion.Opinion;
+import integrador.organizacion.Organizacion;
+import integrador.usuario.Usuario;
 
 public class AppWeb implements ObserverMuestra{
 	
@@ -97,39 +103,22 @@ public class AppWeb implements ObserverMuestra{
 		return zonas.stream().filter(z -> z.perteneceUbicacion(u)).collect(Collectors.toSet());
 	}
 	
-	/*public void recibirMuestra(Muestra m) {
-		addMuestra(m);
-		Set<ZonaDeCobertura> zonasDeMuestra = getZonasDeCoberturaDeUbicacion(getZonasDeCobertura(), m.getUbicacion());
-		zonasDeMuestra.stream().forEach(z -> z.addMuestraEnZona(m));
-		for(ZonaDeCobertura z : zonasDeMuestra) {
-			avisarAOrganizacionesInteresadasPorNuevaMuestra(z, m);
-		}
-		
-		
-	}*/
 	
-	public void registrarMuestra(Muestra m){
-
+	public void recibirMuestra(Muestra m){ 
+		// hecha para que la app sepa recibir la muestra y lo que esto deberia generar, no se usa en el resto 
+		//	de la implementacion ya que se da por hecho que la app ya viene 
+		//	con muestras y en nuestro sistema no se pueden enviar muestras
 			Opinion opinionInicial = new Opinion(m.getResultadoActual(), m);
-
-			if (m.getIdentificacion().getEstadoUsuario().esExperto()) {
-					m.getEstadoMuestra().recibirOpinionUsuarioExperto(opinionInicial);;
-			} else {
-				m.getEstadoMuestra().recibirOpinionUsuarioBasico(opinionInicial);
-			}
-
 			m.getIdentificacion().addMuestraReportada(m);
 			m.getIdentificacion().addOpinion(opinionInicial);
 			
 			addMuestra(m);
-			
+
 			Set<ZonaDeCobertura> zonasDeMuestra = getZonasDeCoberturaDeUbicacion(getZonasDeCobertura(), m.getUbicacion());
 			zonasDeMuestra.stream().forEach(z -> z.addMuestraEnZona(m));
 			for(ZonaDeCobertura z : zonasDeMuestra) {
 				avisarAOrganizacionesInteresadasPorNuevaMuestra(z, m);
 			}
-			
-			m.getIdentificacion().getEstadoUsuario().verificarCambioDeEstado(m.getIdentificacion());
 	}
 	
 	private void avisarAOrganizacionesInteresadasPorNuevaMuestra(ZonaDeCobertura z, Muestra m) {

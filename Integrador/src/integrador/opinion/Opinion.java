@@ -1,6 +1,8 @@
-package integrador;
+package integrador.opinion;
 
 import java.time.LocalDate;
+
+import integrador.muestra.Muestra;
 
 public class Opinion {
 	

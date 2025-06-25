@@ -1,7 +1,6 @@
 package integrador.filtrosBusqueda;
 
-import integrador.Muestra;
-import integrador.OperadorLogico;
+import integrador.muestra.Muestra;
 
 public class CriteriosCombinados implements CriterioDeBusqueda {
 	

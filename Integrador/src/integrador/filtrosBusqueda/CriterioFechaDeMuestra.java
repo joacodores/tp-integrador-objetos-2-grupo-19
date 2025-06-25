@@ -2,7 +2,7 @@ package integrador.filtrosBusqueda;
 
 import java.time.LocalDate;
 
-import integrador.Muestra;
+import integrador.muestra.Muestra;
 
 public class CriterioFechaDeMuestra implements CriterioDeBusqueda{
 

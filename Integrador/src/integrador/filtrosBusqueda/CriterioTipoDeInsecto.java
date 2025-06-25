@@ -1,7 +1,7 @@
 package integrador.filtrosBusqueda;
 
-import integrador.DescripcionOpinion;
-import integrador.Muestra;
+import integrador.muestra.Muestra;
+import integrador.opinion.DescripcionOpinion;
 
 public class CriterioTipoDeInsecto implements CriterioDeBusqueda {
 	private DescripcionOpinion tipo;

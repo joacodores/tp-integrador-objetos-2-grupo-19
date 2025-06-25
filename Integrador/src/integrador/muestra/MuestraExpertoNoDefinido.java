@@ -1,4 +1,6 @@
-package integrador;
+package integrador.muestra;
+
+import integrador.opinion.Opinion;
 
 public class MuestraExpertoNoDefinido extends MuestraNoDefinido{
 	/*Si la muestra esta en estado ExpertoNoDefinido, quiere decir que hay empate, 

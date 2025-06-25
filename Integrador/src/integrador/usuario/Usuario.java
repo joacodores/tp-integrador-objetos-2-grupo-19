@@ -1,9 +1,12 @@
-package integrador;
+package integrador.usuario;
 
 import java.time.LocalDate;	//(yyyy,mm,dd)  | "yyyy-mm-dd"
 import java.time.temporal.ChronoUnit; //para marcar el periodo entre fecha A y B
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+
+import integrador.muestra.Muestra;
+import integrador.opinion.Opinion;
 
 public class Usuario {
 	private String nombreUsuario;

@@ -1,4 +1,4 @@
-package integrador;
+package integrador.opinion;
 
 public enum DescripcionOpinion {
     VINCHUCA_INFESTANS,

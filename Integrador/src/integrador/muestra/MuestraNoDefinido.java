@@ -1,4 +1,7 @@
-package integrador;
+package integrador.muestra;
+
+import integrador.opinion.DescripcionOpinion;
+import integrador.opinion.Opinion;
 
 public abstract class MuestraNoDefinido implements EstadoMuestra {
 

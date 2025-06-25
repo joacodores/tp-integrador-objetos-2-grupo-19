@@ -8,9 +8,9 @@ import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import integrador.Muestra;
 import integrador.Ubicacion;
 import integrador.ZonaDeCobertura;
+import integrador.muestra.Muestra;
 
 class ZonaDeCoberturaTestCase {
 	

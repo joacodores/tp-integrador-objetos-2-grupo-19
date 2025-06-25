@@ -1,4 +1,6 @@
-	package integrador;
+	package integrador.usuario;
+
+import integrador.muestra.Muestra;
 
 public class UsuarioEspecialista implements NivelConocimiento {
 

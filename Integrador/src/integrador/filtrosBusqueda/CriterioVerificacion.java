@@ -1,6 +1,6 @@
 package integrador.filtrosBusqueda;
 
-import integrador.Muestra;
+import integrador.muestra.Muestra;
 
 public class CriterioVerificacion {
     private boolean verificada;

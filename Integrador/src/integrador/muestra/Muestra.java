@@ -1,10 +1,16 @@
-package integrador;
+package integrador.muestra;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import integrador.Ubicacion;
+import integrador.app.ObserverMuestra;
+import integrador.opinion.DescripcionOpinion;
+import integrador.opinion.Opinion;
+import integrador.usuario.Usuario;
 
 public class Muestra { 
 
@@ -26,8 +32,16 @@ public class Muestra {
 		this.estadoMuestra = new MuestraAbierta();
 		this.opinionesUsuarios = new ArrayList<Opinion>();
 		this.observers = new ArrayList<>();
-		Opinion o = new Opinion(especie, this); // cuando se inicializa la muestra, la especie indicada funje como primera opinion
-		addOpinion(o);
+		
+		// Cuando se inicializa la muestra, la especie indicada funje como primera opinion
+		// Importa que tipo de usuario crea la muestra
+		Opinion o = new Opinion(especie, this); 
+		if (this.identificacion.getEstadoUsuario().esExperto()) {
+			getEstadoMuestra().recibirOpinionUsuarioExperto(o);;
+		} else {
+			getEstadoMuestra().recibirOpinionUsuarioBasico(o);
+		}
+		
 	}
 	
 	
@@ -145,7 +159,7 @@ public class Muestra {
 		getEstadoMuestra().recibirOpinionUsuarioBasico(o);
 	}
 	
-	public void recibirOpinionUsuarioExperto(Opinion o) { //tenia throws
+	public void recibirOpinionUsuarioExperto(Opinion o) { 
 		getEstadoMuestra().recibirOpinionUsuarioExperto(o);
 	}
 	

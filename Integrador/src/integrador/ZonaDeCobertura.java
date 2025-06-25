@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import integrador.muestra.Muestra;
+
 public class ZonaDeCobertura {
 	
 	// Variables

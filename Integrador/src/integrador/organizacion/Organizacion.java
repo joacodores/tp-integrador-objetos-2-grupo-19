@@ -1,6 +1,10 @@
-package integrador;
+package integrador.organizacion;
 
 import java.util.ArrayList;
+
+import integrador.Ubicacion;
+import integrador.ZonaDeCobertura;
+import integrador.muestra.Muestra;
 
 public class Organizacion {
 	public enum TipoDeOrganizacion {
