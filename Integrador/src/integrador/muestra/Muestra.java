@@ -182,6 +182,7 @@ public class Muestra {
 		getObservers().stream().forEach(o -> o.nuevaMuestraRegistrada(this));
 		
 	}
+	
 	public void notificarVerificacionMuestra() {
 		getObservers().stream().forEach(o -> o.nuevaMuestraVerificada(this));
 		
@@ -193,11 +194,6 @@ public class Muestra {
 
 	public void setObservers(List<IObserverMuestra> observers) {
 		this.observers = observers;
-	}
-	
-	public void addObserver(ObserverMuestra observerMuestra) {
-		this.observers.add(observerMuestra);
-		
 	}
 
 	

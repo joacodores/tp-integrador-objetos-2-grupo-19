@@ -112,7 +112,7 @@ public class AppWeb {
 			addMuestra(m);
 
 			Set<ZonaDeCobertura> zonasDeMuestra = getZonasDeCoberturaDeUbicacion(m.getUbicacion());
-			m.addObserver(new ObserverMuestra(zonasDeMuestra));
+			m.agregarObservador(new ObserverMuestra(zonasDeMuestra));
 			m.notificarNuevaMuestra(); 
 	}
 	
