@@ -17,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 
 import integrador.app.AppWeb;
 import integrador.avisoOrganizaciones.IObserverMuestra;
+import integrador.avisoOrganizaciones.ObserverMuestra;
 import integrador.muestra.EstadoMuestra;
 import integrador.muestra.Muestra;
 import integrador.muestra.MuestraAbierta;
@@ -44,6 +45,7 @@ class MuestraTestCase {
 	DescripcionOpinion descripcion2;
 	UsuarioBasico estadoBasico;
 	Muestra muestraMock;
+	LocalDate hoy;
 	
 	@BeforeEach
 	void setUp() {
@@ -72,6 +74,7 @@ class MuestraTestCase {
 		descripcion2 = DescripcionOpinion.IMAGEN_POCO_CLARA;
 		
 		muestra = new Muestra(ubi, descripcion1, user, "foto");
+		hoy = LocalDate.now();
 	}
 	
 	@Test
@@ -207,8 +210,72 @@ class MuestraTestCase {
 	}
 	
 	
+	@Test
+	void testUsuarioBasicoNoPuedeOpinarSobreMuestrasVerificadas() {
+		MuestraVerificada estado = new MuestraVerificada();
+		muestra.setEstadoMuestra(estado);
+		
+		assertEquals(DescripcionOpinion.VINCHUCA_SORDIDA ,muestra.getEstadoMuestra().getResultadoActual(muestra));
+		assertThrows(IllegalStateException.class, () -> {
+			estado.recibirOpinionUsuarioBasico(op);
+		});
+		
+	}
 	
+	@Test
+	void testNoSePuedeOpinarSobreMuestrasVerificadas() {
+		MuestraVerificada estado = new MuestraVerificada();
+		muestra.setEstadoMuestra(estado);
+		
+		assertThrows(IllegalStateException.class, () -> {
+			estado.recibirOpinionUsuarioExperto(op);
+		});
+		
+	}
 	
+	@Test
+	void testSetFechaEnvio() {
+		
+		muestra.setFechaDeEnvio(hoy);
+		
+		assertEquals(hoy, muestra.getFechaDeEnvio());
+	}
+	
+	@Test
+	void testBorrarOpiniones(){
+		muestra.borrarOpiniones();
+		
+		assertEquals(0, muestra.getOpinionesUsuarios().size());
+	}
+	
+	@Test
+	void testGetObservers() {
+		ObserverMuestra obs = mock(ObserverMuestra.class);
+		muestra.agregarObservador(obs);
+		
+		assertEquals(1, muestra.getObservers().size());
+	}
+	
+	@Test
+	void testSetObservers() {
+		ObserverMuestra obs = mock(ObserverMuestra.class);
+		List<IObserverMuestra> lista = new ArrayList<IObserverMuestra>();
+		lista.add(obs);
+		muestra.setObservers(lista);
+		
+		assertEquals(1, muestra.getObservers().size());
+	}
+	
+	@Test
+	void testRemoverObserver() {
+		ObserverMuestra obs = mock(ObserverMuestra.class);
+		List<IObserverMuestra> lista = new ArrayList<IObserverMuestra>();
+		lista.add(obs);
+		muestra.setObservers(lista);
+		muestra.removerObservador(obs);
+		
+		assertEquals(0, muestra.getObservers().size());
+	}
 	
 	/*@Test
 	void testUnaMuestraPuedeRecibirOpinionUsuarioBasico() {
