@@ -66,10 +66,6 @@ public class Muestra {
 		return identificacion;
 	}
 
-	public void setIdentificacion(Usuario identificacion) {
-		this.identificacion = identificacion;
-	}
-
 	public Ubicacion getUbicacion() {
 		return ubicacion;
 	}

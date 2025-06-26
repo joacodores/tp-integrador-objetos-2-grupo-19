@@ -17,8 +17,6 @@ import integrador.filtrosBusqueda.BuscadorDeMuestra;
 import integrador.filtrosBusqueda.CriterioDeBusqueda;
 import integrador.filtrosBusqueda.CriterioTipoDeInsecto;
 import integrador.muestra.Muestra;
-import integrador.muestra.MuestraVerificada;
-import integrador.organizacion.FuncionalidadExterna;
 import integrador.organizacion.Organizacion;
 import integrador.ubicacion.Ubicacion;
 import integrador.usuario.Usuario;

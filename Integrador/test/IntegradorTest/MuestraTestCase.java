@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -84,22 +85,37 @@ class MuestraTestCase {
 	}
 	
 	@Test
+	void testMuestraPuedeSettearSuUbicacion() {
+		Ubicacion nuevaUbi = mock(Ubicacion.class);
+		muestra.setUbicacion(nuevaUbi);
+		assertEquals(nuevaUbi, muestra.getUbicacion());
+	}
+	
+	@Test
 	void testMuestraConoceLaFotoConLaQueSeLaGenero() {
 		assertEquals("foto", muestra.getFoto());
 	}
-	
 
 	@Test
 	void testAlGenerarseLaMuestraCuentaConUnaOpinion() {
 		assertEquals(1, muestra.getOpinionesUsuarios().size());
 	}
-
 	
+	@Test
+	void testMuestraPuedeSettearSusOpiniones() {
+		Opinion op1 = mock(Opinion.class);
+		Opinion op2 = mock(Opinion.class);
+		Opinion op3 = mock(Opinion.class);
+		ArrayList<Opinion> nuevasOpiniones = new ArrayList<>(Arrays.asList(op1,op2,op3));
+		
+		muestra.setOpinionesUsuarios(nuevasOpiniones);
+		assertEquals(3, muestra.getOpinionesUsuarios().size());
+	}
+
 	@Test
 	void testMuestraConoceSuEspecieInicial() {
 		assertEquals(descripcion1, muestra.getResultadoActual());
 	}
-	
 	
 	@Test
 	void testLaFechaDeUnaMuestraCorrespondeConElDiaEnQueSeLaCreo() {
@@ -152,16 +168,45 @@ class MuestraTestCase {
 	}
 	
 	@Test
-	void testMuestraNoPuedeRecibirOpinionDeUnUsuarioBasicoSiOpinoUnExperto() {
-		MuestraSoloExpertos estado = new MuestraSoloExpertos();
+	void testMuestraAbiertaPuedeRecibirOpinionDeUnUsuarioExperto() {
+		MuestraAbierta estado = mock(MuestraAbierta.class);
 		muestra.setEstadoMuestra(estado);
 		
 		muestra.recibirOpinionUsuarioExperto(op1);
-		//assertTrue(muestra.getOpinionesUsuarios().contains(op1));
+		verify(estado, times(1)).recibirOpinionUsuarioExperto(op1);
+	}
+	
+	@Test
+	void testMuestraSoloExpertosPuedeRecibirOpinionDeUnUsuarioExperto() {
+		MuestraSoloExpertos estado = mock(MuestraSoloExpertos.class);
+		muestra.setEstadoMuestra(estado);
+		
+		muestra.recibirOpinionUsuarioExperto(op1);
+		verify(estado, times(0)).recibirOpinionUsuarioBasico(op1);
+	}
+	
+	@Test
+	void testMuestraSoloExpertosNoPuedeRecibirOpinionDeUnUsuarioBasico() {
+		MuestraSoloExpertos estado = new MuestraSoloExpertos();
+		muestra.setEstadoMuestra(estado);
+		
+		//no puede estar mockeado para que tire la exception
 		assertThrows(IllegalStateException.class, () -> {
-		    muestra.recibirOpinionUsuarioBasico(op2);
+			muestra.recibirOpinionUsuarioBasico(op1);
 		});
 	}
+	
+	@Test
+	void testSiElEstadoDeLaMuestraEsAbiertaYHayEmpateDeVotosElEstadoCambiaANoDefinido() {
+		MuestraAbierta estado = mock(MuestraAbierta.class);
+		muestra.setEstadoMuestra(estado);
+		Opinion opB = new Opinion(DescripcionOpinion.NO_DEFINIDO, muestra);
+		
+		muestra.addOpinion(opB);		
+		assertTrue(muestra.hayEmpate());
+	}
+	
+	
 	
 	
 	
