@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" version="27.1.6">
   <diagram name="Page-1" id="jhfdqh-tyM7XpAsOEEpZ">
-    <mxGraphModel dx="2981" dy="1833" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="3277" dy="2002" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -12,7 +12,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="4gVouVSnkJ0AU-x3zaor-5" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Muestra&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- foto : String&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- fechaDeEnvio : &amp;lt;LocalDate&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+&lt;u&gt;new(Ubicacion, DescripcionOpinion, Usuario, String)&lt;/u&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getOpiniones() : Array&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;List &amp;lt;Opinion&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ addOpinion(Opinion) : void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ getIdentificacion() : Usuario&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ getUbicacion() : Ubicacion&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getResultadoActual() :&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;DescripcionOpinion&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ getEstadoMuestra() : EstadoMuestra&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ setEstadoMuestra(EstadoiMuestra) : void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getFechaDeEnvio() : LocalDate&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getFechaUltimaVotacion(): LocalDate&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getOpinionesUsuarios() : ArrayList&amp;lt;Opinion&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getOpinionesYVotos() : Map&amp;lt;DescripcionOpinion, Long&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getOpinionMasVotada() : DescripcionOpinion&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ hayEmpate()&amp;nbsp; : boolean&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ recibirOpinionUsuarioBasico(Opinion) : void&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ recibirOpinionUsuarioExperto(Opinion) : void&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ borrarOpiniones() : void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ addObserver(IObserverMuestra) : void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ remover&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Observador(IObserverMuestra) : void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ seVerificaLaMuestra(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ estaVerificada() : boolean&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ notificarNuevaMuestra() : void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;notificarVerificacionMuestra() : void&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;font face=&quot;Comic Sans MS&quot; style=&quot;font-size: 18px;&quot;&gt;+ muestrasAMenosDe(Muestra, double) : List&amp;lt;Muestra&amp;gt;&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+        <mxCell id="4gVouVSnkJ0AU-x3zaor-5" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Muestra&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- foto : String&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- fechaDeEnvio : &amp;lt;LocalDate&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+&lt;u&gt;new(Ubicacion, DescripcionOpinion, Usuario, String)&lt;/u&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getOpiniones() : Array&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;List &amp;lt;Opinion&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ addOpinion(Opinion) : void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ getIdentificacion() : Usuario&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ getUbicacion() : Ubicacion&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getResultadoActual() :&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;DescripcionOpinion&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ getEstadoMuestra() : EstadoMuestra&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ setEstadoMuestra(EstadoiMuestra) : void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getFechaDeEnvio() : LocalDate&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getFechaUltimaVotacion(): LocalDate&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getOpinionesUsuarios() : ArrayList&amp;lt;Opinion&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getOpinionesYVotos() : Map&amp;lt;DescripcionOpinion, Long&amp;gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getOpinionMasVotada() : DescripcionOpinion&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ hayEmpate()&amp;nbsp; : boolean&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ recibirOpinionUsuarioBasico(Opinion) : void&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ recibirOpinionUsuarioExperto(Opinion) : void&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ borrarOpiniones() : void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ addObserver(IObserverMuestra) : void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ &lt;font face=&quot;Comic Sans MS&quot; style=&quot;font-size: 14px;&quot;&gt;remover&lt;/font&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;font face=&quot;Comic Sans MS&quot; size=&quot;3&quot;&gt;Observador&lt;/font&gt;(IObserverMuestra) : void&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ seVerificaLaMuestra(): void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ estaVerificada() : boolean&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ notificarNuevaMuestra() : void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;notificarVerificacionMuestra() : void&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;font face=&quot;Comic Sans MS&quot; style=&quot;font-size: 18px;&quot;&gt;+ muestrasAMenosDe(Muestra, double) : List&amp;lt;Muestra&amp;gt;&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="-20" y="90" width="330" height="440" as="geometry" />
         </mxCell>
         <mxCell id="4gVouVSnkJ0AU-x3zaor-7" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;UsuarioBasico&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ darOpinion(Muestra )&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ enviarMuestra(Muestra)&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ setEstadoUsuario(): void&lt;br&gt;&amp;nbsp;(se ejecuta dsps de darOpinion o enviarMuestra, verificando si luego de esto tiene condiciones para ser experto)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
@@ -120,8 +120,21 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="4gVouVSnkJ0AU-x3zaor-35" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Organizacion&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- cantDePersonasTrabajando : int&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ registrarseAZona(ZonaDeCobertura) : void&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ eliminarZona(ZonaDeCobertura) : void&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ useFENuevaMuestra(): void&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ useFEMuestraVerificada(): void&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ setFE&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;PorVerificacion(&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); text-align: center;&quot;&gt;FuncionalidadExterna&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ setFE&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); background-color: transparent;&quot;&gt;PorNuevaMuestra(&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); text-align: center;&quot;&gt;FuncionalidadExterna&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;)&lt;/span&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="-690" y="458" width="270" height="210" as="geometry" />
+        <mxCell id="9-LwFYGygXgiJbXCrmx1-75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="4gVouVSnkJ0AU-x3zaor-35" target="4gVouVSnkJ0AU-x3zaor-70">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9-LwFYGygXgiJbXCrmx1-76" value="&lt;span style=&quot;font-size: 12px; text-align: left; text-wrap-mode: wrap; background-color: rgb(27, 29, 30);&quot;&gt;funcionalidadExternaPorNuevaMuestra&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9-LwFYGygXgiJbXCrmx1-75">
+          <mxGeometry x="0.3392" y="-6" relative="1" as="geometry">
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9-LwFYGygXgiJbXCrmx1-77" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9-LwFYGygXgiJbXCrmx1-75">
+          <mxGeometry x="0.8209" y="3" relative="1" as="geometry">
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4gVouVSnkJ0AU-x3zaor-35" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Organizacion&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;- cantDePersonasTrabajando : int&amp;nbsp;&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;u&gt;+ Organizacion(TipoDeOrganizacion, int, Ubicacion, FuncionalidadExterna, FuncionalidadExterna)&amp;nbsp;&lt;/u&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ registrarseAZona(ZonaDeCobertura) : void&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ eliminarZona(ZonaDeCobertura) : void&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ useFENuevaMuestra(): void&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ useFEMuestraVerificada(): void&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ setFE&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;PorVerificacion(&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); text-align: center;&quot;&gt;FuncionalidadExterna&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ setFE&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); background-color: transparent;&quot;&gt;PorNuevaMuestra(&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); text-align: center;&quot;&gt;FuncionalidadExterna&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;)&lt;/span&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="-710" y="530" width="270" height="210" as="geometry" />
         </mxCell>
         <mxCell id="4gVouVSnkJ0AU-x3zaor-44" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Usuario&lt;/b&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;(Context)&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- nombreUsuario : String&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+ &lt;u&gt;Usuario(String, esEspecialista)&lt;/u&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+darOpinion( Opinion): void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+enviarMuestra(Muestra ) : void&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+addOpinion(Opinion): void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+addMuestra(Muestra) : void&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;+getEstadoUsuario(): NivelConocimiento&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0px 0px 0px 4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="730" y="-330" width="240" height="170" as="geometry" />
@@ -142,17 +155,7 @@
           <mxGeometry x="-335" y="700" width="310" height="200" as="geometry" />
         </mxCell>
         <mxCell id="4gVouVSnkJ0AU-x3zaor-56" value="ZonaDeCobertura" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-500" y="70" width="280" height="290" as="geometry" />
-        </mxCell>
-        <mxCell id="M6yZWWiPBZhKFrmVR2Pp-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.161;entryY=0.003;entryDx=0;entryDy=0;entryPerimeter=0;" parent="4gVouVSnkJ0AU-x3zaor-56" source="4gVouVSnkJ0AU-x3zaor-57" target="4gVouVSnkJ0AU-x3zaor-56" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="90" y="-40" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="-69" y="63" />
-              <mxPoint x="-69" y="-40" />
-              <mxPoint x="45" y="-40" />
-            </Array>
-          </mxGeometry>
+          <mxGeometry x="-500" y="20" width="280" height="360" as="geometry" />
         </mxCell>
         <mxCell id="4gVouVSnkJ0AU-x3zaor-57" value="&lt;div&gt;- radioEnKm : double&lt;/div&gt;&lt;div&gt;- nombre :String&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="4gVouVSnkJ0AU-x3zaor-56" vertex="1">
           <mxGeometry y="26" width="280" height="44" as="geometry" />
@@ -160,8 +163,21 @@
         <mxCell id="4gVouVSnkJ0AU-x3zaor-58" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="4gVouVSnkJ0AU-x3zaor-56" vertex="1">
           <mxGeometry y="70" width="280" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="4gVouVSnkJ0AU-x3zaor-59" value="&lt;div&gt;+&lt;u&gt;&amp;nbsp;ZonaDeCobertura(double, String, Ubicacion)&lt;/u&gt;&lt;/div&gt;+ getNombre(): String&lt;div&gt;+ getEpicentro(): Ubicacion&lt;/div&gt;&lt;div&gt;+ getRadioEnKm() : double&lt;br&gt;&lt;div&gt;+ getMuestrasEnZona() : ArrayList&amp;lt;Muestra&amp;gt;&lt;/div&gt;&lt;div&gt;+ addObserver(IObserverZona) : void&lt;/div&gt;&lt;div&gt;+ &lt;font style=&quot;font-size: 18px;&quot; face=&quot;Comic Sans MS&quot;&gt;&lt;b style=&quot;&quot;&gt;getMuestrasVerificadasEnZona&lt;/b&gt;&lt;/font&gt;() : List&amp;lt;Muestra&amp;gt;&lt;/div&gt;&lt;div&gt;+ addMuestraEnZona(Muestra) : void&lt;/div&gt;&lt;div&gt;+&amp;nbsp;getZonasSolapadas():List&amp;lt;ZonaDeCobertura&amp;gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;+ addZonaSolapada(ZonaDeCobertura) : void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="4gVouVSnkJ0AU-x3zaor-56" vertex="1">
-          <mxGeometry y="78" width="280" height="212" as="geometry" />
+        <mxCell id="4gVouVSnkJ0AU-x3zaor-59" value="&lt;div&gt;+&lt;u&gt;&amp;nbsp;ZonaDeCobertura(double, String, Ubicacion)&lt;/u&gt;&lt;/div&gt;+ getNombre(): String&lt;div&gt;+ getEpicentro(): Ubicacion&lt;/div&gt;&lt;div&gt;+ getRadioEnKm() : double&lt;br&gt;&lt;div&gt;+ getMuestrasEnZona() : ArrayList&amp;lt;Muestra&amp;gt;&lt;/div&gt;&lt;div&gt;+ addObserver(IObserverZona) : void&lt;/div&gt;&lt;div&gt;+ &lt;font style=&quot;font-size: 18px;&quot; face=&quot;Comic Sans MS&quot;&gt;&lt;b style=&quot;&quot;&gt;getMuestrasVerificadasEnZona&lt;/b&gt;&lt;/font&gt;() : List&amp;lt;Muestra&amp;gt;&lt;/div&gt;&lt;div&gt;+ addMuestraEnZona(Muestra) : void&lt;/div&gt;&lt;div&gt;+&amp;nbsp;getZonasSolapadas():List&amp;lt;ZonaDeCobertura&amp;gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;+ addZonaSolapada(ZonaDeCobertura) : void&lt;/div&gt;&lt;div&gt;+ perteneceUbicacion(Ubicacion u) : boolean&lt;/div&gt;&lt;div&gt;+ contieneMuestra( Muestra) : boolean&lt;/div&gt;&lt;div&gt;+ comparteUbicacionCon(ZonaDeCobertura) : booelan&lt;/div&gt;&lt;div&gt;+ notificarNuevaMuestra(Muestra) : void&lt;/div&gt;&lt;div&gt;+ notificarMuestraVerificada(Muestra) : void&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="4gVouVSnkJ0AU-x3zaor-56" vertex="1">
+          <mxGeometry y="78" width="280" height="282" as="geometry" />
+        </mxCell>
+        <mxCell id="9-LwFYGygXgiJbXCrmx1-69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="4gVouVSnkJ0AU-x3zaor-56" source="4gVouVSnkJ0AU-x3zaor-56" target="4gVouVSnkJ0AU-x3zaor-57">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9-LwFYGygXgiJbXCrmx1-70" value="&lt;span style=&quot;font-size: 12px; background-color: rgb(27, 29, 30);&quot;&gt;zonasSolapadas&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9-LwFYGygXgiJbXCrmx1-69">
+          <mxGeometry x="0.0553" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9-LwFYGygXgiJbXCrmx1-71" value="*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9-LwFYGygXgiJbXCrmx1-69">
+          <mxGeometry x="0.7002" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="4gVouVSnkJ0AU-x3zaor-61" value="" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;rounded=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;exitX=1.007;exitY=0.831;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="4gVouVSnkJ0AU-x3zaor-57" target="4gVouVSnkJ0AU-x3zaor-5" edge="1">
           <mxGeometry x="-1" relative="1" as="geometry">
@@ -178,7 +194,7 @@
           <mxGeometry x="-55" y="148" width="30" height="30" as="geometry" />
         </mxCell>
         <mxCell id="4gVouVSnkJ0AU-x3zaor-70" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;FuncionalidadExterna&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ nuevoEvento(Organizacion, ZonaDeCobertura, Muestra)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="-800" y="110" width="190" height="138" as="geometry" />
+          <mxGeometry x="-1000" y="380" width="190" height="138" as="geometry" />
         </mxCell>
         <mxCell id="4gVouVSnkJ0AU-x3zaor-78" value="BuscadorDeMuestra" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="570" y="503" width="290" height="150" as="geometry" />
@@ -399,46 +415,19 @@
         <mxCell id="M6yZWWiPBZhKFrmVR2Pp-17" value="*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="-385" y="48" width="30" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="M6yZWWiPBZhKFrmVR2Pp-18" value="zonasSolapadas" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="-500" y="30" width="110" height="30" as="geometry" />
-        </mxCell>
         <mxCell id="M6yZWWiPBZhKFrmVR2Pp-20" value="&amp;lt;&amp;lt;Enum&amp;gt;&amp;gt;&lt;div&gt;TipoDeOrganizacion&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=40;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-960" y="503" width="170" height="120" as="geometry" />
+          <mxGeometry x="-990" y="653" width="170" height="120" as="geometry" />
         </mxCell>
         <mxCell id="M6yZWWiPBZhKFrmVR2Pp-21" value="+ SALUD&lt;div&gt;+ EDUCATIVA&lt;/div&gt;&lt;div&gt;+ CULTURAL&lt;/div&gt;&lt;div&gt;+ ASISTENCIA&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="M6yZWWiPBZhKFrmVR2Pp-20" vertex="1">
           <mxGeometry y="40" width="170" height="80" as="geometry" />
         </mxCell>
         <mxCell id="M6yZWWiPBZhKFrmVR2Pp-23" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ConcreteFuncionalidadA&lt;/b&gt;&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-wrap-mode: nowrap; background-color: transparent; text-align: left;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bp%20style%3D%26quot%3Bmargin%3A0px%3Bmargin-top%3A4px%3Btext-align%3Acenter%3B%26quot%3B%26gt%3B%26lt%3Bb%26gt%3BMuestraAbierta%26lt%3B%2Fb%26gt%3B%26lt%3B%2Fp%26gt%3B%26lt%3Bhr%20size%3D%26quot%3B1%26quot%3B%20style%3D%26quot%3Bborder-style%3Asolid%3B%26quot%3B%26gt%3B%26lt%3Bp%20style%3D%26quot%3Bmargin%3A0px%3Bmargin-left%3A4px%3B%26quot%3B%26gt%3B%26lt%3Bspan%20style%3D%26quot%3Bbackground-color%3A%20transparent%3B%20color%3A%20light-dark(rgb(0%2C%200%2C%200)%2C%20rgb(255%2C%20255%2C%20255))%3B%26quot%3B%26gt%3B%2BagregarOpinion(Opinion)%26lt%3B%2Fspan%26gt%3B%26lt%3B%2Fp%26gt%3B%26lt%3Bp%20style%3D%26quot%3Bmargin%3A0px%3Bmargin-left%3A4px%3B%26quot%3B%26gt%3B%2BgetResultadoActual()%20%3ADescripcionOpinion%26lt%3B%2Fp%26gt%3B%26lt%3Bp%20style%3D%26quot%3Bmargin%3A0px%3Bmargin-left%3A4px%3B%26quot%3B%26gt%3B%2BsetEstadoMuestra()%20%3A%20void%26lt%3B%2Fp%26gt%3B%22%20style%3D%22verticalAlign%3Dtop%3Balign%3Dleft%3Boverflow%3Dfill%3Bhtml%3D1%3BwhiteSpace%3Dwrap%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22-330%22%20y%3D%22-400%22%20width%3D%22240%22%20height%3D%22100%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ nuevoEvento(Organizacion, ZonaDeCobertura, Muestra)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="-770" y="-110" width="240" height="100" as="geometry" />
+          <mxGeometry x="-900" y="78" width="240" height="100" as="geometry" />
         </mxCell>
         <mxCell id="M6yZWWiPBZhKFrmVR2Pp-24" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ConcreteFuncionalidadB&lt;/b&gt;&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-wrap-mode: nowrap; background-color: transparent; text-align: left;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bp%20style%3D%26quot%3Bmargin%3A0px%3Bmargin-top%3A4px%3Btext-align%3Acenter%3B%26quot%3B%26gt%3B%26lt%3Bb%26gt%3BMuestraAbierta%26lt%3B%2Fb%26gt%3B%26lt%3B%2Fp%26gt%3B%26lt%3Bhr%20size%3D%26quot%3B1%26quot%3B%20style%3D%26quot%3Bborder-style%3Asolid%3B%26quot%3B%26gt%3B%26lt%3Bp%20style%3D%26quot%3Bmargin%3A0px%3Bmargin-left%3A4px%3B%26quot%3B%26gt%3B%26lt%3Bspan%20style%3D%26quot%3Bbackground-color%3A%20transparent%3B%20color%3A%20light-dark(rgb(0%2C%200%2C%200)%2C%20rgb(255%2C%20255%2C%20255))%3B%26quot%3B%26gt%3B%2BagregarOpinion(Opinion)%26lt%3B%2Fspan%26gt%3B%26lt%3B%2Fp%26gt%3B%26lt%3Bp%20style%3D%26quot%3Bmargin%3A0px%3Bmargin-left%3A4px%3B%26quot%3B%26gt%3B%2BgetResultadoActual()%20%3ADescripcionOpinion%26lt%3B%2Fp%26gt%3B%26lt%3Bp%20style%3D%26quot%3Bmargin%3A0px%3Bmargin-left%3A4px%3B%26quot%3B%26gt%3B%2BsetEstadoMuestra()%20%3A%20void%26lt%3B%2Fp%26gt%3B%22%20style%3D%22verticalAlign%3Dtop%3Balign%3Dleft%3Boverflow%3Dfill%3Bhtml%3D1%3BwhiteSpace%3Dwrap%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22-330%22%20y%3D%22-400%22%20width%3D%22240%22%20height%3D%22100%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ nuevoEvento(Organizacion, ZonaDeCobertura, Muestra)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="-1060" y="-90" width="240" height="100" as="geometry" />
+          <mxGeometry x="-1160" y="80" width="240" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="M6yZWWiPBZhKFrmVR2Pp-25" value="" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;rounded=0;entryX=0.542;entryY=0.995;entryDx=0;entryDy=0;entryPerimeter=0;exitX=-0.009;exitY=0.06;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="4gVouVSnkJ0AU-x3zaor-35" target="4gVouVSnkJ0AU-x3zaor-70" edge="1">
-          <mxGeometry x="-1" relative="1" as="geometry">
-            <mxPoint x="-690" y="370" as="sourcePoint" />
-            <mxPoint x="-530" y="370" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="-697" y="373" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="M6yZWWiPBZhKFrmVR2Pp-27" value="" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;rounded=0;entryX=0.542;entryY=0.995;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.333;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="4gVouVSnkJ0AU-x3zaor-35" edge="1">
-          <mxGeometry x="-1" relative="1" as="geometry">
-            <mxPoint x="-672.5" y="374" as="sourcePoint" />
-            <mxPoint x="-737.5" y="248" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="-737" y="430" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="M6yZWWiPBZhKFrmVR2Pp-28" value="&lt;span style=&quot;text-align: left; text-wrap-mode: wrap;&quot;&gt;funcionalidadExternaPorVerificacion&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="-840" y="430" width="220" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="M6yZWWiPBZhKFrmVR2Pp-29" value="&lt;span style=&quot;text-align: left; text-wrap-mode: wrap;&quot;&gt;funcionalidadExternaPorNuevaMuestra&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="-770" y="330" width="230" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="M6yZWWiPBZhKFrmVR2Pp-31" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=1.007;exitY=0.633;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.305;entryY=0.003;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="M6yZWWiPBZhKFrmVR2Pp-24" target="4gVouVSnkJ0AU-x3zaor-70" edge="1">
+        <mxCell id="M6yZWWiPBZhKFrmVR2Pp-31" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0.388;exitY=0.978;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.305;entryY=0.003;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="M6yZWWiPBZhKFrmVR2Pp-24" target="4gVouVSnkJ0AU-x3zaor-70" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="-950" y="158" as="sourcePoint" />
             <mxPoint x="-790" y="158" as="targetPoint" />
@@ -735,7 +724,14 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="9-LwFYGygXgiJbXCrmx1-64" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.246;entryY=0.994;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.947;exitY=-0.005;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="4gVouVSnkJ0AU-x3zaor-35" target="4gVouVSnkJ0AU-x3zaor-59">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-454" y="455" />
+              <mxPoint x="-450" y="455" />
+              <mxPoint x="-450" y="400" />
+              <mxPoint x="-431" y="400" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="9-LwFYGygXgiJbXCrmx1-65" value="&lt;span style=&quot;font-size: 12px; background-color: rgb(27, 29, 30);&quot;&gt;zonasRegistradas&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9-LwFYGygXgiJbXCrmx1-64">
           <mxGeometry x="-0.097" y="-2" relative="1" as="geometry">
@@ -744,6 +740,49 @@
         </mxCell>
         <mxCell id="9-LwFYGygXgiJbXCrmx1-67" value="*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9-LwFYGygXgiJbXCrmx1-64">
           <mxGeometry x="0.5074" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9-LwFYGygXgiJbXCrmx1-72" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.372;entryY=0.998;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="4gVouVSnkJ0AU-x3zaor-35" target="4gVouVSnkJ0AU-x3zaor-70">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-929" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9-LwFYGygXgiJbXCrmx1-73" value="&lt;span style=&quot;font-size: 12px; text-align: left; text-wrap-mode: wrap; background-color: rgb(27, 29, 30);&quot;&gt;funcionalidadExternaPorVerificacion&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9-LwFYGygXgiJbXCrmx1-72">
+          <mxGeometry x="-0.1122" y="-1" relative="1" as="geometry">
+            <mxPoint x="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9-LwFYGygXgiJbXCrmx1-74" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9-LwFYGygXgiJbXCrmx1-72">
+          <mxGeometry x="0.8065" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9-LwFYGygXgiJbXCrmx1-78" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;i&gt;&lt;b&gt;IObserverZona&lt;/b&gt;&lt;/i&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;div&gt;+ nuevaMuestraRegistrada(ZonaDeCobertura, Muestra) : void&lt;/div&gt;&lt;div&gt;+ nuevaVerificacionMuestra(&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;ZonaDeCobertura,&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Muestra) : void&lt;/span&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="-800" y="248" width="270" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="9-LwFYGygXgiJbXCrmx1-79" value="Use" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0.308;exitY=0.011;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="4gVouVSnkJ0AU-x3zaor-35" target="9-LwFYGygXgiJbXCrmx1-78">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="-330" y="430" as="sourcePoint" />
+            <mxPoint x="-170" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9-LwFYGygXgiJbXCrmx1-81" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.664;entryY=0.016;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="4gVouVSnkJ0AU-x3zaor-57" target="9-LwFYGygXgiJbXCrmx1-78">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-621" y="90" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9-LwFYGygXgiJbXCrmx1-82" value="observers" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9-LwFYGygXgiJbXCrmx1-81">
+          <mxGeometry x="0.2082" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9-LwFYGygXgiJbXCrmx1-83" value="*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9-LwFYGygXgiJbXCrmx1-81">
+          <mxGeometry x="0.6957" y="-1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
