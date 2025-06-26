@@ -74,7 +74,8 @@ public class ZonaDeCobertura {
 		return muestra.getUbicacion().distanciaHastaEnKm(this.epicentro) <= this.radioEnKm;
 	}
 
-	public boolean comparteUbicacionCon(ZonaDeCobertura z) { // para ver si se solapa con otra zona, la llama la app cuando se registra en sistema
+	public boolean comparteUbicacionCon(ZonaDeCobertura z) { 
+		// para ver si se solapa con otra zona, la llama la app cuando se registra en sistema
 		double distanciaEntreCentros = this.epicentro.distanciaHastaEnKm(z.getEpicentro());
 	    return distanciaEntreCentros <= (this.radioEnKm + z.getRadioEnKm());
 	}

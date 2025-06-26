@@ -58,5 +58,49 @@ class ZonaDeCoberturaTestCase {
 		assertFalse(zona1.perteneceUbicacion(ubiNoPertenece));
 	}
 	
-	//faltan test de zonas solapadas
+	@Test
+	void testUnaZonaConoceLasZonasQueLaSolapan() {
+		assertTrue(zona1.getZonasSolapadass().isEmpty());
+	}
+	
+	@Test
+	void testUnaZonaPuedeAgregarMasZonasASusZonasSolapadas() {
+		ZonaDeCobertura nuevaZona = mock(ZonaDeCobertura.class);
+		zona1.addZonaSolapada(nuevaZona);
+		
+		assertEquals(1, zona1.getZonasSolapadass().size());
+	}
+	
+	@Test
+	void testZonaContieneMuestrasCuyaUbicacionEsteDentroDelRango() {
+		Ubicacion ubiMuestra = mock(Ubicacion.class);
+		when(muestra.getUbicacion()).thenReturn(ubiMuestra);
+		when(ubiMuestra.distanciaHastaEnKm(epicentro1)).thenReturn(10d);
+		
+		assertTrue(zona1.contieneMuestra(muestra));
+	}
+	
+	@Test
+	void testZonaNoContieneMuestrasCuyaUbicacionNoEsteDentroDelRango() {
+		Ubicacion ubiMuestra = mock(Ubicacion.class);
+		when(muestra.getUbicacion()).thenReturn(ubiMuestra);
+		when(ubiMuestra.distanciaHastaEnKm(epicentro1)).thenReturn(15d);
+		
+		assertFalse(zona1.contieneMuestra(muestra));
+	}
+	
+	@Test
+	void testZonaSabeSiComparteUbicacionConOtraZonaDeCobertura() {
+	    ZonaDeCobertura zona2 = mock(ZonaDeCobertura.class);
+	    Ubicacion epicentro2 = mock(Ubicacion.class);
+
+	    when(zona2.getEpicentro()).thenReturn(epicentro2);
+	    when(zona2.getRadioEnKm()).thenReturn(5d);
+	    // menor que 10 + 5
+	    when(epicentro1.distanciaHastaEnKm(epicentro2)).thenReturn(9d); 
+
+	    assertTrue(zona1.comparteUbicacionCon(zona2));
+	}
+	
+	
 }

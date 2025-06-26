@@ -19,7 +19,6 @@ import integrador.muestra.Muestra;
 import integrador.muestra.MuestraVerificada;
 import integrador.organizacion.FuncionalidadExterna;
 import integrador.organizacion.Organizacion;
-import integrador.usuario.NivelConocimiento;
 import integrador.usuario.Usuario;
 
 class AppWebTestCase {
@@ -184,7 +183,14 @@ class AppWebTestCase {
 		//llega la muestra a la app, entonces verifico que la organizacion ejecute FE
 		app.nuevaMuestraVerificada(muestra1);	
 		verify(organizacion, times(1)).useFEMuestraVerificada(zona, muestra1);
+	}
+	
+	@Test
+	void testLaAppPuedeFiltrarMuestrasSegunCriteriosDeFiltrado() {
+		app.addMuestra(muestra1);
+		app.addMuestra(muestra2);
 		
+		CriterioDeBusqueda
 	}
 	
 	
