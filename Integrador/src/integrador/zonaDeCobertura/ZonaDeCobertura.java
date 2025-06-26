@@ -1,10 +1,11 @@
-package integrador;
+package integrador.zonaDeCobertura;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 import integrador.muestra.Muestra;
+import integrador.ubicacion.Ubicacion;
 
 public class ZonaDeCobertura {
 	
@@ -14,8 +15,10 @@ public class ZonaDeCobertura {
 	private Ubicacion epicentro;
 	private Set<ZonaDeCobertura> zonasSolapadas;
 	private ArrayList<Muestra> muestrasEnZona; 
+	private ArrayList<IObserverZona> observers;
 	
 	// Constructor
+
 	public ZonaDeCobertura(double radioEnKm, String nombre, Ubicacion epicentro) {
 		super();
 		this.radioEnKm = radioEnKm;
@@ -23,6 +26,7 @@ public class ZonaDeCobertura {
 		this.epicentro = epicentro;
 		this.zonasSolapadas = new HashSet<ZonaDeCobertura>();
 		this.muestrasEnZona = new ArrayList<Muestra>();
+		this.observers = new ArrayList<IObserverZona>(); //organizaciones interesadas
 	}
 	
 	
@@ -33,8 +37,17 @@ public class ZonaDeCobertura {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	public Set<ZonaDeCobertura> getZonasSolapadass() { //este no
+	public ArrayList<IObserverZona> getObservers() {
+		return observers;
+	}
+	public void addObserver(IObserverZona o) {
+		observers.add(o);
+	}
+	public void setObservers(ArrayList<IObserverZona> observers) {
+		this.observers = observers;
+	}
+
+	public Set<ZonaDeCobertura> getZonasSolapadas() {
 		return zonasSolapadas;
 	}
 	
@@ -79,7 +92,14 @@ public class ZonaDeCobertura {
 		double distanciaEntreCentros = this.epicentro.distanciaHastaEnKm(z.getEpicentro());
 	    return distanciaEntreCentros <= (this.radioEnKm + z.getRadioEnKm());
 	}
-	
+
+
+	public void notificarNuevaMuestra(Muestra m) {
+		getObservers().stream().forEach(o -> o.nuevaMuestraRegistrada(this, m));
+	}
+	public void notificarMuestraVerificada(Muestra m) {
+		getObservers().stream().forEach(o -> o.nuevaVerificacionMuestra(this, m));
+	}
 
 
 

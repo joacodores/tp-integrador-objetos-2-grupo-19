@@ -1,4 +1,4 @@
-package integrador;
+package integrador.ubicacion;
 
 import java.util.ArrayList;
 import java.util.List;

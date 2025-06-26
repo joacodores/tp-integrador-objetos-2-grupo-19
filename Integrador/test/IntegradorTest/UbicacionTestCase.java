@@ -8,7 +8,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import integrador.Ubicacion;
+import integrador.ubicacion.Ubicacion;
 
 class UbicacionTestCase {
 	

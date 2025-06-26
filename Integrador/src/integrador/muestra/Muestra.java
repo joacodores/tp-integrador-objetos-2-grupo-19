@@ -4,13 +4,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-import integrador.Ubicacion;
+import integrador.app.IObserverMuestra;
 import integrador.app.ObserverMuestra;
 import integrador.opinion.DescripcionOpinion;
 import integrador.opinion.Opinion;
+import integrador.ubicacion.Ubicacion;
 import integrador.usuario.Usuario;
+import integrador.zonaDeCobertura.ZonaDeCobertura;
 
 public class Muestra { 
 
@@ -21,7 +24,7 @@ public class Muestra {
 	private ArrayList<Opinion> opinionesUsuarios;
 	private Ubicacion ubicacion;
 	private EstadoMuestra estadoMuestra;
-	private List<ObserverMuestra> observers;
+	private List<IObserverMuestra> observers;
 
 
 	public Muestra (Ubicacion ubicacion, DescripcionOpinion especie, Usuario user, String foto) {
@@ -31,7 +34,9 @@ public class Muestra {
 		this.fechaDeEnvio = LocalDate.now();	
 		this.estadoMuestra = new MuestraAbierta();
 		this.opinionesUsuarios = new ArrayList<Opinion>();
-		this.observers = new ArrayList<>();
+		this.observers = new ArrayList<IObserverMuestra>(); 
+		//El Observer por ahora es uno solo con las zonasDeCobertura interesadas en notificar muestra, 
+		//pero por patron de diseño dejamos la lista de observers para que ene l futuro se puedan agregar mas
 		
 		// Cuando se inicializa la muestra, la especie indicada funje como primera opinion
 		// Importa que tipo de usuario crea la muestra
@@ -101,13 +106,13 @@ public class Muestra {
 		this.opinionesUsuarios = opinionesUsuarios;
 	}
 
-	public void agregarObservador(ObserverMuestra observer) {
+	public void agregarObservador(IObserverMuestra observer) {
         if (!observers.contains(observer)) {
             this.observers.add(observer);
         }
     }
 
-    public void removerObservador(ObserverMuestra observer) {
+    public void removerObservador(IObserverMuestra observer) {
         this.observers.remove(observer);
     }
 
@@ -169,10 +174,34 @@ public class Muestra {
 	
 	public void seVerificaLaMuestra() {
 		setEstadoMuestra(new MuestraVerificada());
+		notificarVerificacionMuestra();
 	}
 	
 	public boolean estaVerificada() {
         return (this.getEstadoMuestra() instanceof MuestraVerificada);
     }
+
+
+	public void notificarNuevaMuestra() {
+		getObservers().stream().forEach(o -> o.nuevaMuestraRegistrada(this));
+		
+	}
+	public void notificarVerificacionMuestra() {
+		getObservers().stream().forEach(o -> o.nuevaMuestraVerificada(this));
+		
+	}
+
+	public List<IObserverMuestra> getObservers() {
+		return observers;
+	}
+
+	public void setObservers(List<IObserverMuestra> observers) {
+		this.observers = observers;
+	}
+	
+	public void addObserver(ObserverMuestra observerMuestra) {
+		this.observers.add(observerMuestra);
+		
+	}
 
 }

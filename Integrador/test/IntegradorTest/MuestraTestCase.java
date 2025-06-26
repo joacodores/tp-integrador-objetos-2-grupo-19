@@ -11,9 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import integrador.Ubicacion;
 import integrador.app.AppWeb;
-import integrador.app.ObserverMuestra;
+import integrador.app.IObserverMuestra;
 import integrador.muestra.EstadoMuestra;
 import integrador.muestra.Muestra;
 import integrador.muestra.MuestraAbierta;
@@ -21,6 +20,7 @@ import integrador.muestra.MuestraSoloExpertos;
 import integrador.muestra.MuestraVerificada;
 import integrador.opinion.DescripcionOpinion;
 import integrador.opinion.Opinion;
+import integrador.ubicacion.Ubicacion;
 import integrador.usuario.Usuario;
 import integrador.usuario.UsuarioBasico;
 

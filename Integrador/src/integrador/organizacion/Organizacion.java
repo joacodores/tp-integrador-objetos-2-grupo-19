@@ -2,11 +2,12 @@ package integrador.organizacion;
 
 import java.util.ArrayList;
 
-import integrador.Ubicacion;
-import integrador.ZonaDeCobertura;
 import integrador.muestra.Muestra;
+import integrador.ubicacion.Ubicacion;
+import integrador.zonaDeCobertura.IObserverZona;
+import integrador.zonaDeCobertura.ZonaDeCobertura;
 
-public class Organizacion {
+public class Organizacion implements IObserverZona{
 	public enum TipoDeOrganizacion {
 		SALUD,
 		EDUCATIVA,
@@ -55,13 +56,14 @@ public class Organizacion {
 	public void setUbicacion(Ubicacion ubicacion) {
 		this.ubicacion = ubicacion;
 	}
-
+	
+	public void registrarseAZonaDeCobertura(ZonaDeCobertura z) {
+		getZonasRegistradas().add(z);
+		z.addObserver(this);
+	}
+	
 	public ArrayList<ZonaDeCobertura> getZonasRegistradas() {
 		return zonasRegistradas;
-	}
-
-	public void setZonasRegistradas(ArrayList<ZonaDeCobertura> zonasRegistradas) {
-		this.zonasRegistradas = zonasRegistradas;
 	}
 
 	public FuncionalidadExterna getFuncionalidadExternaPorNuevaMuestra() {
@@ -79,18 +81,20 @@ public class Organizacion {
 	public void setFuncionalidadExternaPorMuestraVerificada(FuncionalidadExterna funcionalidadExternaPorMuestraVerificada) {
 		this.funcionalidadExternaPorMuestraVerificada = funcionalidadExternaPorMuestraVerificada;
 	}
-
+	
+	public void nuevaMuestraRegistrada(ZonaDeCobertura z, Muestra m) {
+		this.useFENuevaMuestra(z, m);
+	}
+	public void nuevaVerificacionMuestra(ZonaDeCobertura z, Muestra m) {
+		this.useFEMuestraVerificada(z, m);
+	}
+	
 	public void useFENuevaMuestra(ZonaDeCobertura zonaDeCobertura, Muestra muestra) {
 		getFuncionalidadExternaPorNuevaMuestra().nuevoEvento(this, zonaDeCobertura, muestra);
-
 	}
-
+	
 	public void useFEMuestraVerificada(ZonaDeCobertura zonaDeCobertura, Muestra muestra) {
 		getFuncionalidadExternaPorMuestraVerificada().nuevoEvento(this, zonaDeCobertura, muestra);
-	}
-
-	public boolean estaInteresadaEnZona(ZonaDeCobertura z) {
-		return getZonasRegistradas().contains(z);
 	}
 	
 	

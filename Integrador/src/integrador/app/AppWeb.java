@@ -5,16 +5,16 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import integrador.Ubicacion;
-import integrador.ZonaDeCobertura;
 import integrador.filtrosBusqueda.BuscadorDeMuestra;
 import integrador.filtrosBusqueda.CriterioDeBusqueda;
 import integrador.muestra.Muestra;
 import integrador.opinion.Opinion;
 import integrador.organizacion.Organizacion;
+import integrador.ubicacion.Ubicacion;
 import integrador.usuario.Usuario;
+import integrador.zonaDeCobertura.ZonaDeCobertura;
 
-public class AppWeb implements ObserverMuestra{
+public class AppWeb {
 	
 	private Set<Muestra> muestrasRecibidas;
 	private Set<ZonaDeCobertura> zonasDeCobertura;
@@ -115,38 +115,7 @@ public class AppWeb implements ObserverMuestra{
 			addMuestra(m);
 
 			Set<ZonaDeCobertura> zonasDeMuestra = getZonasDeCoberturaDeUbicacion(getZonasDeCobertura(), m.getUbicacion());
-			zonasDeMuestra.stream().forEach(z -> z.addMuestraEnZona(m));
-			for(ZonaDeCobertura z : zonasDeMuestra) {
-				avisarAOrganizacionesInteresadasPorNuevaMuestra(z, m);
-			}
+			m.addObserver(new ObserverMuestra(zonasDeMuestra));
+			m.notificarNuevaMuestra(); 
 	}
-	
-	private void avisarAOrganizacionesInteresadasPorNuevaMuestra(ZonaDeCobertura z, Muestra m) {
-		for (Organizacion o : getOrganizaciones()) {
-			if (o.estaInteresadaEnZona(z)) {
-				o.useFENuevaMuestra(z, m);
-			}
-		}
-	}
-	
-	@Override
-	public void nuevaMuestraVerificada(Muestra m) {
-		Set<ZonaDeCobertura> zonasDeMuestra = getZonasDeCoberturaDeUbicacion(getZonasDeCobertura(), m.getUbicacion());
-		zonasDeMuestra.stream().forEach(z -> z.addMuestraEnZona(m));
-		for(ZonaDeCobertura z : zonasDeMuestra) {
-			avisarAOrganizacionesInteresadasPorMuestraVerificada(z, m);
-		}
-		
-	}
-	private void avisarAOrganizacionesInteresadasPorMuestraVerificada(ZonaDeCobertura z, Muestra m) {
-		for (Organizacion o : getOrganizaciones()) {
-			if (o.estaInteresadaEnZona(z)) {
-				o.useFEMuestraVerificada(z, m);
-			}
-		}
-	}
-
-
-
-	
 }
