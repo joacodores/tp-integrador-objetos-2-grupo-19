@@ -4,21 +4,32 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import integrador.Ubicacion;
 import integrador.app.AppWeb;
+import integrador.app.ObserverMuestra;
+import integrador.muestra.EstadoMuestra;
 import integrador.muestra.Muestra;
 import integrador.muestra.MuestraAbierta;
+import integrador.muestra.MuestraVerificada;
 import integrador.opinion.DescripcionOpinion;
 import integrador.opinion.Opinion;
 import integrador.usuario.Usuario;
 import integrador.usuario.UsuarioBasico;
 
 class MuestraTestCase {
-	
+	@Mock
+    private Muestra muestraM;
+    @Mock
+    private Opinion opM;
+    @Mock
+    private EstadoMuestra estadoMuestraMock;
 	Muestra muestra;
 	Opinion op;
 	AppWeb app;	
@@ -30,18 +41,22 @@ class MuestraTestCase {
 	//Opinion op2;
 	//Opinion op3;
 	Usuario user;
+	Usuario user2;
 	Opinion op1;
 	Opinion op2;
 	DescripcionOpinion descripcion1;
 	DescripcionOpinion descripcion2;
 	UsuarioBasico estadoBasico;
+	Muestra muestraMock;
 	
 	@BeforeEach
 	void setUp() {
-	
+		
+		MockitoAnnotations.openMocks(this);
 		app = mock(AppWeb.class);
 		ubi = mock(Ubicacion.class);
 		user = mock(Usuario.class);
+		user2 = mock(Usuario.class);
 		op1 = mock(Opinion.class);
 		op2 = mock(Opinion.class);
 		estadoBasico = mock(UsuarioBasico.class);
@@ -56,6 +71,7 @@ class MuestraTestCase {
 		when(user.getEstadoUsuario()).thenReturn(estadoBasico);
 		when(user.getEstadoUsuario().esExperto()).thenReturn(false);
 		
+		
 		descripcion1 = DescripcionOpinion.VINCHUCA_SORDIDA;
 		descripcion2 = DescripcionOpinion.IMAGEN_POCO_CLARA;
 		//userBasico = new Usuario("Pepe", false);
@@ -66,7 +82,6 @@ class MuestraTestCase {
 		//op1 = new Opinion(descripcion1, muestra);
 		//op2 = new Opinion(descripcion2, muestra);
 		//op3 = new Opinion(descripcion3, muestra);
-		
 	}
 	
 	@Test
@@ -87,32 +102,22 @@ class MuestraTestCase {
 
 	@Test
 	void testAlGenerarseLaMuestraCuentaConUnaOpinion() {
-		MuestraAbierta estadoMuestra = mock(MuestraAbierta.class);
-		Muestra muestraA = new Muestra(ubi, descripcion1, user, "foto");
-		when(muestraA.getEstadoMuestra()).thenReturn(estadoMuestra);
 		
-		verify(estadoMuestra).recibirOpinionUsuarioBasico(any(Opinion.class));
+		assertEquals(1, muestra.getOpinionesUsuarios().size());
 		//verify(estadoMuestra, times(1)).recibirOpinionUsuarioBasico(any(Opinion.class));
 		
 	}
 
-	/*
+	
 	@Test
 	void testMuestraConoceSuEspecieInicial() {
-		assertEquals(descripcion, muestra.getEspecie());
+		assertEquals(descripcion1, muestra.getResultadoActual());
 	}
-	*/
-	/*
+	
+	
 	@Test
 	void testLaFechaDeUnaMuestraCorrespondeConElDiaEnQueSeLaCreo() {
 		assertEquals(muestra.getFechaDeEnvio(), LocalDate.now());
-	}
-	
-	@Test
-	void testLaFechaDeEnvioPuedeSerModificada() {
-		LocalDate unaFecha = mock(LocalDate.class);
-		muestra.setFechaDeEnvio(unaFecha);
-		assertEquals(muestra.getFechaDeEnvio(), unaFecha);
 	}
 	
 	@Test
@@ -129,37 +134,28 @@ class MuestraTestCase {
 
 	
 	 
-	@Test	//modificar
-	void testSiUnUsuarioBasicoGeneraLaMuestraOtroBasicoPuedeOpinarSobreElla() {
-		userBasico.enviarMuestra(app, userBasico, ubi, descripcion1, "foto");
+	@Test
+	void testEnUnaMuestraPuedenOpinarUsuarios() {
+		muestra.addOpinion(op);				//UNA OPINION ES HECHA POR UN USUARIO
+		assertEquals(2, muestra.getOpinionesUsuarios().size());	
+	}
+	
+	@Test
+	void testUnaMuestraPasaAEstarVerificada() {
+		muestra.seVerificaLaMuestra();
+		assertTrue(muestra.getEstadoMuestra() instanceof MuestraVerificada);
+		assertTrue(muestra.estaVerificada());
+	}
+	
+	/*@Test
+	void testUnaMuestraPuedeRecibirOpinionUsuarioBasico() {
+		when(muestraM.getEstadoMuestra()).thenReturn(estadoMuestraMock);
 		
-		assertDoesNotThrow(() -> {
-	        userBasico2.darOpinion(op2); 	//ESTA MAL PERO DA BIEN, DAR OPINION LO TRANSFORMA EN BASICO
-	    });
-	}
-	
-	@Test	//modificar
-	void testSiUnUsuarioBasicoGeneraLaMuestraOtroExpertoPuedeOpinarSobreElla() {
-		userBasico.enviarMuestra(app, userBasico, ubi, descripcion1, "foto");
-		userBasico2.setEstadoUsuario(new UsuarioExperto());	//ahora es experto
-		assertDoesNotThrow(() -> {
-	        userBasico2.darOpinion(op2);//ESTA MAL PERO DA BIEN, DAR OPINION LO TRANSFORMA EN BASICO
-	    });
-	}
-	
-	*/
-	/*
-	@Test
-	void testSiUnUsuarioBasicoGeneraLaMuestraOtroEspecialistaPuedeOpinarSobreElla() {
-		userBasico.enviarMuestra(app, userBasico, ubi, descripcion1, "foto");
-		assertDoesNotThrow(() -> {
-			userEspecializado.darOpinion(op2);
-	    });
-	}
-	*/
-	
-	/*
-	@Test
+		 verify(estadoMuestraMock, times(1)).recibirOpinionUsuarioBasico(op);
+
+		 verify(muestraM, times(1)).getEstadoMuestra();
+	}*/
+	/*@Test
 	void testSiUnUsuarioExpertoGeneraLaMuestraLosUsuariosBasicosNoPuedenOpinarSobreElla() {
 		userBasico2.setEstadoUsuario(new UsuarioExperto());	//ahora es experto
 		userBasico2.enviarMuestra(app, userBasico, ubi, descripcion1, "foto");
@@ -168,20 +164,45 @@ class MuestraTestCase {
 	    });
 	}
 	
-	@Test	//???
-	void testCuandoElUsuarioCreaUnaMuestraSeGeneraLaPrimeraOpinion() {
-		userBasico.enviarMuestra(app, userBasico, ubi, descripcion1, "foto");
-		Muestra muestraGenerada = userBasico.getMuestrasReportadas().getFirst();
-		
-		assertEquals(1, muestraGenerada.getOpiniones().size());
-	}
-
-	
 	@Test
 	void testNoSePuedeOpinarSobreMuestrasVerificadas() {
 			this.muestra.addOpinion(this.op);
 			this.muestra.addOpinion(this.op);
 			
 	}
+	
+		public void recibirOpinionUsuarioBasico(Opinion o) {
+		getEstadoMuestra().recibirOpinionUsuarioBasico(o);
+	}
+	
+	public void recibirOpinionUsuarioExperto(Opinion o) { 
+		getEstadoMuestra().recibirOpinionUsuarioExperto(o);
+	}
+	
+	public void borrarOpiniones() { // se llama cuando cambia a estado soloExpertos, para borrar las opiniones de los u.basicos
+		this.opinionesUsuarios.removeAll(opinionesUsuarios);
+	}
+
+	public void setOpinionesUsuarios(ArrayList<Opinion> opinionesUsuarios) {
+		this.opinionesUsuarios = opinionesUsuarios;
+	}
+
+	public void agregarObservador(ObserverMuestra observer) {
+        if (!observers.contains(observer)) {
+            this.observers.add(observer);
+        }
+    }
+
+    public void removerObservador(ObserverMuestra observer) {
+        this.observers.remove(observer);
+    }
+    
+	public LocalDate getFechaUltimaVotacion() {
+		return getOpinionesUsuarios().stream()
+				 .map(o -> o.getFechaOpinion())				 
+			     .max(LocalDate::compareTo)
+			     .orElse(null);
+	}
+	
 	*/
 }
