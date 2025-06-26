@@ -163,4 +163,33 @@ class AppWebTestCase {
 		app.recibirMuestra(muestra1);
 		verify(user, times(1)).addMuestraReportada(muestra1);
 	}
+	
+	@Test
+	void testAppSabeQueMuestrasEstanAMenosDeDeterminadaDistancia() {
+		Muestra muestra2 = mock(Muestra.class);
+		Ubicacion ubiMuestra2 = mock(Ubicacion.class);
+		Set<Muestra> muestras = new HashSet<>(Arrays.asList(muestra1, muestra2));
+		
+		app.setMuestrasRecibidas(muestras);
+		when(muestra2.getUbicacion()).thenReturn(ubiMuestra2);
+		when(ubiMuestra2.distanciaHastaEnKm(ubiEnZona)).thenReturn(15d);
+		when(ubiEnZona.distanciaHastaEnKm(ubiMuestra2)).thenReturn(15d);
+		
+		assertTrue(app.muestrasAMenosDe(muestra2, 30d).contains(muestra1));
+	}
+	/*
+	@Test
+	void testAppFiltraMuestrasAMasDeDeterminadaDistancia() {
+		Muestra muestra2 = mock(Muestra.class);
+		Ubicacion ubiMuestra2 = mock(Ubicacion.class);
+		Set<Muestra> muestras = new HashSet<>(Arrays.asList(muestra1, muestra2));
+		
+		app.setMuestrasRecibidas(muestras);
+		when(muestra2.getUbicacion()).thenReturn(ubiMuestra2);
+		when(ubiMuestra2.distanciaHastaEnKm(ubiEnZona)).thenReturn(500d);
+		when(ubiEnZona.distanciaHastaEnKm(ubiMuestra2)).thenReturn(500d);
+		
+		
+		assertFalse(app.muestrasAMenosDe(muestra1, 30d).contains(muestra2));
+	}*/
 }

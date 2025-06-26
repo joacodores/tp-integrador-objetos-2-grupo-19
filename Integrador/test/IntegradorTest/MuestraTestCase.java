@@ -6,19 +6,15 @@ import static org.mockito.Mockito.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import integrador.app.AppWeb;
 import integrador.avisoOrganizaciones.IObserverMuestra;
 import integrador.avisoOrganizaciones.ObserverMuestra;
-import integrador.muestra.EstadoMuestra;
 import integrador.muestra.Muestra;
 import integrador.muestra.MuestraAbierta;
 import integrador.muestra.MuestraSoloExpertos;
@@ -28,7 +24,6 @@ import integrador.opinion.Opinion;
 import integrador.ubicacion.Ubicacion;
 import integrador.usuario.Usuario;
 import integrador.usuario.UsuarioBasico;
-import integrador.zonaDeCobertura.ZonaDeCobertura;
 
 class MuestraTestCase {
 	Muestra muestraM;
@@ -162,7 +157,7 @@ class MuestraTestCase {
 	}
 	
 	@Test
-	void testMuestraPuedeRecibirOpinionDeUnUsuarioBasicoSiNoOpinoNingunExperto() {
+	void testMuestraAbiertaPuedeRecibirOpinionDeUnUsuarioBasico() {
 		MuestraAbierta estado = mock(MuestraAbierta.class);
 		muestra.setEstadoMuestra(estado);
 		
@@ -209,6 +204,15 @@ class MuestraTestCase {
 		assertTrue(muestra.hayEmpate());
 	}
 	
+	@Test
+	void testNoSePuedeOpinarSobreMuestrasVerificadas() {
+		MuestraVerificada estado = new MuestraVerificada();
+		muestra.setEstadoMuestra(estado);
+		
+		assertThrows(IllegalStateException.class, () -> {
+			estado.recibirOpinionUsuarioExperto(op);
+		});
+	}
 	
 	@Test
 	void testUsuarioBasicoNoPuedeOpinarSobreMuestrasVerificadas() {
@@ -219,23 +223,10 @@ class MuestraTestCase {
 		assertThrows(IllegalStateException.class, () -> {
 			estado.recibirOpinionUsuarioBasico(op);
 		});
-		
-	}
-	
-	@Test
-	void testNoSePuedeOpinarSobreMuestrasVerificadas() {
-		MuestraVerificada estado = new MuestraVerificada();
-		muestra.setEstadoMuestra(estado);
-		
-		assertThrows(IllegalStateException.class, () -> {
-			estado.recibirOpinionUsuarioExperto(op);
-		});
-		
 	}
 	
 	@Test
 	void testSetFechaEnvio() {
-		
 		muestra.setFechaDeEnvio(hoy);
 		
 		assertEquals(hoy, muestra.getFechaDeEnvio());
@@ -243,8 +234,8 @@ class MuestraTestCase {
 	
 	@Test
 	void testBorrarOpiniones(){
+		assertEquals(1, muestra.getOpinionesUsuarios().size());
 		muestra.borrarOpiniones();
-		
 		assertEquals(0, muestra.getOpinionesUsuarios().size());
 	}
 	
@@ -285,6 +276,7 @@ class MuestraTestCase {
 
 		 verify(muestraM, times(1)).getEstadoMuestra();
 	}*/
+	
 	/*@Test
 	void testSiUnUsuarioExpertoGeneraLaMuestraLosUsuariosBasicosNoPuedenOpinarSobreElla() {
 		userBasico2.setEstadoUsuario(new UsuarioExperto());	//ahora es experto
@@ -300,81 +292,6 @@ class MuestraTestCase {
 			this.muestra.addOpinion(this.op);
 			
 	}
-	
-		public void recibirOpinionUsuarioBasico(Opinion o) {
-		getEstadoMuestra().recibirOpinionUsuarioBasico(o);
-	}
-	
-	public void recibirOpinionUsuarioExperto(Opinion o) { 
-		getEstadoMuestra().recibirOpinionUsuarioExperto(o);
-	}
-	
-	public void borrarOpiniones() { // se llama cuando cambia a estado soloExpertos, para borrar las opiniones de los u.basicos
-		this.opinionesUsuarios.removeAll(opinionesUsuarios);
-	}
-
-	public void setOpinionesUsuarios(ArrayList<Opinion> opinionesUsuarios) {
-		this.opinionesUsuarios = opinionesUsuarios;
-	}
-
-	public void agregarObservador(ObserverMuestra observer) {
-        if (!observers.contains(observer)) {
-            this.observers.add(observer);
-        }
-    }
-
-    public void removerObservador(ObserverMuestra observer) {
-        this.observers.remove(observer);
-    }
-    
-	public LocalDate getFechaUltimaVotacion() {
-		return getOpinionesUsuarios().stream()
-				 .map(o -> o.getFechaOpinion())				 
-			     .max(LocalDate::compareTo)
-			     .orElse(null);
-	}
-	
-	*/
-	
-	
-	
-	/* ANTES SE HACIA DESDE APP
-	 * 
-	@Test
-	void testLaAppLeAvisaALasOrganizacionesCorrespondientesCuandoSeValidaUnaNuevaMuestra() {
-		//añado zona y organizacion a la app
-		Set<ZonaDeCobertura> zonasNuevas = new HashSet<>(List.of(zona));
-		app.setZonasDeCobertura(zonasNuevas);
-		app.registrarOrganizacion(organizacion);
-		
-		//creo el estado de muestra validada y una funcion externa cualquiera
-		MuestraVerificada estadoValidado = mock(MuestraVerificada.class);
-		FuncionalidadExterna unaFuncionalidad = mock(FuncionalidadExterna.class);
-		
-		//establezco el getter de funcionalidadExternaPorMuestraVerificada
-		when(organizacion.getFuncionalidadExternaPorMuestraVerificada()).thenReturn(unaFuncionalidad);
-		//establezco que la muestra esta en la zona y esta validada
-		when(muestra1.getEstadoMuestra()).thenReturn(estadoValidado);
-		when(zona.contieneMuestra(muestra1)).thenReturn(true);
-		
-		//llega la muestra a la app, entonces verifico que la organizacion ejecute FE
-		app.nuevaMuestraVerificada(muestra1);	
-		verify(organizacion, times(1)).useFEMuestraVerificada(zona, muestra1);
-	}
-	
-	@Test
-	void testLaAppLeAvisaALasOrganizacionesCorrespondientesCuandoSeCargaUnaNuevaMuestra() {
-		//añado zona y organizacion a la app
-		Set<ZonaDeCobertura> zonasNuevas = new HashSet<>(List.of(zona));
-		app.setZonasDeCobertura(zonasNuevas);
-		app.registrarOrganizacion(organizacion);
-		
-		//llega la muestra a la app, entonces verifico que la organizacion ejecute FE
-		app.recibirMuestra(muestra1);	
-		verify(organizacion, times(1)).useFENuevaMuestra(zona, muestra1);
-	}
-	
-	
 	*/
 }
 
