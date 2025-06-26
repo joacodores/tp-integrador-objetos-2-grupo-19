@@ -6,7 +6,7 @@ public class UsuarioEspecialista implements NivelConocimiento {
 
 	@Override
     public boolean puedeDarOpinion(Usuario u, Muestra m)  {
-		return !(m.getIdentificacion().equals(u)) && //revisar si hace falta, ya que si es su muestra tiene su propia opinion
+		return !(m.getIdentificacion().equals(u)) && 
 	            !(u.getOpinionesEnviadas().stream().anyMatch(o -> o.getMuestraEvaluada().equals(m))) &&
 	            !(m.estaVerificada());
     }
