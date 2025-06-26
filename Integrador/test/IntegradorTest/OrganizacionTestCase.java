@@ -9,6 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import integrador.muestra.Muestra;
 import integrador.organizacion.FuncionalidadExterna;
 import integrador.organizacion.Organizacion;
 import integrador.organizacion.Organizacion.TipoDeOrganizacion;
@@ -25,6 +26,7 @@ class OrganizacionTestCase {
 	ZonaDeCobertura zona1;
 	ZonaDeCobertura zona2;
 	ZonaDeCobertura zona3;
+	Muestra muestra;
 	ArrayList<ZonaDeCobertura> zonasDeInteres;
 	
 	@BeforeEach
@@ -36,6 +38,7 @@ class OrganizacionTestCase {
 		zona1 = mock(ZonaDeCobertura.class);
 		zona2 = mock(ZonaDeCobertura.class);
 		zona3 = mock(ZonaDeCobertura.class);
+		muestra = mock(Muestra.class);
 		zonasDeInteres = new ArrayList<ZonaDeCobertura>(Arrays.asList(zona1, zona2, zona3));
 		
 		organizacion = new Organizacion(tipo, 10, ubi1, funcion1, funcion2);
@@ -91,29 +94,26 @@ class OrganizacionTestCase {
 		assertEquals(funcion3, this.organizacion.getFuncionalidadExternaPorNuevaMuestra());
 		assertEquals(funcion3, this.organizacion.getFuncionalidadExternaPorMuestraVerificada());
 	}
-	
-	@Test
-	void testLaOrganizacionEstableceQueZonasRegistrar() {
-		this.organizacion.setZonasRegistradas(zonasDeInteres);
-		
-		assertEquals(zonasDeInteres, this.organizacion.getZonasRegistradas());
-	}
-	
+
 	@Test
 	void testLaOrganizacionSabeSiEstaInteresadaONoEnUnaZona() {
 		ZonaDeCobertura zonaSinInteres = mock(ZonaDeCobertura.class);
-		this.organizacion.setZonasRegistradas(zonasDeInteres);
+		this.organizacion.registrarseAZonaDeCobertura(zona1);
 		
-		assertTrue(this.organizacion.estaInteresadaEnZona(zona1));
-		assertFalse(this.organizacion.estaInteresadaEnZona(zonaSinInteres));
+		assertTrue(this.organizacion.getZonasRegistradas().contains(zona1));
+		assertFalse(this.organizacion.getZonasRegistradas().contains(zonaSinInteres));
 	}
 	
 	@Test
-	void testLaOrganizacionUsarSusFunciones() {
-		this.organizacion.useFENuevaMuestra(zona1, null);
-		this.organizacion.useFEMuestraVerificada(zona2, null);
-		verify(funcion1, times(1)).nuevoEvento(organizacion, zona1, null);
-		verify(funcion2, times(1)).nuevoEvento(organizacion, zona2, null);
+	void testLaOrganizacionUsaUnaFuncionAlRecibirUnaNuevaMuestraRegistrada() {
+		organizacion.nuevaMuestraRegistrada(zona1, muestra);
+		verify(funcion1, times(1)).nuevoEvento(organizacion, zona1, muestra);
+	}
+	
+	@Test
+	void testLaOrganizacionUsaUnaFuncionAlRecibirUnaNuevaVerificacionDeMuestra() {
+		organizacion.nuevaVerificacionMuestra(zona1, muestra);
+		verify(funcion2, times(1)).nuevoEvento(organizacion, zona1, muestra);
 	}
 	
 }

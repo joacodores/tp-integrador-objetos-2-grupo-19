@@ -1,4 +1,4 @@
-package integrador.app;
+package integrador.avisoOrganizaciones;
 
 import java.util.Set;
 
@@ -20,15 +20,12 @@ public class ObserverMuestra implements IObserverMuestra{
 		this.zonasDeMuestra = zonasDeMuestra;
 	}
 
-
-
 	@Override
 	public void nuevaMuestraVerificada(Muestra m) {
 		getZonasDeMuestra().stream().forEach(z -> z.addMuestraEnZona(m));
 		for(ZonaDeCobertura z : getZonasDeMuestra()) {
 			z.notificarMuestraVerificada(m);
 		}
-		
 	}
 	
 	@Override

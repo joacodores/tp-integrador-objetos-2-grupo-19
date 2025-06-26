@@ -5,6 +5,9 @@ import static org.mockito.Mockito.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +15,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import integrador.app.AppWeb;
-import integrador.app.IObserverMuestra;
+import integrador.avisoOrganizaciones.IObserverMuestra;
 import integrador.muestra.EstadoMuestra;
 import integrador.muestra.Muestra;
 import integrador.muestra.MuestraAbierta;
@@ -23,6 +26,7 @@ import integrador.opinion.Opinion;
 import integrador.ubicacion.Ubicacion;
 import integrador.usuario.Usuario;
 import integrador.usuario.UsuarioBasico;
+import integrador.zonaDeCobertura.ZonaDeCobertura;
 
 class MuestraTestCase {
 	Muestra muestraM;
@@ -219,4 +223,47 @@ class MuestraTestCase {
 	}
 	
 	*/
+	
+	
+	
+	/* ANTES SE HACIA DESDE APP
+	 * 
+	@Test
+	void testLaAppLeAvisaALasOrganizacionesCorrespondientesCuandoSeValidaUnaNuevaMuestra() {
+		//añado zona y organizacion a la app
+		Set<ZonaDeCobertura> zonasNuevas = new HashSet<>(List.of(zona));
+		app.setZonasDeCobertura(zonasNuevas);
+		app.registrarOrganizacion(organizacion);
+		
+		//creo el estado de muestra validada y una funcion externa cualquiera
+		MuestraVerificada estadoValidado = mock(MuestraVerificada.class);
+		FuncionalidadExterna unaFuncionalidad = mock(FuncionalidadExterna.class);
+		
+		//establezco el getter de funcionalidadExternaPorMuestraVerificada
+		when(organizacion.getFuncionalidadExternaPorMuestraVerificada()).thenReturn(unaFuncionalidad);
+		//establezco que la muestra esta en la zona y esta validada
+		when(muestra1.getEstadoMuestra()).thenReturn(estadoValidado);
+		when(zona.contieneMuestra(muestra1)).thenReturn(true);
+		
+		//llega la muestra a la app, entonces verifico que la organizacion ejecute FE
+		app.nuevaMuestraVerificada(muestra1);	
+		verify(organizacion, times(1)).useFEMuestraVerificada(zona, muestra1);
+	}
+	
+	@Test
+	void testLaAppLeAvisaALasOrganizacionesCorrespondientesCuandoSeCargaUnaNuevaMuestra() {
+		//añado zona y organizacion a la app
+		Set<ZonaDeCobertura> zonasNuevas = new HashSet<>(List.of(zona));
+		app.setZonasDeCobertura(zonasNuevas);
+		app.registrarOrganizacion(organizacion);
+		
+		//llega la muestra a la app, entonces verifico que la organizacion ejecute FE
+		app.recibirMuestra(muestra1);	
+		verify(organizacion, times(1)).useFENuevaMuestra(zona, muestra1);
+	}
+	
+	
+	*/
 }
+
+

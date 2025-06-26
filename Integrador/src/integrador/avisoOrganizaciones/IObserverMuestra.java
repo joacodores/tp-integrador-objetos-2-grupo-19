@@ -1,4 +1,4 @@
-package integrador.app;
+package integrador.avisoOrganizaciones;
 
 import integrador.muestra.Muestra;
 

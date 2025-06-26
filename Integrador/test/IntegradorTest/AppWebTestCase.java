@@ -18,7 +18,6 @@ import integrador.filtrosBusqueda.CriterioDeBusqueda;
 import integrador.filtrosBusqueda.CriterioTipoDeInsecto;
 import integrador.muestra.Muestra;
 import integrador.muestra.MuestraVerificada;
-import integrador.opinion.DescripcionOpinion;
 import integrador.organizacion.FuncionalidadExterna;
 import integrador.organizacion.Organizacion;
 import integrador.ubicacion.Ubicacion;
@@ -64,8 +63,6 @@ class AppWebTestCase {
 		//la muestra tiene como ubicacion aquella en la que este interesada la zona.
 		when(muestra1.getUbicacion()).thenReturn(ubiEnZona);
 		when(muestra1.getIdentificacion()).thenReturn(user);
-		//la organizacion esta interesada en la zona
-		when(organizacion.estaInteresadaEnZona(zona)).thenReturn(true);
 		//digo que la ubicacion se encuentra dentro de la zona
 		when(zona.perteneceUbicacion(ubiEnZona)).thenReturn(true);
 	}
@@ -155,41 +152,6 @@ class AppWebTestCase {
 	}
 	
 	@Test
-	void testLaAppLeAvisaALasOrganizacionesCorrespondientesCuandoSeCargaUnaNuevaMuestra() {
-		//añado zona y organizacion a la app
-		Set<ZonaDeCobertura> zonasNuevas = new HashSet<>(List.of(zona));
-		app.setZonasDeCobertura(zonasNuevas);
-		app.registrarOrganizacion(organizacion);
-		
-		//llega la muestra a la app, entonces verifico que la organizacion ejecute FE
-		app.recibirMuestra(muestra1);	
-		verify(organizacion, times(1)).useFENuevaMuestra(zona, muestra1);
-		
-	}
-	
-	@Test
-	void testLaAppLeAvisaALasOrganizacionesCorrespondientesCuandoSeValidaUnaNuevaMuestra() {
-		//añado zona y organizacion a la app
-		Set<ZonaDeCobertura> zonasNuevas = new HashSet<>(List.of(zona));
-		app.setZonasDeCobertura(zonasNuevas);
-		app.registrarOrganizacion(organizacion);
-		
-		//creo el estado de muestra validada y una funcion externa cualquiera
-		MuestraVerificada estadoValidado = mock(MuestraVerificada.class);
-		FuncionalidadExterna unaFuncionalidad = mock(FuncionalidadExterna.class);
-		
-		//establezco el getter de funcionalidadExternaPorMuestraVerificada
-		when(organizacion.getFuncionalidadExternaPorMuestraVerificada()).thenReturn(unaFuncionalidad);
-		//establezco que la muestra esta en la zona y esta validada
-		when(muestra1.getEstadoMuestra()).thenReturn(estadoValidado);
-		when(zona.contieneMuestra(muestra1)).thenReturn(true);
-		
-		//llega la muestra a la app, entonces verifico que la organizacion ejecute FE
-		app.nuevaMuestraVerificada(muestra1);	
-		verify(organizacion, times(1)).useFEMuestraVerificada(zona, muestra1);
-	}
-	
-	@Test
 	void testLaAppPuedeFiltrarMuestrasSegunCriteriosDeFiltrado() {
 		ArrayList<Muestra> muestras = new ArrayList<>(Arrays.asList(muestra1, muestra2));
 		CriterioDeBusqueda filtrarPorResultado = mock(CriterioTipoDeInsecto.class);
@@ -198,6 +160,9 @@ class AppWebTestCase {
 		verify(filtro, times(1)).filtrar();
 	}
 	
-	
-	
+	@Test
+	void testAlRecibirUnMuestraLaAppActualizaElHistorialDelUsuario() {
+		app.recibirMuestra(muestra1);
+		verify(user, times(1)).addMuestraReportada(muestra1);
+	}
 }

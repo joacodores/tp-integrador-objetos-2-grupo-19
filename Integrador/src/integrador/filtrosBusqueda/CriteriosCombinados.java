@@ -25,15 +25,3 @@ public class CriteriosCombinados implements CriterioDeBusqueda {
         return operador.combinarCriterios(cIzq, cDer);
     }
 }
-/*
-//Ejemplo de uso en test -> borrar una vez usado
-//teniendo criterios simples A,B,C y D combinamos:
-//A AND B
-CriterioDeBusqueda andAB = new CriterioCompuesto(criterioA, criterioB, new And());
-
-//C AND D
-CriterioDeBusqueda andCD = new CriterioCompuesto(criterioC, criterioD, new And());
-
-//(A AND B) OR (C AND D)
-CriterioDeBusqueda finalCriterio = new CriterioCompuesto(andAB, andCD, new Or());
-*/

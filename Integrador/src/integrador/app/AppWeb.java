@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import integrador.avisoOrganizaciones.ObserverMuestra;
 import integrador.filtrosBusqueda.BuscadorDeMuestra;
 import integrador.filtrosBusqueda.CriterioDeBusqueda;
 import integrador.muestra.Muestra;
@@ -31,7 +32,6 @@ public class AppWeb {
 		this.filtroDeMuestras = filtroDeMuestras;
 		this.organizaciones = organizaciones;
 		this.usuarios = usuarios;
-		
 	}
 
 	public ArrayList<Organizacion> getOrganizaciones() {
@@ -96,13 +96,10 @@ public class AppWeb {
 		z.setZonasSolapadas(zonasQueLaSolapan);
 		zonasDeCobertura.add(z);
 	}
-	
-
-	
-	public Set<ZonaDeCobertura> getZonasDeCoberturaDeUbicacion(Set<ZonaDeCobertura> zonas, Ubicacion u) {
-		return zonas.stream().filter(z -> z.perteneceUbicacion(u)).collect(Collectors.toSet());
+		
+	public Set<ZonaDeCobertura> getZonasDeCoberturaDeUbicacion(Ubicacion u) {
+		return this.getZonasDeCobertura().stream().filter(z -> z.perteneceUbicacion(u)).collect(Collectors.toSet());
 	}
-	
 	
 	public void recibirMuestra(Muestra m){ 
 		// hecha para que la app sepa recibir la muestra y lo que esto deberia generar, no se usa en el resto 
@@ -114,7 +111,7 @@ public class AppWeb {
 			
 			addMuestra(m);
 
-			Set<ZonaDeCobertura> zonasDeMuestra = getZonasDeCoberturaDeUbicacion(getZonasDeCobertura(), m.getUbicacion());
+			Set<ZonaDeCobertura> zonasDeMuestra = getZonasDeCoberturaDeUbicacion(m.getUbicacion());
 			m.addObserver(new ObserverMuestra(zonasDeMuestra));
 			m.notificarNuevaMuestra(); 
 	}

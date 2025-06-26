@@ -3,13 +3,17 @@ package IntegradorTest;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import integrador.muestra.Muestra;
 import integrador.ubicacion.Ubicacion;
+import integrador.zonaDeCobertura.IObserverZona;
 import integrador.zonaDeCobertura.ZonaDeCobertura;
 
 class ZonaDeCoberturaTestCase {
@@ -59,8 +63,25 @@ class ZonaDeCoberturaTestCase {
 	}
 	
 	@Test
+	void testUnaZonaPuedeAgregarOrganizacionesInteresadasEnElla() {
+		IObserverZona observerDeZona = mock(IObserverZona.class);
+		assertTrue(zona1.getObservers().isEmpty());
+		zona1.addObserver(observerDeZona);
+		assertTrue(zona1.getObservers().contains(observerDeZona));
+	}
+	
+	@Test
+	void testUnaZonaPuedeSettearOrganizacionesInteresadasEnElla() {
+		IObserverZona observerDeZona = mock(IObserverZona.class);
+		ArrayList<IObserverZona> observers = new ArrayList<>(Arrays.asList(observerDeZona));
+		assertFalse(zona1.getObservers().contains(observerDeZona));
+		zona1.setObservers(observers);
+		assertTrue(zona1.getObservers().contains(observerDeZona));
+	}
+	
+	@Test
 	void testUnaZonaConoceLasZonasQueLaSolapan() {
-		assertTrue(zona1.getZonasSolapadass().isEmpty());
+		assertTrue(zona1.getZonasSolapadas().isEmpty());
 	}
 	
 	@Test
@@ -68,7 +89,17 @@ class ZonaDeCoberturaTestCase {
 		ZonaDeCobertura nuevaZona = mock(ZonaDeCobertura.class);
 		zona1.addZonaSolapada(nuevaZona);
 		
-		assertEquals(1, zona1.getZonasSolapadass().size());
+		assertEquals(1, zona1.getZonasSolapadas().size());
+	}
+	
+	@Test
+	void testUnaZonaPuedeSettearZonasASusZonasSolapadas() {
+		ZonaDeCobertura nuevaZona = mock(ZonaDeCobertura.class);
+		Set<ZonaDeCobertura> nuevasZonasSolapadas = new HashSet<>(Arrays.asList(nuevaZona));
+		
+		assertFalse(zona1.getZonasSolapadas().contains(nuevaZona));
+		zona1.setZonasSolapadas(nuevasZonasSolapadas);
+		assertTrue(zona1.getZonasSolapadas().contains(nuevaZona));
 	}
 	
 	@Test
@@ -100,6 +131,37 @@ class ZonaDeCoberturaTestCase {
 	    when(epicentro1.distanciaHastaEnKm(epicentro2)).thenReturn(9d); 
 
 	    assertTrue(zona1.comparteUbicacionCon(zona2));
+	}
+	
+	@Test
+	void testZonaSabeSiNoComparteUbicacionConOtraZonaDeCobertura() {
+	    ZonaDeCobertura zona2 = mock(ZonaDeCobertura.class);
+	    Ubicacion epicentro2 = mock(Ubicacion.class);
+
+	    when(zona2.getEpicentro()).thenReturn(epicentro2);
+	    when(zona2.getRadioEnKm()).thenReturn(5d);
+	    // mayor que 10 + 5
+	    when(epicentro1.distanciaHastaEnKm(epicentro2)).thenReturn(120d); 
+
+	    assertFalse(zona1.comparteUbicacionCon(zona2));
+	}
+	
+	@Test
+	void testZonaNotificaAlosObserversCuandoLlegaUnaNuevaMuestra() {
+		IObserverZona observer = mock(IObserverZona.class);
+		zona1.addObserver(observer);
+		zona1.notificarNuevaMuestra(muestra);
+		
+		verify(observer, times(1)).nuevaMuestraRegistrada(zona1, muestra);
+	}
+	
+	@Test
+	void testZonaNotificaAlosObserversCuandoLlegaUnaMuestraVerificada() {
+		IObserverZona observer = mock(IObserverZona.class);
+		zona1.addObserver(observer);
+		zona1.notificarMuestraVerificada(muestra);
+		
+		verify(observer, times(1)).nuevaVerificacionMuestra(zona1, muestra);
 	}
 	
 	

@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import integrador.app.IObserverMuestra;
-import integrador.app.ObserverMuestra;
+import integrador.avisoOrganizaciones.IObserverMuestra;
+import integrador.avisoOrganizaciones.ObserverMuestra;
 import integrador.opinion.DescripcionOpinion;
 import integrador.opinion.Opinion;
 import integrador.ubicacion.Ubicacion;
