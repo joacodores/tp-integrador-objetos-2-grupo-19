@@ -2,7 +2,9 @@ package integrador.zonaDeCobertura;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import integrador.muestra.Muestra;
 import integrador.ubicacion.Ubicacion;
@@ -99,6 +101,11 @@ public class ZonaDeCobertura {
 	}
 	public void notificarMuestraVerificada(Muestra m) {
 		getObservers().stream().forEach(o -> o.nuevaVerificacionMuestra(this, m));
+	}
+	
+	public List<Muestra> getMuestrasVerificadasEnZona(){
+		List<Muestra> muestras = getMuestrasEnZona().stream().filter(m -> m.estaVerificada()).collect(Collectors.toList());
+		return muestras; 
 	}
 
 

@@ -21,7 +21,7 @@ public class AppWeb {
 	private Set<ZonaDeCobertura> zonasDeCobertura;
 	private BuscadorDeMuestra filtroDeMuestras;
 	private ArrayList<Organizacion> organizaciones;
-	private Set<Usuario> usuarios; // capaz no va
+	private Set<Usuario> usuarios;
 	
 	
 	public AppWeb(Set<Muestra> muestrasRecibidas, Set<ZonaDeCobertura> zonasDeCobertura,
@@ -114,5 +114,12 @@ public class AppWeb {
 			Set<ZonaDeCobertura> zonasDeMuestra = getZonasDeCoberturaDeUbicacion(m.getUbicacion());
 			m.addObserver(new ObserverMuestra(zonasDeMuestra));
 			m.notificarNuevaMuestra(); 
+	}
+	
+	public List<Muestra> muestrasAMenosDe(Muestra muestra , Double distanciaKm){
+		Ubicacion ubiMuestra = muestra.getUbicacion();
+		List<Muestra> muestras = getMuestrasRecibidas().stream().filter(m -> !m.equals(muestra))
+				.filter(m -> ubiMuestra.distanciaHastaEnKm(muestra.getUbicacion()) <= distanciaKm).collect(Collectors.toList());
+		return muestras;
 	}
 }
