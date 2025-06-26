@@ -15,7 +15,9 @@ import integrador.usuario.UsuarioBasico;
 import integrador.usuario.UsuarioEspecialista;
 import integrador.usuario.UsuarioExperto;
 import integrador.muestra.Muestra;
+import integrador.opinion.DescripcionOpinion;
 import integrador.opinion.Opinion;
+import integrador.ubicacion.Ubicacion;
 
 
 class UsuarioTestCase {
@@ -26,6 +28,8 @@ class UsuarioTestCase {
 	private Muestra muestra2;
 	private Opinion op1;
 	private Opinion op2;
+	private Ubicacion ubi;
+	private DescripcionOpinion dE;
 	
 	
 	@BeforeEach
@@ -37,10 +41,13 @@ class UsuarioTestCase {
 		this.muestra2 = mock(Muestra.class);
 		this.op1 = mock(Opinion.class);
 		this.op2 = mock(Opinion.class);
+		this.ubi = mock(Ubicacion.class);
+		this.dE = DescripcionOpinion.VINCHUCA_GUASAYANA;
 		
 		//op1 es una opinion que se genero para muestra1
 		when(this.op1.getMuestraEvaluada()).thenReturn(muestra1);
 		when(this.op2.getMuestraEvaluada()).thenReturn(muestra1);
+		
 	}
 	
 	@Test
@@ -154,6 +161,33 @@ class UsuarioTestCase {
 		assertFalse(this.usuarioEspecialista.getEstadoUsuario() instanceof UsuarioBasico);
 	};
 	
+	@Test
+	void testUnEstadoUsuarioSabeSiEsExperto(){
+		assertFalse(usuarioNormal.getEstadoUsuario().esExperto());
+	}
+	
+	@Test
+	void testUnUsuarioExpertoSabeSiPuedeDarOpinion() {
+		Muestra mA = new Muestra(ubi, dE, usuarioNormal, "foto");
+		assertTrue(usuarioEspecialista.getEstadoUsuario().puedeDarOpinion(usuarioEspecialista, mA));
+	}
+	
+	@Test
+	void testUnUsuarioBasicoNoPuedeOpinarDeUnaMuestraDeUnExperto() {
+		Muestra mA = new Muestra(ubi, dE, usuarioEspecialista, "foto");
+		assertTrue(usuarioNormal.getEstadoUsuario().puedeDarOpinion(usuarioNormal, mA));
+	}
+	
+	@Test
+	void testUnUsuarioExpertoNoPuedeOpinarDeUnaMuestraVerificada() {
+		//Muestra mA = new Muestra(ubi, dE, usuarioEspecialista, "foto");
+		Muestra mV = mock(Muestra.class);
+		when(mV.getIdentificacion()).thenReturn(usuarioEspecialista);
+		when(mV.estaVerificada()).thenReturn(true);
+		assertFalse(usuarioEspecialista.getEstadoUsuario().puedeDarOpinion(usuarioEspecialista, mV));
+	}
+	
+	//Ubicacion ubicacion, DescripcionOpinion especie, Usuario user, String foto
 	/*
 	@Test	//hacerlo desde el lado de muestra
 	void testUnUsuarioNoPuedeOpinarDosVecesEnLaMismaMuestra() {
