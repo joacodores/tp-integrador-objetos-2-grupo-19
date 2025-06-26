@@ -52,8 +52,9 @@ class MuestraTestCase {
 		//config opinion2
 		when(this.op2.getDescripcionOpinion()).thenReturn(descripcion2);
 		when(this.op2.getMuestraEvaluada()).thenReturn(muestra);
-		//config user
+		//config user basico
 		when(user.getEstadoUsuario()).thenReturn(estadoBasico);
+		when(user.getEstadoUsuario().esExperto()).thenReturn(false);
 		
 		descripcion1 = DescripcionOpinion.VINCHUCA_SORDIDA;
 		descripcion2 = DescripcionOpinion.IMAGEN_POCO_CLARA;
@@ -89,7 +90,10 @@ class MuestraTestCase {
 		MuestraAbierta estadoMuestra = mock(MuestraAbierta.class);
 		Muestra muestraA = new Muestra(ubi, descripcion1, user, "foto");
 		when(muestraA.getEstadoMuestra()).thenReturn(estadoMuestra);
+		
 		verify(estadoMuestra).recibirOpinionUsuarioBasico(any(Opinion.class));
+		//verify(estadoMuestra, times(1)).recibirOpinionUsuarioBasico(any(Opinion.class));
+		
 	}
 
 	/*
