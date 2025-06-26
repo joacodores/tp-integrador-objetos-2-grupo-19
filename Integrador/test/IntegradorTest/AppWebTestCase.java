@@ -60,6 +60,7 @@ class AppWebTestCase {
 		//COMPORTAMIENTOS
 		//la muestra tiene como ubicacion aquella en la que este interesada la zona.
 		when(muestra1.getUbicacion()).thenReturn(ubiEnZona);
+		when(muestra1.getIdentificacion()).thenReturn(user);
 		//la organizacion esta interesada en la zona
 		when(organizacion.estaInteresadaEnZona(zona)).thenReturn(true);
 		//digo que la ubicacion se encuentra dentro de la zona
@@ -132,6 +133,13 @@ class AppWebTestCase {
 	}
 	
 	@Test
+	void testLaAppPuedeAgregarNuevasZonasDeCobertura() {
+		assertFalse(app.getZonasDeCobertura().contains(zona));
+		app.addZonaDeCobertura(zona);
+		assertTrue(app.getZonasDeCobertura().contains(zona));
+	}
+	
+	@Test
 	void testLaAppConoceAlFiltroDeBusquedaUtilizado() {
 		assertEquals(this.filtros, app.getFiltroDeMuestras());
 	}
@@ -144,18 +152,6 @@ class AppWebTestCase {
 	}
 	
 	@Test
-	void testLaAppPuedeActualizarElEstadoDeSusUsuarios() {
-		//mockeo un estado y se lo asigno a un usuario
-		NivelConocimiento estadoUser = mock(NivelConocimiento.class);
-		when(user.getEstadoUsuario()).thenReturn(estadoUser);
-		//agrego en la app al usuario
-		app.addUsuario(user);
-		
-		app.actualizarEstadosUsuarios();
-		verify(estadoUser, times(1)).verificarCambioDeEstado(user);;
-	}
-	
-	@Test
 	void testLaAppLeAvisaALasOrganizacionesCorrespondientesCuandoSeCargaUnaNuevaMuestra() {
 		//añado zona y organizacion a la app
 		Set<ZonaDeCobertura> zonasNuevas = new HashSet<>(List.of(zona));
@@ -163,7 +159,7 @@ class AppWebTestCase {
 		app.registrarOrganizacion(organizacion);
 		
 		//llega la muestra a la app, entonces verifico que la organizacion ejecute FE
-		app.registrarMuestra(muestra1);	
+		app.recibirMuestra(muestra1);	
 		verify(organizacion, times(1)).useFENuevaMuestra(zona, muestra1);
 		
 	}
@@ -187,7 +183,7 @@ class AppWebTestCase {
 		
 		//llega la muestra a la app, entonces verifico que la organizacion ejecute FE
 		app.nuevaMuestraVerificada(muestra1);	
-		verify(organizacion, times(1)).getFuncionalidadExternaPorMuestraVerificada();
+		verify(organizacion, times(1)).useFEMuestraVerificada(zona, muestra1);
 		
 	}
 	

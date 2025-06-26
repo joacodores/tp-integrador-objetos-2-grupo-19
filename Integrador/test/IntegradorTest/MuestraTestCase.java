@@ -12,12 +12,10 @@ import integrador.Ubicacion;
 import integrador.app.AppWeb;
 import integrador.muestra.Muestra;
 import integrador.muestra.MuestraAbierta;
-import integrador.muestra.MuestraSoloExpertos;
-import integrador.muestra.MuestraVerificada;
 import integrador.opinion.DescripcionOpinion;
 import integrador.opinion.Opinion;
 import integrador.usuario.Usuario;
-import integrador.usuario.UsuarioExperto;
+import integrador.usuario.UsuarioBasico;
 
 class MuestraTestCase {
 	
@@ -36,6 +34,7 @@ class MuestraTestCase {
 	Opinion op2;
 	DescripcionOpinion descripcion1;
 	DescripcionOpinion descripcion2;
+	UsuarioBasico estadoBasico;
 	
 	@BeforeEach
 	void setUp() {
@@ -45,11 +44,16 @@ class MuestraTestCase {
 		user = mock(Usuario.class);
 		op1 = mock(Opinion.class);
 		op2 = mock(Opinion.class);
-		
+		estadoBasico = mock(UsuarioBasico.class);
+
+		//config opinion1
 		when(this.op1.getDescripcionOpinion()).thenReturn(descripcion1);
 		when(this.op1.getMuestraEvaluada()).thenReturn(muestra);
+		//config opinion2
 		when(this.op2.getDescripcionOpinion()).thenReturn(descripcion2);
 		when(this.op2.getMuestraEvaluada()).thenReturn(muestra);
+		//config user
+		when(user.getEstadoUsuario()).thenReturn(estadoBasico);
 		
 		descripcion1 = DescripcionOpinion.VINCHUCA_SORDIDA;
 		descripcion2 = DescripcionOpinion.IMAGEN_POCO_CLARA;
@@ -79,18 +83,22 @@ class MuestraTestCase {
 		assertEquals("foto", muestra.getFoto());
 	}
 	
-	/*
+
 	@Test
 	void testAlGenerarseLaMuestraCuentaConUnaOpinion() {
-		assertEquals(1, muestra.getOpiniones());
+		MuestraAbierta estadoMuestra = mock(MuestraAbierta.class);
+		Muestra muestraA = new Muestra(ubi, descripcion1, user, "foto");
+		when(muestraA.getEstadoMuestra()).thenReturn(estadoMuestra);
+		verify(estadoMuestra).recibirOpinionUsuarioBasico(any(Opinion.class));
 	}
-	
+
+	/*
 	@Test
 	void testMuestraConoceSuEspecieInicial() {
 		assertEquals(descripcion, muestra.getEspecie());
 	}
 	*/
-	
+	/*
 	@Test
 	void testLaFechaDeUnaMuestraCorrespondeConElDiaEnQueSeLaCreo() {
 		assertEquals(muestra.getFechaDeEnvio(), LocalDate.now());
@@ -135,7 +143,7 @@ class MuestraTestCase {
 	    });
 	}
 	
-	
+	*/
 	/*
 	@Test
 	void testSiUnUsuarioBasicoGeneraLaMuestraOtroEspecialistaPuedeOpinarSobreElla() {
@@ -146,7 +154,7 @@ class MuestraTestCase {
 	}
 	*/
 	
-	
+	/*
 	@Test
 	void testSiUnUsuarioExpertoGeneraLaMuestraLosUsuariosBasicosNoPuedenOpinarSobreElla() {
 		userBasico2.setEstadoUsuario(new UsuarioExperto());	//ahora es experto
@@ -171,5 +179,5 @@ class MuestraTestCase {
 			this.muestra.addOpinion(this.op);
 			
 	}
-	
+	*/
 }

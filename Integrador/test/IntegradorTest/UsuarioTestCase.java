@@ -10,24 +10,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 
-<<<<<<< HEAD
-import integrador.Usuario;
-import integrador.UsuarioBasico;
-import integrador.UsuarioEspecialista;
-import integrador.UsuarioExperto;
-import integrador.Muestra;
-import integrador.Opinion;
-=======
 import integrador.usuario.Usuario;
 import integrador.usuario.UsuarioBasico;
 import integrador.usuario.UsuarioEspecialista;
 import integrador.usuario.UsuarioExperto;
-import integrador.Ubicacion;
-import integrador.app.AppWeb;
 import integrador.muestra.Muestra;
-import integrador.opinion.DescripcionOpinion;
 import integrador.opinion.Opinion;
->>>>>>> branch 'main' of https://github.com/joacodores/tp-integrador-objetos-2-grupo-19.git
+
 
 class UsuarioTestCase {
 
