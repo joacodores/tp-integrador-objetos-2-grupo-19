@@ -17,6 +17,7 @@ import integrador.app.ObserverMuestra;
 import integrador.muestra.EstadoMuestra;
 import integrador.muestra.Muestra;
 import integrador.muestra.MuestraAbierta;
+import integrador.muestra.MuestraSoloExpertos;
 import integrador.muestra.MuestraVerificada;
 import integrador.opinion.DescripcionOpinion;
 import integrador.opinion.Opinion;
@@ -24,22 +25,12 @@ import integrador.usuario.Usuario;
 import integrador.usuario.UsuarioBasico;
 
 class MuestraTestCase {
-	@Mock
-    private Muestra muestraM;
-    @Mock
-    private Opinion opM;
-    @Mock
-    private EstadoMuestra estadoMuestraMock;
+	Muestra muestraM;
+    Opinion opM;
 	Muestra muestra;
 	Opinion op;
 	AppWeb app;	
 	Ubicacion ubi;
-	//Usuario userBasico;
-	//Usuario userBasico2;
-	//Usuario userEspecializado;
-	//Opinion op1;
-	//Opinion op2;
-	//Opinion op3;
 	Usuario user;
 	Usuario user2;
 	Opinion op1;
@@ -74,14 +65,8 @@ class MuestraTestCase {
 		
 		descripcion1 = DescripcionOpinion.VINCHUCA_SORDIDA;
 		descripcion2 = DescripcionOpinion.IMAGEN_POCO_CLARA;
-		//userBasico = new Usuario("Pepe", false);
-		//userBasico2 = new Usuario("Pepe2", false);
-		//userEspecializado = new Usuario("Dardo", true);
 		
 		muestra = new Muestra(ubi, descripcion1, user, "foto");
-		//op1 = new Opinion(descripcion1, muestra);
-		//op2 = new Opinion(descripcion2, muestra);
-		//op3 = new Opinion(descripcion3, muestra);
 	}
 	
 	@Test
@@ -102,10 +87,7 @@ class MuestraTestCase {
 
 	@Test
 	void testAlGenerarseLaMuestraCuentaConUnaOpinion() {
-		
 		assertEquals(1, muestra.getOpinionesUsuarios().size());
-		//verify(estadoMuestra, times(1)).recibirOpinionUsuarioBasico(any(Opinion.class));
-		
 	}
 
 	
@@ -132,8 +114,6 @@ class MuestraTestCase {
 		assertEquals(nuevoEstado, muestra.getEstadoMuestra());
 	}
 
-	
-	 
 	@Test
 	void testEnUnaMuestraPuedenOpinarUsuarios() {
 		muestra.addOpinion(op);				//UNA OPINION ES HECHA POR UN USUARIO
@@ -146,6 +126,40 @@ class MuestraTestCase {
 		assertTrue(muestra.getEstadoMuestra() instanceof MuestraVerificada);
 		assertTrue(muestra.estaVerificada());
 	}
+	
+	@Test
+	void testMuestraConoceLaFechaDeLaUltimaOpinion() {
+		when(op1.getFechaOpinion()).thenReturn(LocalDate.of(2025, 01, 01));
+		when(op2.getFechaOpinion()).thenReturn(LocalDate.now());
+		
+		muestra.addOpinion(op1);
+		muestra.addOpinion(op2);
+		
+		assertEquals(LocalDate.now(), muestra.getFechaUltimaVotacion());
+	}
+	
+	@Test
+	void testMuestraPuedeRecibirOpinionDeUnUsuarioBasicoSiNoOpinoNingunExperto() {
+		MuestraAbierta estado = mock(MuestraAbierta.class);
+		muestra.setEstadoMuestra(estado);
+		
+		muestra.recibirOpinionUsuarioBasico(op1);
+		verify(estado, times(1)).recibirOpinionUsuarioBasico(op1);
+	}
+	
+	@Test
+	void testMuestraNoPuedeRecibirOpinionDeUnUsuarioBasicoSiOpinoUnExperto() {
+		MuestraSoloExpertos estado = new MuestraSoloExpertos();
+		muestra.setEstadoMuestra(estado);
+		
+		muestra.recibirOpinionUsuarioExperto(op1);
+		//assertTrue(muestra.getOpinionesUsuarios().contains(op1));
+		assertThrows(IllegalStateException.class, () -> {
+		    muestra.recibirOpinionUsuarioBasico(op2);
+		});
+	}
+	
+	
 	
 	/*@Test
 	void testUnaMuestraPuedeRecibirOpinionUsuarioBasico() {

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,8 +16,11 @@ import integrador.Ubicacion;
 import integrador.ZonaDeCobertura;
 import integrador.app.AppWeb;
 import integrador.filtrosBusqueda.BuscadorDeMuestra;
+import integrador.filtrosBusqueda.CriterioDeBusqueda;
+import integrador.filtrosBusqueda.CriterioTipoDeInsecto;
 import integrador.muestra.Muestra;
 import integrador.muestra.MuestraVerificada;
+import integrador.opinion.DescripcionOpinion;
 import integrador.organizacion.FuncionalidadExterna;
 import integrador.organizacion.Organizacion;
 import integrador.usuario.Usuario;
@@ -26,7 +30,7 @@ class AppWebTestCase {
 	AppWeb app;
 	Muestra muestra1;
 	Muestra muestra2;
-	BuscadorDeMuestra filtros;
+	BuscadorDeMuestra filtro;
 	Organizacion organizacion;
 	Usuario user;
 	Ubicacion ubiEnZona;
@@ -42,7 +46,7 @@ class AppWebTestCase {
 	void setUp() throws Exception {
 		muestra1 = mock(Muestra.class);
 		muestra2 = mock(Muestra.class);
-		filtros = mock(BuscadorDeMuestra.class);
+		filtro = mock(BuscadorDeMuestra.class);
 		organizacion = mock(Organizacion.class);
 		user = mock(Usuario.class);
 		zona = mock(ZonaDeCobertura.class);
@@ -54,7 +58,7 @@ class AppWebTestCase {
 		organizaciones = new ArrayList<>();		//vacio
 		
 		
-		app = new AppWeb(muestrasRecibidas, zonasDeCobertura, filtros, usuarios, organizaciones);
+		app = new AppWeb(muestrasRecibidas, zonasDeCobertura, filtro, usuarios, organizaciones);
 		
 		//COMPORTAMIENTOS
 		//la muestra tiene como ubicacion aquella en la que este interesada la zona.
@@ -140,7 +144,7 @@ class AppWebTestCase {
 	
 	@Test
 	void testLaAppConoceAlFiltroDeBusquedaUtilizado() {
-		assertEquals(this.filtros, app.getFiltroDeMuestras());
+		assertEquals(this.filtro, app.getFiltroDeMuestras());
 	}
 	
 	@Test
@@ -187,11 +191,13 @@ class AppWebTestCase {
 	
 	@Test
 	void testLaAppPuedeFiltrarMuestrasSegunCriteriosDeFiltrado() {
-		app.addMuestra(muestra1);
-		app.addMuestra(muestra2);
+		ArrayList<Muestra> muestras = new ArrayList<>(Arrays.asList(muestra1, muestra2));
+		CriterioDeBusqueda filtrarPorResultado = mock(CriterioTipoDeInsecto.class);
+		app.filtrarMuestrasSegunCriterio(muestras, filtrarPorResultado);
 		
-		CriterioDeBusqueda
+		verify(filtro, times(1)).filtrar();
 	}
+	
 	
 	
 }
